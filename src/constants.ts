@@ -30,7 +30,7 @@ import type { ProjectCardProps } from "./components/home/project-card";
 
 export const profile = {
   name: "Sharoon Shaleem",
-  resume: "/resume.pdf",
+  resume: "/Sharoon-Shaleem.pdf",
   resumeLink:
     "https://drive.google.com/file/d/18W8xMA8vyjzY1XjCGQn9HhEXvyWVAbY-/view?usp=sharing",
   email: "ssharoon166@gmail.com",
