@@ -19,7 +19,7 @@ export default function About() {
       <div className="pt-20 md:pt-32 space-y-6 flex flex-col lg:flex-row gap-8 md:gap-14 justify-around items-center">
         <div className="overflow-hidden md:h-full rounded-xl shadow-lg border-4 border-gray-200/10 group">
           <Image
-            src="/my_pic.jpg"
+            src="/my_pic.JPG"
             alt="my pfp"
             height={700}
             width={700}
