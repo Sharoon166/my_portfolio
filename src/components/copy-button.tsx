@@ -31,15 +31,13 @@ export const CopyButton = ({ text, className = "" }: CopyButtonProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       title="Copy to clipboard"
-      data-mouse-text={copied ? "Copied" : "Copy"}
     >
       <motion.div
         initial={false}
         animate={{ scale: copied ? 0.8 : 1 }}
         transition={{ duration: 0.2 }}
-        data-mouse-text={copied ? "Copied" : "Copy"}
       >
-        {copied ? <FiCheck className="text-green-500" /> : <FiCopy />}
+        {copied ? <FiCheck className="text-destructive" /> : <FiCopy />}
       </motion.div>
     </motion.button>
   );

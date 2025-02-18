@@ -36,7 +36,7 @@ export function ContactSection() {
             Github
           </a>
           <a
-            href={profile.github}
+            href={profile.linkenIn}
             target="_blank"
             className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
           >
