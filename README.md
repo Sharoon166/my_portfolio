@@ -4,17 +4,17 @@ Hey 👋, my name is Sharoon Shaleem. I'm a passionate software developer with a
 
 I'm always up for tech discussions, collaborations, or just geeking out about anime or space. Feel free to reach out!
 
-## Skills & Technologies
+## Skills & Technologies 💻
 
 - Frontend Development (HTML5, CSS3, JavaScript, React)
-- Backend Development (Node.js, Python, SQL)
-- Full Stack Solutions
-- Web Applications
-- RESTful APIs
-- Database Design
-- Version Control (Git)
+- Backend Development (Node.js, Python, SQL) 
+- Full Stack Solutions 
+- Web Applications 
+- RESTful APIs 
+- Database Design 
+- Version Control (Git) 
 
-## Built With
+## Built With 🛠️
 
 - [Next.js](https://nextjs.org) - React framework for production
 - [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
@@ -23,6 +23,6 @@ I'm always up for tech discussions, collaborations, or just geeking out about an
 - [Vercel](https://vercel.com) - Deployment platform
 
 
-## Contact
+## Contact 📫
 
-Let's collaborate to create something exceptional! Feel free to reach out through any of the social links above or email me at your [ssharoon166@gmail.com](mailto:ssharoon166@gmail.com).
+Let's collaborate to create something exceptional! Feel free to reach out through email at [ssharoon166@gmail.com](mailto:ssharoon166@gmail.com).
