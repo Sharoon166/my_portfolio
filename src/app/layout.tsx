@@ -28,6 +28,19 @@ export const metadata: Metadata = {
   },
   description:
     "Hey I'm Sharoon, a 22 y/o Computer Science student with a curious mind and a passion for exploration — both in tech and beyond.",
+  openGraph: {
+    title: "Sharoon • Developer",
+    description:
+      "Hey I'm Sharoon, a 22 y/o Computer Science student with a curious mind and a passion for exploration — both in tech and beyond.",
+    siteName: "Sharoon's Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630
+      }
+    ]
+  },
 };
 
 export default function RootLayout({
