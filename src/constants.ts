@@ -113,7 +113,7 @@ export const projects: ProjectCardProps[] = [
     description:
       "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
     githubUrl: "https://github.com/Sharoon166",
-    previewUrl: "https:voyagertravels.vercel.app",
+    previewUrl: "https://voyagertravels.vercel.app",
     image: "/projects/voyager.png",
     technologies: ["html", "tailwindcss", "vite"],
     themeColor: "#CCF32F",
