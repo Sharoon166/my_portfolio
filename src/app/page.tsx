@@ -6,7 +6,7 @@ import { ContactSection } from "@/components/home/contact";
 
 export default function Home() {
   return (
-    <div className="space-y-20">
+    <div className="*:mb-20">
       <HeroSection />
       <ProjectShowcase />
       <AboutPreview />

@@ -28,6 +28,8 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --selection-bg: 0 80% 60%;
+    --selection-color: 0 0% 10%;
 
     scroll-behavior: smooth;
   }
@@ -54,6 +56,11 @@
 
   h3 {
     @apply font-semibold;
+  }
+
+  ::selection {
+    background-color: hsl(var(--selection-bg));
+    color: hsl(var(--selection-color));
   }
 }
 
