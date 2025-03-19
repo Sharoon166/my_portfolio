@@ -45,7 +45,7 @@ export function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
-                className="text-muted-foreground max-w-xl hover:text-zinc-300 md:text-lg transition-colors"
+                className="max-w-xl md:text-lg"
               >
                 A full-stack developer passionate about crafting innovative web
                 solutions. Let&apos;s collaborate to create something

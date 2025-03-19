@@ -20,7 +20,7 @@ export default function Projects() {
             <div className="inline-flex items-center gap-3 mb-8 text-primary-foreground">
               <LuCodeXml className="text-2xl" aria-hidden="true" />
 
-              <h2 className="text-xl font-semibold text-primary-foreground">Minor Projects</h2>
+              <h2 className="text-xl dot-suffix">Minor Projects</h2>
             </div>
 
             <div className="divide-y-2 divide-zinc-300/30" role="list">

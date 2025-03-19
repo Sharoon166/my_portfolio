@@ -77,7 +77,7 @@ export function ProjectCard({
             </motion.span>
           </motion.h3>
           <motion.p
-            className="max-w-lg text-zinc-300 text-sm lg:text-base mt-1 lg:mt-4 text-pretty"
+            className="max-w-lg text-muted-foreground text-sm lg:text-base mt-1 lg:mt-4 text-pretty"
             initial={{ opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -86,7 +86,7 @@ export function ProjectCard({
             {description}
           </motion.p>
           <div className="sm:space-y-4 mt-2 lg:mt-8">
-            <h4 className="text-sm font-semibold text-gray-200 uppercase max-lg:hidden">
+            <h4 className="text-sm font-semibold text-gray-100 uppercase max-lg:hidden">
               <span className="mr-1.5 text-xl font-normal align-middle text-destructive">
                 *
               </span>

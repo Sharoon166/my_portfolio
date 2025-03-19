@@ -23,11 +23,12 @@ export default function About() {
             alt="my pfp"
             height={700}
             width={700}
+            loading="eager"
             className="max-w-xs max-h-[400px] md:mx-auto object-cover object-top group-hover:scale-105 transition-transform duration-300"
           />
         </div>{" "}
         <div className="space-y-8 ">
-          <h2 className="text-muted-foreground after:content-[''] after:size-2 after:bg-destructive after:rounded-full after:inline-block after:ml-2">About me</h2>
+          <h2 className="dot-suffix">About me</h2>
           <div className="md:text-lg leading-relaxed max-w-3xl space-y-4">
             <p>
               I&apos;m a passionate software developer. I enjoy
