@@ -90,7 +90,7 @@ const Cursor = () => {
           className={cn(
             "size-12 rounded-full border-2 border-white/20 transition-all duration-700",
             {
-              "scale-[1.85] border-white/40 border": isHovering,
+              "scale-[1.9] border-[#3335] border": isHovering,
               "scale-50": isLink && !isHovering,
               "scale-75": msg === "" && !isLink,
             }
@@ -112,7 +112,7 @@ const Cursor = () => {
           className={cn(
             "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-white/70",
             {
-              "w-20 h-20 p-2 bg-white/15 backdrop-blur-md border-white/40 text-white":
+              "w-20 h-20 p-2 bg-[#3335] backdrop-blur-md border-white/40 text-white":
                 isHovering,
               "scale-0": isLink && !isHovering,
               "scale-75": msg === "" && !isLink,

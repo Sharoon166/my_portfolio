@@ -5,6 +5,7 @@ import git from "./git.svg"
 import github from "./github.svg"
 import graphql from "./graphql.svg"
 import gsap from "./gsap.svg"
+import heroUI from "./hero-ui.ico"
 import html from "./html.svg"
 import javascript from "./javascript.svg"
 import mongo from "./mongo.svg"
@@ -17,6 +18,7 @@ import postgresql from "./postgresql.svg"
 import postman from "./postman.svg"
 import reactRouter from "./react-router.svg"
 import react from "./react.svg"
+import shadcn from "./shadcn.svg"
 import tailwindcss from "./tailwindcss.svg"
 import typescript from "./typescript.svg"
 import vercel from "./vercel.svg"
@@ -32,6 +34,7 @@ export {
   github,
   graphql,
   gsap,
+  heroUI,
   html,
   javascript,
   mongo,
@@ -44,6 +47,7 @@ export {
   postman,
   reactRouter,
   react,
+  shadcn,
   tailwindcss,
   typescript,
   vercel,

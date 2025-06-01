@@ -116,7 +116,7 @@ export function ProjectCard({
                           damping: 10,
                         }}
                       >
-                        <span className="inline-block size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden">
+                        <span className="inline-block size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden flex items-center justify-center">
                           <Image src={icon} alt={name} />
                         </span>
                         <span className="text-xs px-2 py-1 text-[var(--themeColor)] lg:hidden">
@@ -197,7 +197,7 @@ export function ProjectCard({
         <a
           target="_blank"
           href={previewUrl}
-          className="rounded-xl p-1 px-3 border relative block bg-[var(--themeColor)] overflow-hidden"
+          className="rounded-xl p-1 px-3 border relative block bg-[var(--themeColor)] overflow-hidden max-h-[250px]"
           data-mouse-text="View Website"
         >
           <motion.div
@@ -215,7 +215,7 @@ export function ProjectCard({
             <Image
               src={image}
               alt={`${title} preview`}
-              className={`mx-auto brightness-90 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
+              className={`mx-auto brightness-95 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
               data-mouse-text="View Website"
               width={800}
               height={450}

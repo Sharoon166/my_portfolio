@@ -58,6 +58,10 @@
     @apply font-semibold;
   }
 
+  img {
+    user-select: none;
+  }
+
   ::selection {
     background-color: hsl(var(--selection-bg));
     color: hsl(var(--selection-color));

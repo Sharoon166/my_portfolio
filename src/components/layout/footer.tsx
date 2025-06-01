@@ -1,3 +1,5 @@
+"use client";
+
 import { LuCodeXml } from "react-icons/lu";
 
 export function Footer() {
