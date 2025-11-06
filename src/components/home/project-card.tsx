@@ -116,7 +116,7 @@ export function ProjectCard({
                           damping: 10,
                         }}
                       >
-                        <span className="inline-block size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden flex items-center justify-center">
+                        <span className="size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden flex items-center justify-center">
                           <Image src={icon} alt={name} />
                         </span>
                         <span className="text-xs px-2 py-1 text-(--themeColor) lg:hidden">

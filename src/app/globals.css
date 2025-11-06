@@ -209,3 +209,8 @@
     color: hsl(var(--selection-color));
   }
 }
+
+@utility stroked {
+  -webkit-text-stroke: 1.5px var(--stroke-color, hsl(0 84% 60%));
+  color: transparent;
+}

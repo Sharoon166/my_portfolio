@@ -8,7 +8,7 @@
       }
 
       .st1 {
-        stroke: #000;
+        stroke: #fff;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 32px;

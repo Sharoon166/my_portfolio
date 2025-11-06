@@ -18,30 +18,30 @@ export function ContactSection() {
             className="align-middle md:text-3xl"
           />
         </div>
-        <div className="w-max mx-auto flex flex-col md:flex-row flex-wrap gap-x-20 gap-y-4 text-lg">
-          <a
-            href={profile.whatsappLink}
-            target="_blank"
-            className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
-          >
-            <LuPhone className="text-destructive group-hover:scale-110 transition-transform" />
-            {profile.whatsapp}
-          </a>
+        <div className="w-max mx-auto flex md:flex-row flex-wrap gap-x-10 md:gap-x-20 gap-y-4 text-lg">
+            <a
+              href={profile.whatsappLink}
+              target="_blank"
+              className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
+            >
+              <LuPhone className="md:text-destructive group-hover:scale-150 transition-transform" />
+              <div className="max-md:sr-only">{profile.whatsapp}</div>
+            </a>
           <a
             href={profile.github}
             target="_blank"
             className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
           >
-            <LuGithub className="text-destructive group-hover:scale-110 transition-transform" />
-            Github
+            <LuGithub className="md:text-destructive group-hover:scale-150 transition-transform" />
+            <div className="max-md:sr-only">Github</div>
           </a>
           <a
             href={profile.linkenIn}
             target="_blank"
             className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
           >
-            <LuLinkedin className="text-destructive group-hover:scale-110 transition-transform" />
-            LinkedIn
+            <LuLinkedin className="md:text-destructive group-hover:scale-150 transition-transform" />
+            <div className="max-md:sr-only">LinkedIn</div>
           </a>
         </div>
         <div>
@@ -52,7 +52,7 @@ export function ContactSection() {
             className="inline-flex items-center gap-2 group relative overflow-hidden text-lg md:text-2xl text-destructive hover:underline underline-offset-4 p-3"
           >
             Schedule a Meeting{" "}
-            <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-destructive" />
+            <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-destructive ease-in" />
           </a>
         </div>
       </div>

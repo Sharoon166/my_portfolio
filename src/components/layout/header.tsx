@@ -81,7 +81,7 @@ export function Header() {
       </nav>
       {/* Mobile Menu Button */}
       <motion.button
-        className="sm:hidden z-50"
+        className="sm:hidden z-50 cursor-pointer"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-menu"

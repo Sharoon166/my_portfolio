@@ -27,14 +27,14 @@ export function HeroSection() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              <div className="space-y-1 font-caveat text-2xl lg:text-4xl ">
+              <div className="space-y-1 font-mono text-2xl lg:text-4xl ">
                 <span className="text-muted-foreground">Hey 👋, I&apos;m</span>
-                <h1 className="text-6xl lg:text-7xl">
+                <h1 className="text-6xl lg:text-7xl xl:text-8xl">
                   <motion.span
                     initial={{ x: -20 }}
                     animate={{ x: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="block -m-2 bg-linear-to-tr from-destructive to-red-500 bg-clip-text text-transparent tracking-tight font-normal"
+                    className="block -m-2 text-transparent tracking-tight font-black stroked"
                   >
                     Sharoon Shaleem
                   </motion.span>

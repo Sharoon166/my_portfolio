@@ -1,5 +1,7 @@
 import {
   css,
+  claude, 
+  cloudinary,
   edge,
   express,
   git,
@@ -15,16 +17,20 @@ import {
   nextjs,
   nodejs,
   notion,
+  openAI,
   postgresql,
   postman,
   reactRouter,
   react,
   shadcn,
   tailwindcss,
+  tanstack,
   typescript,
   vercel,
   vite,
   vsCode,
+  windsurf,
+  zenBrowser,
   zustand,
 } from "./assets/technologies";
 import type { MinorProjectCardProps } from "./components/home/minor-project-card";
@@ -47,6 +53,8 @@ export const profile = {
 
 export const technologiesCollection = {
   css: { name: "CSS", icon: css },
+  claude: { name: "Claude", icon: claude },
+  cloudinary: { name: "Cloudinary", icon: cloudinary },
   edge: { name: "Edge", icon: edge },
   express: { name: "Express", icon: express },
   git: { name: "Git", icon: git },
@@ -62,16 +70,20 @@ export const technologiesCollection = {
   nextjs: { name: "Next.js", icon: nextjs },
   nodejs: { name: "Node.js", icon: nodejs },
   notion: { name: "Notion", icon: notion },
+  chatgpt: { name: "ChatGPT", icon: openAI },
   postgresql: { name: "PostgreSQL", icon: postgresql },
   postman: { name: "Postman", icon: postman },
   reactrouter: { name: "React Router", icon: reactRouter },
   react: { name: "React", icon: react },
   shadcn: { name: "Shadcn", icon: shadcn },
   tailwindcss: { name: "Tailwind CSS", icon: tailwindcss },
+  tanstackQuery: { name: "TanStack Query", icon: tanstack },
   typescript: { name: "TypeScript", icon: typescript },
   vercel: { name: "Vercel", icon: vercel },
   vite: { name: "Vite", icon: vite },
   vscode: { name: "VS Code", icon: vsCode },
+  windsurf: { name: "Windsurf", icon: windsurf },
+  zenBrowser: { name: "Zen Browser", icon: zenBrowser },
   zustand: { name: "Zustand", icon: zustand },
 };
 
@@ -92,89 +104,107 @@ export const technologies: (keyof typeof technologiesCollection)[] = [
   "mongodb",
   "postgresql",
   "next",
+  "tanstackQuery",
 ] as const;
 
 export const tools: (keyof typeof technologiesCollection)[] = [
   "vscode",
+  "windsurf",
   "git",
   "github",
   "postman",
   "vercel",
+  "zenBrowser",
+  "edge",
+  "chatgpt",
+  "claude",
 ] as const;
 
-export const projects: ProjectCardProps[] = [
-  {
-    title: "Animadom",
-    description:
-      "Animadom is a sleek platform for anime lovers, offering genre-based exploration and detailed insights. 🎌✨ Dive into the world of anime with ease!",
-    githubUrl: "https://github.com/Sharoon166/Animadom",
-    previewUrl: "https://animadom.vercel.app",
-    image: "/projects/animadom.png",
-    technologies: ["tailwindcss", "shadcn", "reactrouter", "typescript", "graphql", "motion"],
-    themeColor: "#00abc2",
-  },
-  {
-    title: "Audix",
-    description:
-      "An interactive earbuds showcase with smooth animations and transitions. 🎧✨ Explore premium audio devices!",
-    githubUrl: "https://github.com/Sharoon166/audix",
-    previewUrl: "https://audixs.vercel.app/",
-    image: "/projects/audix.png",
-    technologies: ["tailwindcss", "next", "motion"],
-    themeColor: "#9FDAEC",
-  },
-  {
-    title: "Brake Time",
-    description: "A powerful admin dashboard for Braketime's backoffice, streamlining employee records, customer data, and inventory management. 💼📊",
-    githubUrl: "https://github.com/Sharoon166/brake-time",
-    previewUrl: "https://brake-time.vercel.app",
-    image: "/projects/brake-time.png",
-    technologies: ["tailwindcss", "next", "heroUI"],
-    themeColor: "#1ECF76",
-  },
-  {
-    title: "Mangadom",
-    description: "Discover and explore a vast collection of manga titles. Browse genres and dive into captivating stories from our extensive library. 📚✨",
-    githubUrl: "https://github.com/Sharoon166/mangadom",
-    previewUrl: "https://mangadom.vercel.app/",
-    image: "/projects/mangadom.png",
-    technologies: ["tailwindcss", "shadcn","next"],
-    themeColor: "#6B7280",
-  },
-  {
-    title: "Voyager",
-    description:
-      "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
-    githubUrl: "https://github.com/Sharoon166",
-    previewUrl: "https://voyagertravels.vercel.app",
-    image: "/projects/voyager.png",
-    technologies: ["html", "tailwindcss", "vite"],
-    themeColor: "#CCF32F",
-  },
-  {
-    title: "Samurai Systems",
-    description:
-      "A sleek, dark-themed landing page for a startup IT company, highlighting its expertise in cybersecurity, IT infrastructure, and digital transformation.",
-    githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
-    previewUrl: "https://samurai-systems166.vercel.app/",
-    image: "/projects/samurai-systems.png",
-    technologies: ["next", "tailwindcss", "gsap"],
-    themeColor: "#E74B4F",
-  },
-  {
-    title: "Halal Devco.",
-    description:
-      "A sleek website for Halal DevCo, showcasing halal investment opportunities, industry growth, and sustainable innovation. ",
-    githubUrl: "https://github.com/Sharoon166/halal_devco_frontend",
-    previewUrl: "https://halal-devco.vercel.app/",
-    image: "/projects/halal-devco.png",
-    technologies: ["next", "tailwindcss"],
-    themeColor: "#64B166",
-  },
+export const projects: ProjectCardProps[] = [{
+  title: "Diniiz",
+  description: "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
+  image: "/projects/diniiz.png",
+  githubUrl: "",
+  previewUrl: "https://diniiz.com",
+  technologies: ["react", "reactrouter", "tailwindcss", "shadcn", "nodejs", "express", "mongodb", "cloudinary"],
+  themeColor: "#0C9CDC",
+},
+{
+  title: "Brake Time",
+  description: "A powerful admin dashboard for Braketime's backoffice, streamlining employee records, customer data, and inventory management. 💼📊",
+  githubUrl: "https://github.com/Sharoon166/brake-time",
+  previewUrl: "https://brake-time.vercel.app",
+  image: "/projects/brake-time.png",
+  technologies: ["tailwindcss", "next", "heroUI"],
+  themeColor: "#1ECF76",
+},
+{
+  title: "Animadom",
+  description:
+    "Animadom is a sleek platform for anime lovers, offering genre-based exploration and detailed insights. 🎌✨ Dive into the world of anime with ease!",
+  githubUrl: "https://github.com/Sharoon166/Animadom",
+  previewUrl: "https://animadom.vercel.app",
+  image: "/projects/animadom.png",
+  technologies: ["tailwindcss", "shadcn", "reactrouter", "typescript", "graphql", "motion"],
+  themeColor: "#00abc2",
+},
+{
+  title: "Audix",
+  description:
+    "An interactive earbuds showcase with smooth animations and view-transitions. 🎧✨ Explore premium audio devices!",
+  githubUrl: "https://github.com/Sharoon166/audix",
+  previewUrl: "https://audixs.vercel.app/",
+  image: "/projects/audix.png",
+  technologies: ["tailwindcss", "next", "motion"],
+  themeColor: "#9FDAEC",
+},
+{
+  title: "Mangadom",
+  description: "Discover and explore a vast collection of manga titles. Browse genres and dive into captivating stories from our extensive library. 📚✨",
+  githubUrl: "https://github.com/Sharoon166/mangadom",
+  previewUrl: "https://mangadom.vercel.app/",
+  image: "/projects/mangadom.png",
+  technologies: ["tailwindcss", "shadcn", "next"],
+  themeColor: "#6B7280",
+},
+{
+  title: "Voyager",
+  description:
+    "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
+  githubUrl: "https://github.com/Sharoon166",
+  previewUrl: "https://voyagertravels.vercel.app",
+  image: "/projects/voyager.png",
+  technologies: ["html", "tailwindcss", "vite"],
+  themeColor: "#CCF32F",
+},
+{
+  title: "Samurai Systems",
+  description:
+    "A sleek, dark-themed landing page for a startup IT company, highlighting its expertise in cybersecurity, IT infrastructure, and digital transformation.",
+  githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
+  previewUrl: "https://samurai-systems166.vercel.app/",
+  image: "/projects/samurai-systems.png",
+  technologies: ["next", "tailwindcss", "gsap"],
+  themeColor: "#E74B4F",
+},
+{
+  title: "Halal Devco.",
+  description:
+    "A sleek website for Halal DevCo, showcasing halal investment opportunities, industry growth, and sustainable innovation. ",
+  githubUrl: "https://github.com/Sharoon166/halal_devco_frontend",
+  previewUrl: "https://halal-devco.vercel.app/",
+  image: "/projects/halal-devco.png",
+  technologies: ["next", "tailwindcss"],
+  themeColor: "#64B166",
+},
 ];
 
 export const minorProjects: MinorProjectCardProps[] = [{
   title: "Z Digitizing",
   description: "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
   liveUrl: "https://z-digitizing.vercel.app/",
+},{
+  title: "DevHive",
+  description: "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
+  liveUrl: "https://devhsr.vercel.app/",
 }];

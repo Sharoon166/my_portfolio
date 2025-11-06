@@ -12,6 +12,7 @@ import {
   technologiesCollection,
   tools,
 } from "@/constants";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   return (
@@ -24,6 +25,7 @@ export default function About() {
             height={700}
             width={700}
             loading="eager"
+data-mouse-text="Yeah so this is me"
             className="max-w-xs max-h-[400px] md:mx-auto object-cover object-top group-hover:scale-105 transition-transform duration-300"
           />
         </div>{" "}
@@ -78,10 +80,11 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="space-y-20">
-        <div className="flex flex-col lg:flex-row gap-8 md:gap-14">
-          <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Skills</h3>
-          <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20">
+      <div className="space-y-20 flex flex-col lg:flex-row gap-10 justify-between text-center lg:*:w-1/2">
+        <div className="flex flex-col gap-8 md:gap-14">
+          <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Skills I have</h3>
+          {/* <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20"> */}
+          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-8">
             {technologies.map((tech) => {
               if (!technologiesCollection[tech]) return null;
 
@@ -94,17 +97,21 @@ export default function About() {
                       alt={name}
                       width={80}
                       height={80}
-                      className="size-14 md:size-16"
+                      className="size-16"
                     />
                   </TooltipComponent>
+                  {/* <Badge className="font-normal gap-2">
+                    <Image src={icon} alt={name} width={15} height={15} />
+                    {name}</Badge> */}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-8 md:gap-14">
-          <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Tools</h3>
-          <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20">
+        <div className="flex flex-col gap-8 md:gap-14">
+          <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Tools I use</h3>
+          {/* <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20"> */}
+          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-8">
             {tools.map((tool) => {
               if (!technologiesCollection[tool]) return null;
               const { name, icon } = technologiesCollection[tool];
@@ -116,9 +123,12 @@ export default function About() {
                       alt={name}
                       width={80}
                       height={80}
-                      className="size-14 md:size-16"
+                      className="size-12"
                     />
                   </TooltipComponent>
+                  {/* <Badge className="font-normal gap-2">
+                    <Image src={icon} alt={name} width={15} height={15} />
+                    {name}</Badge> */}
                 </div>
               );
             })}
