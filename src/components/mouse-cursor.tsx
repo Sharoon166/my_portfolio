@@ -83,7 +83,7 @@ const Cursor = () => {
     <>
       {/* Outer Ring */}
       <motion.div
-        className="fixed left-0 top-0 pointer-events-none z-[998]"
+        className="fixed left-0 top-0 pointer-events-none z-998"
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
       >
         <div
@@ -100,7 +100,7 @@ const Cursor = () => {
 
       {/* Inner Circle */}
       <motion.div
-        className="fixed left-0 top-0 pointer-events-none flex items-center justify-center text-xs z-[999]"
+        className="fixed left-0 top-0 pointer-events-none flex items-center justify-center text-xs z-999"
         style={{
           x: cursorX,
           y: cursorY,

@@ -14,7 +14,7 @@ export function HeroSection() {
     >
       <div className="absolute inset-0 -z-10">
         {/* Geometric Patterns */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]" />
         <div className="absolute inset-0" />
       </div>
       <div className="flex flex-col-reverse justify-between lg:flex-row gap-4 items-center">
@@ -34,7 +34,7 @@ export function HeroSection() {
                     initial={{ x: -20 }}
                     animate={{ x: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="block -m-2 bg-gradient-to-tr from-destructive to-red-500 bg-clip-text text-transparent tracking-tight font-normal"
+                    className="block -m-2 bg-linear-to-tr from-destructive to-red-500 bg-clip-text text-transparent tracking-tight font-normal"
                   >
                     Sharoon Shaleem
                   </motion.span>
@@ -69,7 +69,7 @@ export function HeroSection() {
                 <Button
                   variant="default"
                   asChild
-                  className="px-6 py-4 rounded-xl bg-gradient-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300"
+                  className="px-6 py-4 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300"
                 >
                   <a href="#contact">
                     <span className="mr-2 font-medium">Let&apos;s Talk</span>

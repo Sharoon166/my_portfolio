@@ -33,7 +33,7 @@ export default function NotFound() {
         <p className="text-gray-300 mb-8">Looks like you&apos;ve ventured too far into space!</p>
         <Link
           href="/"
-          className="px-6 py-4 rounded-xl bg-gradient-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300 text-white font-medium"
+          className="px-6 py-4 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300 text-white font-medium"
         >
           Return Home
         </Link>      </div>

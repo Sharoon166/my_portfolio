@@ -122,7 +122,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 sm:hidden"
+              className="fixed inset-0 bg-black/80 backdrop-blur-xs z-40 sm:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -134,7 +134,7 @@ export function Header() {
                 stiffness: 300,
                 damping: 30,
               }}
-              className="fixed top-0 left-0 w-full h-[70vh] bg-background/95 backdrop-blur-sm z-40 sm:hidden p-8 border-b-2 border-border/70 rounded-b-3xl shadow-lg"
+              className="fixed top-0 left-0 w-full h-[70vh] bg-background/95 backdrop-blur-xs z-40 sm:hidden p-8 border-b-2 border-border/70 rounded-b-3xl shadow-lg"
               id="mobile-menu"
               role="dialog"
               aria-modal="true"

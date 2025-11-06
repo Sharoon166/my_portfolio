@@ -1,6 +1,148 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --font-geist: Geist Mono, monospace;
+  --font-caveat: Caveat, serif;
+  --font-poppins: Poppins, serif;
+
+  --animate-float: float 8s ease-in-out infinite;
+
+  @keyframes jump {
+    0% {
+      transform: translateY(0px);
+    }
+    30% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
+    }
+    50% {
+      transform: translateY(-200%);
+      animation-timing-function: ease-in;
+    }
+    75% {
+      transform: translateY(0px);
+      animation-timing-function: ease-in;
+    }
+  }
+  @keyframes morph {
+    0%,
+    10% {
+      transform: scaleY(1);
+    }
+    20%,
+    25% {
+      transform: scaleY(0.6) scaleX(1.3);
+      animation-timing-function: ease-in-out;
+    }
+    30% {
+      transform: scaleY(1.15) scaleX(0.9);
+      animation-timing-function: ease-in-out;
+    }
+    40%,
+    70%,
+    85%,
+    100% {
+      transform: scaleY(1);
+    }
+    75% {
+      transform: scaleY(0.8) scaleX(1.2);
+    }
+  }
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes float {
+    0% {
+      transform: translate(0px, 0px) rotate(4deg);
+    }
+    25% {
+      transform: translate(15px, -25px) rotate(-6deg);
+    }
+    50% {
+      transform: translate(-12px, -40px) rotate(3deg);
+    }
+    75% {
+      transform: translate(8px, -20px) rotate(-5deg);
+    }
+    100% {
+      transform: translate(0px, 0px) rotate(4deg);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility container {
+  @apply mx-auto;
+  max-width: 1375px;
+  padding-inline: clamp(1rem, 5vw, 2rem);
+}
+
+@utility animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@utility dot-suffix {
+  @apply after:content-[''] after:size-2 after:bg-destructive after:rounded-full after:inline-block after:ml-2;
+}
 
 @layer base {
   :root {
@@ -43,7 +185,7 @@
     @apply bg-background text-foreground overflow-x-hidden;
   }
   kbd {
-    @apply pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-sm font-medium text-muted-foreground;
+    @apply pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded-sm border bg-muted px-1.5 font-mono text-sm font-medium text-muted-foreground;
   }
 
   h1 {
@@ -65,21 +207,5 @@
   ::selection {
     background-color: hsl(var(--selection-bg));
     color: hsl(var(--selection-color));
-  }
-}
-
-@layer utilities {
-  .container {
-    @apply mx-auto;
-    max-width: 1375px;
-    padding-inline: clamp(1rem, 5vw, 2rem);
-  }
-
-  .animate-float {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .dot-suffix {
-    @apply after:content-[''] after:size-2 after:bg-destructive after:rounded-full after:inline-block after:ml-2;
   }
 }

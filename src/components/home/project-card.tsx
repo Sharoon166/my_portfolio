@@ -61,7 +61,7 @@ export function ProjectCard({
               style={{
                 backgroundColor: themeColor || "coral",
               }}
-              className="w-10 h-1 bg-red-500 inline-block align-middle mr-3 rounded"
+              className="w-10 h-1 bg-red-500 inline-block align-middle mr-3 rounded-sm"
               initial={{ width: 0, y: 8 }}
               whileInView={{ width: 40, y: 0 }}
               viewport={{ once: true }}
@@ -107,7 +107,7 @@ export function ProjectCard({
                   >
                     <Tooltip content={name} className="max-lg:hidden">
                       <motion.div
-                        className="flex items-center gap-0.5 bg-zinc-800 backdrop-blur rounded-xl overflow-hidden"
+                        className="flex items-center gap-0.5 bg-zinc-800 backdrop-blur-sm rounded-xl overflow-hidden"
                         whileHover={{ scale: 1.1 }}
                         viewport={{ once: true }}
                         transition={{
@@ -119,7 +119,7 @@ export function ProjectCard({
                         <span className="inline-block size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden flex items-center justify-center">
                           <Image src={icon} alt={name} />
                         </span>
-                        <span className="text-xs px-2 py-1 text-[var(--themeColor)] lg:hidden">
+                        <span className="text-xs px-2 py-1 text-(--themeColor) lg:hidden">
                           {name}
                         </span>
                       </motion.div>
@@ -134,7 +134,7 @@ export function ProjectCard({
           <motion.a
             href={githubUrl}
             target="_blank"
-            className="text-2xl bg-zinc-800/80 backdrop-blur p-3 rounded-full"
+            className="text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full"
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -172,7 +172,7 @@ export function ProjectCard({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <LuGithub className="text-[var(--themeColor)] text-lg" />
+              <LuGithub className="text-(--themeColor) text-lg" />
               <span>View Code</span>
             </motion.a>
           </Button>
@@ -187,7 +187,7 @@ export function ProjectCard({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[var(--themeColor)] text-lg" />
+              <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor) text-lg" />
               <span>Live Preview</span>
             </motion.a>
           </Button>
@@ -197,7 +197,7 @@ export function ProjectCard({
         <a
           target="_blank"
           href={previewUrl}
-          className="rounded-xl p-1 px-3 border relative block bg-[var(--themeColor)] overflow-hidden max-h-[250px]"
+          className="rounded-xl p-1 px-3 border relative block bg-(--themeColor) overflow-hidden max-h-[250px]"
           data-mouse-text="View Website"
         >
           <motion.div

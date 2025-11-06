@@ -54,7 +54,7 @@ export default function CommandDialogDemo() {
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/20 backdrop-blur-xs"
         style={{ display: open ? "block" : "none" }}
       >
         <CommandDialog
