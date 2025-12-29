@@ -16,7 +16,6 @@ export interface ProjectCardProps {
   technologies: (keyof typeof technologiesCollection)[];
   reverse?: boolean;
   themeColor?: string;
-  slug?: string;
 }
 
 export function ProjectCard({
@@ -28,7 +27,6 @@ export function ProjectCard({
   technologies,
   reverse,
   themeColor,
-  slug,
 }: ProjectCardProps) {
   return (
     <motion.div
@@ -50,8 +48,6 @@ export function ProjectCard({
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        onClick={() => slug && window.open(`/projects/${slug}`, '_self')}
-        style={{ cursor: slug ? 'pointer' : 'default' }}
       >
         <div className="w-full ">
           <motion.h3

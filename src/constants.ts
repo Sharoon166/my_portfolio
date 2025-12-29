@@ -128,7 +128,6 @@ export const projects: ProjectCardProps[] = [{
   previewUrl: "https://diniiz.com",
   technologies: ["react", "reactrouter", "tailwindcss", "shadcn", "nodejs", "express", "mongodb", "cloudinary"],
   themeColor: "#0C9CDC",
-  slug: "diniiz",
 },
 {
   title: "Brake Time",
