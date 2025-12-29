@@ -40,7 +40,7 @@ export const profile = {
   name: "Sharoon Shaleem",
   resume: "/Sharoon-Shaleem.pdf",
   resumeLink:
-    "https://drive.google.com/file/d/18W8xMA8vyjzY1XjCGQn9HhEXvyWVAbY-/view?usp=sharing",
+    "https://drive.google.com/file/d/1gpLw3Yi4TKH_Voi6klOKW1uxBFcDSYR6/view?usp=drive_link",
   email: "ssharoon166@gmail.com",
   emailLink: "mailto:ssharoon166@gmail.com",
   whatsapp: "+92-315-5417036",
@@ -128,6 +128,7 @@ export const projects: ProjectCardProps[] = [{
   previewUrl: "https://diniiz.com",
   technologies: ["react", "reactrouter", "tailwindcss", "shadcn", "nodejs", "express", "mongodb", "cloudinary"],
   themeColor: "#0C9CDC",
+  slug: "diniiz",
 },
 {
   title: "Brake Time",

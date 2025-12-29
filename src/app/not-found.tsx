@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { LuArrowLeft } from "react-icons/lu";
 
 export default function NotFound() {
   return (
@@ -21,7 +22,7 @@ export default function NotFound() {
         ))}
       </div>
 
-      <div className="text-center">
+      <div className="text-center z-50">
         <Image
           src="/astronaut.png"
           alt="Lost astronaut"
@@ -33,8 +34,9 @@ export default function NotFound() {
         <p className="text-gray-300 mb-8">Looks like you&apos;ve ventured too far into space!</p>
         <Link
           href="/"
-          className="px-6 py-4 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300 text-white font-medium"
+          className="px-6 py-2 inline-flex items-center gap-2 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300 text-white font-medium"
         >
+         <LuArrowLeft />
           Return Home
         </Link>      </div>
     </div>

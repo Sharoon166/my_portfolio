@@ -12,7 +12,6 @@ import {
   technologiesCollection,
   tools,
 } from "@/constants";
-import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   return (
@@ -20,23 +19,20 @@ export default function About() {
       <div className="pt-20 md:pt-32 space-y-6 flex flex-col lg:flex-row gap-8 md:gap-14 justify-around items-center">
         <div className="overflow-hidden md:h-full rounded-xl shadow-lg border-4 border-gray-200/10 group">
           <Image
-            src="/my_pic.JPG"
+            src="/me.webp"
             alt="my pfp"
             height={700}
             width={700}
             loading="eager"
-data-mouse-text="Yeah so this is me"
-            className="max-w-xs max-h-[400px] md:mx-auto object-cover object-top group-hover:scale-105 transition-transform duration-300"
+            data-mouse-text="Yeah so this is me"
+            className="max-w-xs max-h-[400px] md:mx-auto object-cover object-top group-hover:scale-105 transition-transform duration-300 cursor-none"
           />
         </div>{" "}
         <div className="space-y-8 ">
           <h2 className="dot-suffix">About me</h2>
           <div className="md:text-lg leading-relaxed max-w-3xl space-y-4">
             <p>
-              I&apos;m a passionate software developer. I enjoy
-              building web applications and constantly strive to improve. My
-              goal is to create meaningful solutions that make a positive
-              impact.
+            I&apos;m a software developer specializing in building reliable, scalable web applications using modern JavaScript technologies. I work across the stack, with hands-on experience in React, NextJS, Node.js, Express, and MongoDB, and I focus on writing clean, maintainable code that performs well in production.
             </p>
             <p>
               I&apos;m always up for tech discussions, collaborations, or just

@@ -1,3 +1,4 @@
+"use client"
 import { motion } from "motion/react";
 import { LuArrowRight, LuDownload } from "react-icons/lu";
 import { Button } from "../ui/button";
@@ -27,8 +28,8 @@ export function HeroSection() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              <div className="space-y-1 font-mono text-2xl lg:text-4xl ">
-                <span className="text-muted-foreground">Hey 👋, I&apos;m</span>
+              <div className="space-y-2 text-2xl lg:text-4xl ">
+                <span className="text-muted-foreground font-caveat">Hey 👋, I&apos;m</span>
                 <h1 className="text-6xl lg:text-7xl xl:text-8xl">
                   <motion.span
                     initial={{ x: -20 }}

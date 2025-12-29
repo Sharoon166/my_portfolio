@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Caveat } from "next/font/google";
+import { Poppins, Caveat, Fira_Code } from "next/font/google";
 import "./globals.css";
 import CommandPallete from "@/components/command-pallete";
 import { Header } from "@/components/layout/header";
@@ -21,6 +21,14 @@ const caveat = Caveat({
   weight: ["400", "500", "600", "700"],
   preload: true,
 });
+
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  preload: true,
+})
+
 export const metadata: Metadata = {
   title: {
     default: "Sharoon • Developer",

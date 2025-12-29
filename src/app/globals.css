@@ -40,6 +40,8 @@
   --font-geist: Geist Mono, monospace;
   --font-caveat: Caveat, serif;
   --font-poppins: Poppins, serif;
+  --font-fira-code: 'Fira Code', monospace;
+  --font-fira-sans: 'Fira Sans', serif;
 
   --animate-float: float 8s ease-in-out infinite;
 
@@ -127,6 +129,10 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+  }
+
+  body {
+    @apply font-fira-code!;
   }
 }
 

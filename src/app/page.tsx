@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { HeroSection } from "@/components/home/hero";
 import { ProjectShowcase } from "@/components/home/project-showcase";
 import { AboutPreview } from "@/components/home/about";
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="*:mb-20">
       <HeroSection />
-      <ProjectShowcase />
+    <ProjectShowcase />
       <AboutPreview />
       <ContactSection />
     </div>

@@ -1,6 +1,7 @@
 import { LuArrowRight, LuGithub, LuLinkedin, LuPhone } from "react-icons/lu";
 import { CopyButton } from "../copy-button";
 import { profile } from "@/constants";
+
 export function ContactSection() {
   return (
     <section
