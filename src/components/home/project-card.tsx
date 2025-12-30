@@ -134,7 +134,7 @@ export function ProjectCard({
           <motion.a
             href={githubUrl}
             target="_blank"
-            className="text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full"
+            className={cn("text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -164,16 +164,15 @@ export function ProjectCard({
           <Button
             asChild
             variant="secondary"
-            className="inline-flex items-center gap-2 rounded-lg lg:py-6 hover:bg-zinc-800/90 transition-colors duration-300"
+            className={cn("inline-flex items-center gap-2 rounded-lg lg:py-6 hover:bg-zinc-800/90 transition-colors duration-300", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
           >
             <motion.a
               href={githubUrl}
               target="_blank"
-              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <LuGithub className="text-(--themeColor) text-lg" />
               <span>View Code</span>
+              <LuGithub className="text-(--themeColor) text-lg" />
             </motion.a>
           </Button>
           <Button
@@ -184,11 +183,11 @@ export function ProjectCard({
             <motion.a
               href={previewUrl}
               target="_blank"
-              whileHover={{ scale: 1.02 }}
+              // whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor) text-lg" />
               <span>Live Preview</span>
+              <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor) text-lg" />
             </motion.a>
           </Button>
         </div>

@@ -8,7 +8,7 @@ export function ContactSection() {
       id="contact"
       className="max-w-6xl mx-auto py-12 px-10 md:py-20 space-y-10 border-2 border-zinc-800 bg-stone-900/40 rounded-[4rem] text-center"
     >
-      <div className="text-sm md:text-lg">
+      <div className="text-sm md:text-lg text-pretty">
         Looking for someone to turn your idea into reality?
       </div>
       <div className="space-y-8">
@@ -52,7 +52,7 @@ export function ContactSection() {
             target="_blank"
             className="inline-flex items-center gap-2 group relative overflow-hidden text-lg md:text-2xl text-destructive hover:underline underline-offset-4 p-3"
           >
-            Schedule a Meeting{" "}
+            Let&apos;s Talk{" "}
             <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-destructive ease-in" />
           </a>
         </div>

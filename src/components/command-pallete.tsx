@@ -41,7 +41,7 @@ export default function CommandDialogDemo() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const openInNewTab = (url: string) => {
+  const openInNewTab = (url: string, download = false) => {
     window.open(url, "_blank", "noopener,noreferrer");
     setOpen(false)
   };
@@ -50,6 +50,18 @@ export default function CommandDialogDemo() {
     setOpen(!open)
     redirect(url);
   }
+
+  const downloadResume = (url: string, fileName?: string) => {
+  const link = document.createElement("a");
+  link.href = url;
+
+  link.download = fileName || url.split("/").pop() || "resume.pdf";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 
   return (
     <>
@@ -100,11 +112,11 @@ export default function CommandDialogDemo() {
               <CommandSeparator className="bg-white/20 dark:bg-gray-800/20" />
               <CommandGroup heading="General">
                 <CommandItem
-                  onSelect={() => openInNewTab(profile.resumeLink)}
+                  onSelect={() => downloadResume(profile.resume)}
                   className="rounded-lg hover:bg-white/20 cursor-pointer"
                 >
                   <LuFileDown className="mr-2 h-4 w-4 text-destructive" />
-                  <span>Resume</span>
+                  <span>Download Résumé</span>
                   <CommandShortcut>R</CommandShortcut>
                 </CommandItem>
                 <CommandItem
@@ -112,7 +124,7 @@ export default function CommandDialogDemo() {
                   className="rounded-lg hover:bg-white/20 cursor-pointer"
                 >
                   <LuCalendarDays className="mr-2 h-4 w-4 text-destructive" />
-                  <span>Schedule a meeting</span>
+                  <span>Connect with Me</span>
                   <CommandShortcut>M</CommandShortcut>
                 </CommandItem>
               </CommandGroup>

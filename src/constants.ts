@@ -94,7 +94,6 @@ export const technologies: (keyof typeof technologiesCollection)[] = [
   "shadcn",
   "javascript",
   "typescript",
-  "vite",
   "react",
   "reactrouter",
   "zustand",
@@ -108,16 +107,11 @@ export const technologies: (keyof typeof technologiesCollection)[] = [
 ] as const;
 
 export const tools: (keyof typeof technologiesCollection)[] = [
-  "vscode",
-  "windsurf",
   "git",
   "github",
   "postman",
   "vercel",
-  "zenBrowser",
-  "edge",
-  "chatgpt",
-  "claude",
+  "vite"  
 ] as const;
 
 export const projects: ProjectCardProps[] = [{

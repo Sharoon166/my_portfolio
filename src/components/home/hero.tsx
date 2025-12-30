@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { motion } from "motion/react";
-import { LuArrowRight, LuDownload } from "react-icons/lu";
+import { LuArrowRight, LuFileText } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { profile } from "@/constants";
 import Image from "next/image";
@@ -29,7 +29,9 @@ export function HeroSection() {
               className="space-y-6"
             >
               <div className="space-y-2 text-2xl lg:text-4xl ">
-                <span className="text-muted-foreground font-caveat">Hey 👋, I&apos;m</span>
+                <span className="text-muted-foreground font-caveat">
+                  Hey 👋, I&apos;m
+                </span>
                 <h1 className="text-6xl lg:text-7xl xl:text-8xl">
                   <motion.span
                     initial={{ x: -20 }}
@@ -48,9 +50,10 @@ export function HeroSection() {
                 transition={{ duration: 0.4 }}
                 className="max-w-xl md:text-lg"
               >
-                A full-stack developer passionate about crafting innovative web
-                solutions. Let&apos;s collaborate to create something
-                exceptional!
+                I&apos;m a web developer based in Pakistan with experience
+                building full-stack applications using Next.js and Svelte. When
+                I&apos;m not coding, I enjoy exploring anime and diving into
+                astronomy.
               </motion.p>
             </motion.div>
 
@@ -73,7 +76,7 @@ export function HeroSection() {
                   className="px-6 py-4 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300"
                 >
                   <a href="#contact">
-                    <span className="mr-2 font-medium">Let&apos;s Talk</span>
+                    <span className="mr-2 font-medium">Talk to Me</span>
                     <LuArrowRight className="text-white size-5" />
                   </a>
                 </Button>
@@ -90,9 +93,9 @@ export function HeroSection() {
                   asChild
                   className="px-6 py-4 rounded-xl bg-secondary/60 backdrop-blur-md border border-border transition-all duration-300"
                 >
-                  <a href={profile.resume} download>
-                    <span className="mr-2 font-medium">Résumé</span>
-                    <LuDownload className="text-destructive size-5" />
+                  <a href={profile.resumeLink} download>
+                    <span className="mr-2 font-medium">View Résumé</span>
+                    <LuFileText className="text-destructive size-5" />
                   </a>
                 </Button>
               </motion.div>{" "}

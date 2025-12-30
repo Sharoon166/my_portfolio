@@ -19,11 +19,7 @@ export function AboutPreview() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         className="max-w-3xl md:text-lg leading-relaxed"
       >
-        I&apos;m a {new Date().getFullYear() - 2003} y/o Computer Science
-        student with a strong foundation in web development and a keen interest
-        in building scalable, user - centric applications. Passionate about
-        problem - solving and innovation, I continuously explore emerging
-        technologies to enhance my skills and stay ahead in the industry.
+        I&apos;m a {new Date().getFullYear() - 2003} y/o Computer Science student with a solid foundation in web development and a passion for building scalable, user-focused applications. I love solving problems and exploring new technologies, constantly learning and experimenting to stay ahead in the field.
       </motion.p>
 
       <motion.div

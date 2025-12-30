@@ -12,6 +12,7 @@ import {
   technologiesCollection,
   tools,
 } from "@/constants";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   return (
@@ -80,14 +81,14 @@ export default function About() {
         <div className="flex flex-col gap-8 md:gap-14">
           <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Skills I have</h3>
           {/* <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20"> */}
-          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-8">
+          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-2">
             {technologies.map((tech) => {
               if (!technologiesCollection[tech]) return null;
 
               const { name, icon } = technologiesCollection[tech];
               return (
                 <div key={tech}>
-                  <TooltipComponent content={name}>
+                  {/* <TooltipComponent content={name}>
                     <Image
                       src={icon}
                       alt={name}
@@ -95,10 +96,10 @@ export default function About() {
                       height={80}
                       className="size-16"
                     />
-                  </TooltipComponent>
-                  {/* <Badge className="font-normal gap-2">
-                    <Image src={icon} alt={name} width={15} height={15} />
-                    {name}</Badge> */}
+                  </TooltipComponent> */}
+                  <Badge variant="secondary" className="font-normal gap-2 text-sm md:text-lg">
+                    <Image src={icon} alt={name} width={20} height={20} />
+                    {name}</Badge>
                 </div>
               );
             })}
@@ -107,13 +108,13 @@ export default function About() {
         <div className="flex flex-col gap-8 md:gap-14">
           <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Tools I use</h3>
           {/* <div className="text-6xl flex flex-wrap gap-1 md:gap-x-4 gap-y-14 *:w-20"> */}
-          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-8">
+          <div className="mx-auto max-w-xl flex flex-wrap justify-center gap-2">
             {tools.map((tool) => {
               if (!technologiesCollection[tool]) return null;
               const { name, icon } = technologiesCollection[tool];
               return (
                 <div key={tool}>
-                  <TooltipComponent content={name}>
+                  {/* <TooltipComponent content={name}>
                     <Image
                       src={icon}
                       alt={name}
@@ -121,10 +122,10 @@ export default function About() {
                       height={80}
                       className="size-12"
                     />
-                  </TooltipComponent>
-                  {/* <Badge className="font-normal gap-2">
-                    <Image src={icon} alt={name} width={15} height={15} />
-                    {name}</Badge> */}
+                  </TooltipComponent> */}
+                  <Badge variant="secondary" className="font-normal gap-2 text-sm md:text-lg">
+                    <Image src={icon} alt={name} width={20} height={20} />
+                    {name}</Badge>
                 </div>
               );
             })}
