@@ -1,8 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import CircularText from "./circular-text";
+import { LuArrowUpRight, LuLock } from "react-icons/lu";
 
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -108,19 +110,41 @@ const Cursor = () => {
           translateY: "-50%",
         }}
       >
-        <div
-          className={cn(
-            "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-white/70",
-            {
-              "w-20 h-20 p-2 bg-[#3335] backdrop-blur-md border-white/40 text-white":
-                isHovering,
-              "scale-0": isLink && !isHovering,
-              "scale-75": msg === "" && !isLink,
-            }
+        <AnimatePresence mode="wait">
+          {isHovering && msg ? (
+            <motion.div
+              key="circular"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center justify-center text-zinc-900 bg-zinc-200/90 backdrop-blur-md rounded-full border-2 border-dotted border-zinc-400"
+            >
+              <CircularText
+                text={`${msg.toUpperCase()}`}
+                radius={32}
+                autoSpin
+              >
+                {msg.toLowerCase().includes("private") ? (
+                  <LuLock className="size-4 text-zinc-900" />
+                ) : (
+                  <LuArrowUpRight className="size-4 text-zinc-900" />
+                )}
+              </CircularText>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="dot"
+              className={cn(
+                "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-white/70",
+                {
+                  "scale-0": isLink,
+                  "scale-75": msg === "" && !isLink,
+                }
+              )}
+            />
           )}
-        >
-          {msg}
-        </div>
+        </AnimatePresence>
       </motion.div>
     </>
   );

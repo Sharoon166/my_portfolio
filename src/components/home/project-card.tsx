@@ -197,7 +197,7 @@ export function ProjectCard({
           target="_blank"
           href={previewUrl}
           className="rounded-xl p-1 px-3 border relative block bg-(--themeColor) overflow-hidden max-h-[250px]"
-          data-mouse-text="View Website"
+          data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
         >
           <motion.div
             initial={{ y: "80%", scale: 0.95, rotate: 2 }}
@@ -215,7 +215,7 @@ export function ProjectCard({
               src={image}
               alt={`${title} preview`}
               className={`mx-auto brightness-95 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
-              data-mouse-text="View Website"
+              data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
               width={800}
               height={450}
             />

@@ -51,7 +51,7 @@ export function HeroSection() {
                 className="max-w-xl md:text-lg"
               >
                 I&apos;m a web developer based in Pakistan with experience
-                building full-stack applications using Next.js and Svelte. When
+                building full-stack applications using React and Next.js. When
                 I&apos;m not coding, I enjoy exploring anime and diving into
                 astronomy.
               </motion.p>

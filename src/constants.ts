@@ -1,6 +1,7 @@
 import {
+  appwrite,
   css,
-  claude, 
+  claude,
   cloudinary,
   edge,
   express,
@@ -52,6 +53,7 @@ export const profile = {
 };
 
 export const technologiesCollection = {
+  appwrite: { name: "Appwrite", icon: appwrite },
   css: { name: "CSS", icon: css },
   claude: { name: "Claude", icon: claude },
   cloudinary: { name: "Cloudinary", icon: cloudinary },
@@ -98,6 +100,7 @@ export const technologies: (keyof typeof technologiesCollection)[] = [
   "reactrouter",
   "zustand",
   "motion",
+  "appwrite",
   "express",
   "nodejs",
   "mongodb",
@@ -111,7 +114,7 @@ export const tools: (keyof typeof technologiesCollection)[] = [
   "github",
   "postman",
   "vercel",
-  "vite"  
+  "vite"
 ] as const;
 
 export const projects: ProjectCardProps[] = [{
@@ -124,6 +127,24 @@ export const projects: ProjectCardProps[] = [{
   themeColor: "#0C9CDC",
 },
 {
+  title: "Newon",
+  description: "A comprehensive business management platform built with Next.js and React.js, designed to streamline operations for businesses managing inventory, finances, and staff.",
+  image: "/projects/newon.webp",
+  githubUrl: "",
+  previewUrl: "",
+  technologies: ["tailwindcss", "next", "typescript", "shadcn", "mongodb"],
+  themeColor: "#cb743f",
+},
+{
+  title: "Reverie",
+  description: "Internal tool for managing business operations, streamlining workflows, and providing visibility.",
+  image: "/projects/reverie.jpg",
+  githubUrl: "",
+  previewUrl: "",
+  technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
+  themeColor: "#FACA3F",
+},
+{
   title: "Brake Time",
   description: "A powerful admin dashboard for Braketime's backoffice, streamlining employee records, customer data, and inventory management. 💼📊",
   githubUrl: "https://github.com/Sharoon166/brake-time",
@@ -131,6 +152,15 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/brake-time.png",
   technologies: ["tailwindcss", "next", "heroUI"],
   themeColor: "#1ECF76",
+},
+{
+  title: "Metrics",
+  description: "Blue-themed dashboard template with a sleek design and comprehensive features for business analytics and data visualization. It was built just for fun 😜",
+  githubUrl: "https://github.com/Sharoon166/dashboard-pixelz",
+  previewUrl: "https://pixelz-dashboard.vercel.app",
+  image: "/projects/metrics.webp",
+  technologies: ["react", "tailwindcss", "shadcn", "motion"],
+  themeColor: "#6160ff",
 },
 {
   title: "Animadom",
@@ -162,16 +192,6 @@ export const projects: ProjectCardProps[] = [{
   themeColor: "#6B7280",
 },
 {
-  title: "Voyager",
-  description:
-    "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
-  githubUrl: "https://github.com/Sharoon166",
-  previewUrl: "https://voyagertravels.vercel.app",
-  image: "/projects/voyager.png",
-  technologies: ["html", "tailwindcss", "vite"],
-  themeColor: "#CCF32F",
-},
-{
   title: "Samurai Systems",
   description:
     "A sleek, dark-themed landing page for a startup IT company, highlighting its expertise in cybersecurity, IT infrastructure, and digital transformation.",
@@ -191,13 +211,67 @@ export const projects: ProjectCardProps[] = [{
   technologies: ["next", "tailwindcss"],
   themeColor: "#64B166",
 },
+{
+  title: "Voyager",
+  description:
+    "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
+  githubUrl: "https://github.com/Sharoon166",
+  previewUrl: "https://voyagertravels.vercel.app",
+  image: "/projects/voyager.png",
+  technologies: ["html", "tailwindcss", "vite"],
+  themeColor: "#CCF32F",
+},
+];
+
+export interface ExperienceItem {
+  id: string;
+  period: string;
+  company: string;
+  role: string;
+  location: string;
+  desc: string;
+  tags: string[];
+  type: string;
+}
+
+export const experience: ExperienceItem[] = [
+  {
+    id: "01",
+    period: "July 2025 – April 2026",
+    company: "Synctom",
+    role: "Software Developer",
+    location: "Full-time",
+    desc: "• Built Diniiz — a restaurant management platform with realtime order tracking, interactive floor canvas for reservations, and live messaging\n• Developed Axion — internal tool for business operations and workflow management\n• Created Reverie — business management platform for streamlining operations and providing visibility\n• Led development of official websites of Synctom.",
+    tags: ["React", "Node.js", "MongoDB", "Next.js"],
+    type: "Work",
+  },
+  {
+    id: "02",
+    period: "Sep 2022 – Oct 2026",
+    company: "NUML",
+    role: "B.S. Computer Science",
+    location: "University",
+    desc: "Pursuing a Computer Science degree. Deepening understanding of algorithms, databases, and software engineering.",
+    tags: ["CS", "Algorithms", "DB"],
+    type: "Education",
+  },
+  {
+    id: "03",
+    period: "2021",
+    company: "The Spark",
+    role: "Web Development",
+    location: "Self-taught",
+    desc: "Got interested in web development. Started learning HTML, CSS, and JavaScript — the foundation of everything that came after.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    type: "Learning",
+  },
 ];
 
 export const minorProjects: MinorProjectCardProps[] = [{
   title: "Z Digitizing",
   description: "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
   liveUrl: "https://z-digitizing.vercel.app/",
-},{
+}, {
   title: "DevHive",
   description: "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
   liveUrl: "https://devhsr.vercel.app/",

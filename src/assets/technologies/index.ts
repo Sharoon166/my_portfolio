@@ -1,4 +1,4 @@
-
+import appwrite from "./appwrite.svg"
 import betterAuth from "./better-auth.svg"
 import claude from "./claude.svg"
 import cloudinary from "./cloudinary.svg"
@@ -35,6 +35,7 @@ import zenBrowser from "./zen-browser.svg"
 import zustand from "./zustand.svg"
 
 export {
+  appwrite,
   betterAuth,
   claude,
   css,

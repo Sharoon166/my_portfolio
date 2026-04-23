@@ -10,9 +10,11 @@ import {
   profile,
   technologies,
   technologiesCollection,
+  experience,
   tools,
 } from "@/constants";
 import { Badge } from "@/components/ui/badge";
+import { ExperienceTimeline } from "@/components/timeline";
 
 export default function About() {
   return (
@@ -25,7 +27,8 @@ export default function About() {
             height={700}
             width={700}
             loading="eager"
-            data-mouse-text="Yeah so this is me"
+            priority
+            data-mouse-text="Yeah so this is me 😉"
             className="max-w-xs max-h-[400px] md:mx-auto object-cover object-top group-hover:scale-105 transition-transform duration-300 cursor-none"
           />
         </div>{" "}
@@ -33,7 +36,7 @@ export default function About() {
           <h2 className="dot-suffix">About me</h2>
           <div className="md:text-lg leading-relaxed max-w-3xl space-y-4">
             <p>
-            I&apos;m a software developer specializing in building reliable, scalable web applications using modern JavaScript technologies. I work across the stack, with hands-on experience in React, NextJS, Node.js, Express, and MongoDB, and I focus on writing clean, maintainable code that performs well in production.
+              I&apos;m a software developer specializing in building reliable, scalable web applications using modern JavaScript technologies. I work across the stack, with hands-on experience in React, NextJS, Node.js, Express, and MongoDB, and I focus on writing clean, maintainable code that performs well in production.
             </p>
             <p>
               I&apos;m always up for tech discussions, collaborations, or just
@@ -77,6 +80,12 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <div className="space-y-8">
+        <h3 className="text-2xl md:text-4xl dot-suffix">Experience</h3>
+        <ExperienceTimeline items={experience} />
+      </div>
+
       <div className="space-y-20 flex flex-col lg:flex-row gap-10 justify-between text-center lg:*:w-1/2">
         <div className="flex flex-col gap-8 md:gap-14">
           <h3 className="text-2xl md:text-4xl md:min-w-[25%]">Skills I have</h3>
