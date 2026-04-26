@@ -15,13 +15,6 @@ const bricolage = Bricolage_Grotesque({
   preload: true,
 });
 
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  preload: true,
-});
-
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
@@ -54,7 +47,22 @@ export const metadata: Metadata = {
         width: 1200,
         height: 1200
       }
-    ]  },
+    ]
+  },
+  icons: {
+    icon: [
+      {
+        url: "/logo.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/logo_bw.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: ["/logo.png"],
+    apple: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({
