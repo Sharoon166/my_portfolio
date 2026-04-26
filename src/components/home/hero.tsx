@@ -1,178 +1,170 @@
-"use client"
-import { motion, useScroll, useTransform } from "motion/react";
+"use client";
+
+import { motion, useSpring, useMotionValue, useTransform } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon, Note01Icon, GithubIcon, Linkedin01Icon, InstagramIcon } from "@hugeicons/core-free-icons";
+import {
+  ArrowRight02Icon,
+  ArrowUpRight01Icon
+} from "@hugeicons/core-free-icons";
 import { Button } from "../ui/button";
-import { profile } from "@/constants";
-import Image from "next/image";
-import Link from "next/link";
+import { profile, projects, minorProjects } from "@/constants";
+import { useEffect } from "react";
+
+const totalProjects = projects.length + minorProjects.length;
+
+function MagneticWrapper({ children, strength = 0.5 }: { children: React.ReactNode; strength?: number }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 150, damping: 15 });
+  const springY = useSpring(y, { stiffness: 150, damping: 15 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set((e.clientX - centerX) * strength);
+    y.set((e.clientY - centerY) * strength);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ x: springX, y: springY }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function HeroSection() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative py-24 hero"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="relative min-h-screen flex items-center justify-center py-20"
     >
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 z-0">
 
-      <div className="absolute inset-0 -z-10">
-        {/* Geometric Patterns */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] opacity-70" />
-        <div className="absolute inset-0" />
+        {/* Animated Grid / Mesh */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40" />
       </div>
 
-      <div className="flex flex-col-reverse justify-between lg:flex-row gap-4 gap-y-24 items-center">
-        <div className="px-4 lg:px-6 relative w-fit">
-          {/* Main Content */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-12"
-            >
-              <div className="space-y-2">
-                <span className="text-muted-foreground font-bricolage italic block text-2xl lg:text-3x">
-                  Hey 👋, I&apos;m
-                </span>
-                <h1>
-                  <motion.span
-                    initial={{ x: -20 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="block -m-2 tracking-tight font-black"
-                  >
-                    Sharoon Shaleem
-                  </motion.span>
-                </h1>
-              </div>
+      {/* Vertical KPIs (Top Right) */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute top-1/4 right-8 lg:right-16 hidden md:flex flex-col gap-10 z-20"
+      >
+        <div className="flex flex-col items-end text-right gap-1 group">
+          <span className="text-4xl xl:text-5xl font-bricolage font-black text-white/90 group-hover:text-destructive transition-colors">{totalProjects}+</span>
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground font-bold">Projects Built</span>
+        </div>
+      </motion.div>
 
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                className="max-w-xl text-pretty"
-              >
-               I build full-stack web applications with a focus on performance, scalability, and clean architecture. Most of my work lives around React, Next.js, and backend systems.
+      <div className="container relative z-10 space-y-6">
 
-              </motion.p>
-            </motion.div>
-
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex gap-x-6 gap-y-2 flex-wrap"
-            >
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  variant="default"
-                  asChild
-                  className="px-6 py-4 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300"
-                >
-                  <a href="#contact">
-                    <span className="mr-2 font-medium">Talk to Me</span>
-                    <HugeiconsIcon icon={ArrowRight01Icon} size={20} className="text-white" />
-                  </a>
-                </Button>
-              </motion.div>{" "}
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  variant="secondary"
-                  asChild
-                >
-                  <a href={profile.resumeLink} download>
-                    <span className="mr-2 font-medium">View Résumé</span>
-                    <HugeiconsIcon icon={Note01Icon} size={20} className="text-destructive" />
-                  </a>
-                </Button>
-              </motion.div>{" "}
-            </motion.div>
+        {/* Top Status Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md w-fit"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-green-600 animate-ping opacity-75" />
+            <div className="relative size-2 rounded-full bg-green-500" />
           </div>
+          <span className="text-[10px] font-mono uppercase tracking-widest font-bold text-white/70">
+            Available for new projects
+          </span>
+        </motion.div>
+
+        {/* Main Title Area */}
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="text-destructive text-sm block"
+            >
+              001 - Full-stack Developer
+            </motion.span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic!">
+              <motion.span
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="block"
+              >
+                Digital Experiences
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-destructive stroked"
+              >
+                That Actually Matter
+              </motion.span>
+            </h1>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="max-w-2xl ml-auto text-base md:text-lg text-muted-foreground font-light leading-relaxed text-pretty"
+          >
+            I&apos;m <span className="text-foreground font-semibold">Sharoon Shaleem</span>. I
+            specialize in building scalable, high-performance applications that users love and businesses can rely on.
+          </motion.p>
         </div>
 
-        <div className="grow">
-          <div className="mx-auto w-[90%] max-w-md group relative">
-            <div className="relative">
-              <Link href={"/about"}>
-                <Image
-                  src="/sharoon.png"
-                  alt="pfp"
-                  width={600}
-                  height={700}
-                  className="z-10 mx-auto grayscale drop-shadow-2xl brightness-50 group-hover:brightness-75 group-hover:grayscale-0 transition-all duration-700"
-                  data-mouse-text="Get to know me 🙃 Go here ->"
-                />
-              </Link>
-              <div className="absolute -bottom-2 right-[1%] w-[105%]   border-8 border-white shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] skew-x-12 h-52 rounded-xl -z-10">
+        {/* Call to Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="flex flex-col sm:flex-row gap-6 items-center"
+        >
+          <MagneticWrapper strength={0.1}>
+            <a href="/case-studies" className="flex items-center justify-between gap-4 px-6 py-2 bg-white text-black rounded-2xl hover:bg-zinc-200 transition-colors group">
+              <span className="relative z-10">See case studies</span>
+              <HugeiconsIcon icon={ArrowRight02Icon} size={18} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </MagneticWrapper>
 
-                {/* Noise Texture Overlay (Blended with Image) */}
-                <div
-                  className="absolute w-full h-full z-20 pointer-events-none opacity-[0.15] mix-blend-overlay"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-                  }}
-                />
-              </div>
+          <MagneticWrapper strength={0.1}>
+            <a href={profile.resumeLink} target="_blank" rel="noopener noreferrer" download
+              className="inline-flex items-center gap-2 group relative overflow-hidden text-2xl text-destructive hover:underline underline-offset-4 p-3">
+              <span>View Résumé</span>
+              <HugeiconsIcon icon={ArrowUpRight01Icon} size={32} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </MagneticWrapper>
+        </motion.div>
 
-              {/* Floating Social Orbitals */}
-              <div className="absolute bottom-0 w-full h-full z-40 pointer-events-none">
-                {/* GitHub */}
-                <motion.a
-                  href={profile.github}
-                  target="_blank"
-                  animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-[15%] left-[10%] p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md pointer-events-auto hover:bg-white/10 hover:border-white/20 transition-all group"
-                >
-                  <HugeiconsIcon icon={GithubIcon} size={18} className="text-white/50 group-hover:text-white" />
-                  <span className="absolute left-full ml-2 px-2 py-1 rounded bg-black/80 text-[10px]text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">/Github</span>
-                </motion.a>
-
-                {/* LinkedIn */}
-                <motion.a
-                  href={profile.linkenIn}
-                  target="_blank"
-                  animate={{ y: [0, 15, 0], x: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute top-[40%] right-[5%] p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md pointer-events-auto hover:bg-white/10 hover:border-white/20 transition-all group"
-                >
-                  <HugeiconsIcon icon={Linkedin01Icon} size={18} className="text-white/50 group-hover:text-white" />
-                  <span className="absolute right-full mr-2 px-2 py-1 rounded bg-black/80 text-[10px]text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">/LinkedIn</span>
-                </motion.a>
-
-                {/* Instagram */}
-                <motion.a
-                  href={profile.instagram}
-                  target="_blank"
-                  animate={{ y: [0, -8, 0], x: [0, -5, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-[20%] left-[15%] p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md pointer-events-auto hover:bg-white/10 hover:border-white/20 transition-all group"
-                >
-                  <HugeiconsIcon icon={InstagramIcon} size={18} className="text-white/50 group-hover:text-white" />
-                  <span className="absolute left-full ml-2 px-2 py-1 rounded bg-black/80 text-[10px]text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">/Instagram</span>
-                </motion.a>
-              </div>
-            </div>
-
-          </div>
-        </div>
       </div>
     </motion.section>
   );

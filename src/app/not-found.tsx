@@ -8,6 +8,13 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Massive 404 Background Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+        <span className="text-[40vw] font-black font-bricolage tracking-tighter text-white opacity-5">
+          404
+        </span>
+      </div>
+
       <div className="absolute inset-0">
         {[...Array(50)].map((_, i) => (
           <div

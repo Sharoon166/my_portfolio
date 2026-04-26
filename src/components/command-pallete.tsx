@@ -75,16 +75,7 @@ export default function CommandPalette() {
 
 
           <DialogTitle className="sr-only">Command Palette</DialogTitle>
-
           <div className="relative z-10">
-            <div className="flex items-center border-b border-white/5 px-4 py-3 justify-between bg-white/5">
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                <div className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                Available for new opportunities
-              </div>
-              
-            </div>
-
             <CommandInput
               placeholder="Search projects, pages, or links..."
               className="h-14 border-none bg-transparent text-base focus:ring-0 placeholder:text-zinc-500"

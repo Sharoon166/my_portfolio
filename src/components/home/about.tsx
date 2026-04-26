@@ -4,6 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { motion } from "motion/react";
 import { DottedMap } from "@/components/ui/dotted-map";
+import { LinkPreview } from "../ui/link-preview";
 
 export function AboutPreview() {
   return (
@@ -22,7 +23,7 @@ export function AboutPreview() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         className="relative max-w-3xl md:text-lg leading-relaxed z-20"
       >
-        I&apos;m a full-stack developer specializing in building scalable, user-focused applications. I gained my professional footing at <a href="https://synctom.com" target="_blank" rel="noopener noreferrer" className="underline font-bricolage">Synctom</a>, a startup where I worked directly with clients, shipped production-ready apps, and solved real business problems under real constraints. I love exploring new technologies and constantly push myself to stay sharp and ahead of the curve.
+        I&apos;m a full-stack developer specializing in building scalable, user-focused applications. I gained my professional footing at <LinkPreview url="https://synctom.com" className="underline">Synctom</LinkPreview>, a startup where I worked directly with clients, shipped production-ready apps, and solved real business problems under real constraints. I love exploring new technologies and constantly push myself to stay sharp and ahead of the curve.
       </motion.p>
 
       <motion.div

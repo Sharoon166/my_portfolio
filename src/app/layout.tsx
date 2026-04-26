@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     siteName: "Sharoon's Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og.webp",
         width: 1200,
-        height: 1200
+        height: 630
       }
     ]
   },
