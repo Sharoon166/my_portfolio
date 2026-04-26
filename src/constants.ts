@@ -35,7 +35,7 @@ import {
   zustand,
 } from "./assets/technologies";
 import type { MinorProjectCardProps } from "./components/home/minor-project-card";
-import type { ProjectCardProps } from "./components/home/project-card";
+import type { ProjectCardProps, ProjectCategory } from "./components/home/project-card";
 
 export const profile = {
   name: "Sharoon Shaleem",
@@ -44,8 +44,6 @@ export const profile = {
     "https://drive.google.com/file/d/1gpLw3Yi4TKH_Voi6klOKW1uxBFcDSYR6/view?usp=drive_link",
   email: "ssharoon166@gmail.com",
   emailLink: "mailto:ssharoon166@gmail.com",
-  whatsapp: "+92-315-5417036",
-  whatsappLink: "https://wa.me/923155417036",
   github: "https://github.com/Sharoon166",
   linkenIn: "https://www.linkedin.com/in/sharoon-shaleem-0a7a85226/",
   instagram: "https://www.instagram.com/sharoonshaleem/",
@@ -125,24 +123,30 @@ export const projects: ProjectCardProps[] = [{
   previewUrl: "https://diniiz.com",
   technologies: ["react", "reactrouter", "tailwindcss", "shadcn", "nodejs", "express", "mongodb", "cloudinary"],
   themeColor: "#0C9CDC",
+  categories: ["Full Stack", "Dashboard"],
+  caseStudyId: "diniiz",
 },
 {
   title: "Newon",
-  description: "A comprehensive business management platform built with Next.js and React.js, designed to streamline operations for businesses managing inventory, finances, and staff.",
+  description: "A centralized operations platform for inventory, invoicing, and financial management, built solo for a real business client.",
   image: "/projects/newon.webp",
   githubUrl: "",
   previewUrl: "",
   technologies: ["tailwindcss", "next", "typescript", "shadcn", "mongodb"],
   themeColor: "#cb743f",
+  categories: ["Full Stack", "Dashboard"],
+  caseStudyId: "newon",
 },
 {
   title: "Reverie",
-  description: "Internal tool for managing business operations, streamlining workflows, and providing visibility.",
+  description: "Internal operations platform built for Synctom to manage clients, finances, leads, and team operations in one place.",
   image: "/projects/reverie.jpg",
   githubUrl: "",
   previewUrl: "",
   technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
   themeColor: "#FACA3F",
+  categories: ["Full Stack", "Dashboard"],
+  caseStudyId: "reverie",
 },
 {
   title: "Brake Time",
@@ -152,6 +156,7 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/brake-time.png",
   technologies: ["tailwindcss", "next", "heroUI"],
   themeColor: "#1ECF76",
+  categories: ["Dashboard", "Frontend"],
 },
 {
   title: "Metrics",
@@ -161,6 +166,7 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/metrics.webp",
   technologies: ["react", "tailwindcss", "shadcn", "motion"],
   themeColor: "#6160ff",
+  categories: ["Dashboard", "Frontend"],
 },
 {
   title: "Animadom",
@@ -171,6 +177,8 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/animadom.png",
   technologies: ["tailwindcss", "shadcn", "reactrouter", "typescript", "graphql", "motion"],
   themeColor: "#00abc2",
+  categories: ["Frontend", "Full Stack"],
+  caseStudyId: "animadom",
 },
 {
   title: "Audix",
@@ -181,6 +189,7 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/audix.png",
   technologies: ["tailwindcss", "next", "motion"],
   themeColor: "#9FDAEC",
+  categories: ["Frontend"],
 },
 {
   title: "Mangadom",
@@ -190,16 +199,19 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/mangadom.png",
   technologies: ["tailwindcss", "shadcn", "next"],
   themeColor: "#6B7280",
+  categories: ["Frontend"],
 },
 {
   title: "Samurai Systems",
   description:
-    "A sleek, dark-themed landing page for a startup IT company, highlighting its expertise in cybersecurity, IT infrastructure, and digital transformation.",
+    "A practice project focused on replicating a high-end design and mastering complex GSAP animations in Next.js.",
   githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
   previewUrl: "https://samurai-systems166.vercel.app/",
   image: "/projects/samurai-systems.png",
   technologies: ["next", "tailwindcss", "gsap"],
   themeColor: "#E74B4F",
+  categories: ["Frontend", "Web Design"],
+  caseStudyId: "samurai-systems",
 },
 {
   title: "Halal Devco.",
@@ -210,6 +222,7 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/halal-devco.png",
   technologies: ["next", "tailwindcss"],
   themeColor: "#64B166",
+  categories: ["Frontend", "Web Design"],
 },
 {
   title: "Voyager",
@@ -220,8 +233,15 @@ export const projects: ProjectCardProps[] = [{
   image: "/projects/voyager.png",
   technologies: ["html", "tailwindcss", "vite"],
   themeColor: "#CCF32F",
+  categories: ["Web Design", "Frontend"],
 },
 ];
+
+export interface Testimonial {
+  name: string;
+  designation: string;
+  testimony: string;
+}
 
 export interface ExperienceItem {
   id: string;
@@ -230,8 +250,11 @@ export interface ExperienceItem {
   role: string;
   location: string;
   desc: string;
-  tags: string[];
+  tags?: string[];
   type: string;
+  icon?: string;
+  testimonial?: Testimonial;
+  technologies?: (keyof typeof technologiesCollection)[];
 }
 
 export const experience: ExperienceItem[] = [
@@ -239,40 +262,59 @@ export const experience: ExperienceItem[] = [
     id: "01",
     period: "July 2025 – April 2026",
     company: "Synctom",
-    role: "Software Developer",
+    role: "Web Developer",
     location: "Full-time",
-    desc: "• Built Diniiz — a restaurant management platform with realtime order tracking, interactive floor canvas for reservations, and live messaging\n• Developed Axion — internal tool for business operations and workflow management\n• Created Reverie — business management platform for streamlining operations and providing visibility\n• Led development of official websites of Synctom.",
-    tags: ["React", "Node.js", "MongoDB", "Next.js"],
+    desc: "• Built Diniiz — a restaurant management platform with realtime order tracking, interactive floor canvas for reservations, and live messaging\n• Solo-developed Newon — a centralized operations platform for inventory, invoicing, and financial management for a production client\n• Developed Reverie — internal business management platform for streamlining Synctom's day-to-day operations\n• Assisted in development of official Synctom website.",
+    // tags: ["React", "Node.js", "MongoDB", "Next.js"],
     type: "Work",
+    icon: "briefcase",
+    testimonial: {
+      name: "Ali Taqi",
+      designation: "CEO @ Synctom",
+      testimony: "I've had the pleasure of working with Sharoon, and I can confidently say he is a highly capable and dependable Frontend Developer. He consistently transforms complex ideas into clean, responsive, and visually polished interfaces.",
+    },
+    technologies: ["react", "next", "nodejs", "mongodb", "tailwindcss", "typescript"],
   },
   {
     id: "02",
     period: "Sep 2022 – Oct 2026",
     company: "NUML",
-    role: "B.S. Computer Science",
+    role: "Student",
     location: "University",
-    desc: "Pursuing a Computer Science degree. Deepening understanding of algorithms, databases, and software engineering.",
-    tags: ["CS", "Algorithms", "DB"],
+    desc: "My time at NUML has been about much more than just a degree—it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
+    tags: ["CS", "DSA", "Algorithms", "OS", "DBMS", "SDLC"],
     type: "Education",
-  },
-  {
-    id: "03",
-    period: "2021",
-    company: "The Spark",
-    role: "Web Development",
-    location: "Self-taught",
-    desc: "Got interested in web development. Started learning HTML, CSS, and JavaScript — the foundation of everything that came after.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    type: "Learning",
+    icon: "graduation-cap",
+    technologies: ["javascript", "typescript", "html", "css"],
   },
 ];
 
-export const minorProjects: MinorProjectCardProps[] = [{
-  title: "Z Digitizing",
-  description: "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
-  liveUrl: "https://z-digitizing.vercel.app/",
-}, {
-  title: "DevHive",
-  description: "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
-  liveUrl: "https://devhsr.vercel.app/",
-}];
+export const minorProjects: MinorProjectCardProps[] = [
+  {
+    title: "Z Digitizing",
+    description: "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
+    liveUrl: "https://z-digitizing.vercel.app/",
+    technologies: ["react", "tailwindcss", "motion", "vite"],
+  },
+  {
+    title: "DevHive",
+    description: "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
+    liveUrl: "https://devhsr.vercel.app/",
+    technologies: ["next", "tailwindcss", "typescript", "appwrite", "shadcn"],
+  },
+];
+
+export const skillCategories = [
+  {
+    title: "Frontend Development",
+    skills: ["next", "react", "typescript", "javascript", "tailwindcss", "shadcn", "reactrouter", "zustand", "motion", "html", "css"] as (keyof typeof technologiesCollection)[]
+  },
+  {
+    title: "Backend & Database",
+    skills: ["nodejs", "express", "mongodb", "postgresql", "appwrite"] as (keyof typeof technologiesCollection)[]
+  },
+  {
+    title: "Tools & Libraries",
+    skills: ["tanstackQuery", "git", "github", "postman", "vercel", "vite"] as (keyof typeof technologiesCollection)[]
+  }
+];

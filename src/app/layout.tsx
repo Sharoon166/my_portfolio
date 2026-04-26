@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Caveat, Fira_Code } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono, Caveat, Fira_Code } from "next/font/google";
 import "./globals.css";
 import CommandPallete from "@/components/command-pallete";
 import { Header } from "@/components/layout/header";
@@ -8,10 +8,17 @@ import CustomCursor from "@/components/mouse-cursor";
 import { MotionConfig } from "motion/react";
 import { GradientBg } from "@/components/gradient-bg";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  preload: true,
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
   preload: true,
 });
 
@@ -56,11 +63,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${poppins.className} ${caveat.variable}  antialiased dark font-poppins`}
+        className={`${firaCode.variable} ${bricolage.variable} ${caveat.variable} antialiased font-fira-code text-foreground/90 leading-relaxed`}
       >
-        <GradientBg />
+        {/* <GradientBg /> */}
         <MotionConfig reducedMotion="user">
           <div className="container py-6 min-h-screen space-y-4">
             <Header />

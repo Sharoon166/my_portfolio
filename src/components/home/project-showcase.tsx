@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { LuArrowRight } from "react-icons/lu";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { ProjectCard } from "./project-card";
 import { projects } from "@/constants";
+import Link from "next/link";
 
 export function ProjectShowcase() {
   return (
@@ -20,7 +21,7 @@ export function ProjectShowcase() {
           className="inline-flex items-center gap-2 group relative overflow-hidden text-2xl text-destructive hover:underline underline-offset-4 p-3"
         >
           View more{" "}
-          <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-destructive" />
+          <HugeiconsIcon icon={ArrowRight02Icon} size={28} className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-destructive" />
         </Link>
       </div>
     </section>

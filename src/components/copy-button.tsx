@@ -24,7 +24,7 @@ export const CopyButton = ({ text, className = "" }: CopyButtonProps) => {
 
   return (
     <motion.button
-      className={cn(`p-2 rounded-md ${className}`)}
+      className={cn(`p-2 rounded-md cursor-pointer ${className}`)}
       onClick={handleCopy}
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.05 }}

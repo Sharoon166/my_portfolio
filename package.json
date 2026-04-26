@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^4.1.1",
+    "@hugeicons/react": "^1.1.6",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tabs": "^1.1.13",
@@ -16,6 +18,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
+    "html-to-image": "^1.11.13",
     "lucide-react": "^0.474.0",
     "motion": "^12.5.0",
     "next": "16.0.10",
@@ -23,6 +26,7 @@
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0",
     "react-toastify": "^11.0.5",
+    "svg-dotted-map": "^2.1.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {

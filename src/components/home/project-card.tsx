@@ -1,11 +1,16 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { LuArrowRight, LuArrowUpRight, LuGithub } from "react-icons/lu";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight02Icon, ArrowUpRight01Icon, GithubIcon, Scroll01Icon, } from "@hugeicons/core-free-icons";
 import Tooltip from "../tooltip";
 import { technologiesCollection } from "@/constants";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Button } from "../ui/button";
+import Link from "next/link";
+import { CometCard } from "../ui/comet-card";
+
+export type ProjectCategory = "Full Stack" | "Frontend" | "Dashboard" | "Web Design";
 
 export interface ProjectCardProps {
   title: string;
@@ -16,6 +21,8 @@ export interface ProjectCardProps {
   technologies: (keyof typeof technologiesCollection)[];
   reverse?: boolean;
   themeColor?: string;
+  categories?: ProjectCategory[];
+  caseStudyId?: string;
 }
 
 export function ProjectCard({
@@ -27,6 +34,7 @@ export function ProjectCard({
   technologies,
   reverse,
   themeColor,
+  caseStudyId,
 }: ProjectCardProps) {
   return (
     <motion.div
@@ -77,7 +85,7 @@ export function ProjectCard({
             </motion.span>
           </motion.h3>
           <motion.p
-            className="max-w-lg text-muted-foreground text-sm lg:text-base mt-1 lg:mt-4 text-pretty"
+            className="max-w-lg text-muted-foreground text-sm lg:text-base mt-1 lg:mt-4 text-pretty max-sm:line-clamp-3"
             initial={{ opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,40 +139,68 @@ export function ProjectCard({
           </div>
         </div>
         <div className="hidden lg:flex items-center">
+          {caseStudyId && (
+            <Link href={`/case-studies/${caseStudyId}`}>
+              <motion.div
+                className="text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full"
+                whileHover={{ scale: 1.1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <HugeiconsIcon icon={Scroll01Icon} size={24} />
+              </motion.div>
+            </Link>
+          )}
           <motion.a
             href={githubUrl}
             target="_blank"
-            className={cn("text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
+            className={cn("text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <LuGithub />
+            <HugeiconsIcon icon={GithubIcon} size={24} />
           </motion.a>
           <motion.a
             href={previewUrl}
             target="_blank"
-            className="inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-destructive/70  rounded-full -ml-4 group"
+            className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group", !previewUrl && "pointer-events-none cursor-not-allowed opacity-80")}
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <div className="relative size-6 overflow-hidden" aria-hidden="true">
               <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
-                <LuArrowUpRight className="text-primary-foreground" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-black" />
               </div>
               <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
-                <LuArrowUpRight className="text-primary-foreground" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-black" />
               </div>
             </div>
           </motion.a>{" "}
         </div>
 
         <div className="lg:hidden flex items-center *:grow lg:justify-start flex-wrap gap-3 mt-6">
+          {caseStudyId && (
+            <Button
+              asChild
+              size="sm"
+              variant="secondary"
+            >
+              <Link href={`/case-studies/${caseStudyId}`}>
+                <motion.span whileTap={{ scale: 0.98 }} className="flex items-center gap-2">
+                  <span>Case Study</span>
+                  <HugeiconsIcon icon={Scroll01Icon} size={18} className="text-(--themeColor)" />
+                </motion.span>
+              </Link>
+            </Button>
+          )}
           <Button
             asChild
             variant="secondary"
-            className={cn("inline-flex items-center gap-2 rounded-lg lg:py-6 hover:bg-zinc-800/90 transition-colors duration-300", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
+            size="sm"
+            disabled={!githubUrl}
+            className={cn(!githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
           >
             <motion.a
               href={githubUrl}
@@ -172,13 +208,15 @@ export function ProjectCard({
               whileTap={{ scale: 0.98 }}
             >
               <span>View Code</span>
-              <LuGithub className="text-(--themeColor) text-lg" />
+              <HugeiconsIcon icon={GithubIcon} size={18} className="text-(--themeColor)" />
             </motion.a>
           </Button>
           <Button
             asChild
             variant="secondary"
-            className="inline-flex items-center gap-2 rounded-lg lg:py-6 group hover:bg-zinc-800/90 transition-colors duration-300"
+            size="sm"
+            disabled={!previewUrl}
+            className={cn("group",!previewUrl && "pointer-events-none cursor-not-allowed opacity-80")}
           >
             <motion.a
               href={previewUrl}
@@ -187,39 +225,41 @@ export function ProjectCard({
               whileTap={{ scale: 0.98 }}
             >
               <span>Live Preview</span>
-              <LuArrowRight className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor) text-lg" />
+              <HugeiconsIcon icon={ArrowRight02Icon} size={18} className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor)" />
             </motion.a>
           </Button>
         </div>
       </motion.div>
-      <div className="relative lg:w-1/2 group">
+      <div className="relative lg:w-1/2 xl:w-2/3 group overflow-hidden">
         <a
           target="_blank"
           href={previewUrl}
-          className="rounded-xl p-1 px-3 border relative block bg-(--themeColor) overflow-hidden max-h-[250px]"
+          className="rounded-xl p-1 px-3 border bg-(--themeColor)  relative block overflow-hidden max-h-[280px]"
           data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
         >
-          <motion.div
-            initial={{ y: "80%", scale: 0.95, rotate: 2 }}
-            whileInView={{ y: "8%" }}
-            whileHover={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              type: "spring",
-              bounce: 0.4,
-              duration: 0.8,
-            }}
-            className="relative rounded-[inherit]"
-          >
-            <Image
-              src={image}
-              alt={`${title} preview`}
-              className={`mx-auto brightness-95 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
-              data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
-              width={800}
-              height={450}
-            />
-          </motion.div>
+          <CometCard transparent className="rounded-[inherit]">
+            <motion.div
+              initial={{ y: "60%", scale: 0.95, rotate: reverse ? 2 : -2 }}
+              whileInView={{ y: "8%" }}
+              whileHover={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8,
+              }}
+              className="relative rounded-[inherit]"
+            >
+              <Image
+                src={image}
+                alt={`${title} preview`}
+                className={`mx-auto brightness-95 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
+                data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
+                width={800}
+                height={450}
+              />
+            </motion.div>
+          </CometCard>
         </a>
       </div>
     </motion.div>

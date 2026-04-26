@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import CircularText from "./circular-text";
-import { LuArrowUpRight, LuLock } from "react-icons/lu";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon, LockPasswordIcon } from "@hugeicons/core-free-icons";
 
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -83,22 +84,6 @@ const Cursor = () => {
 
   return (
     <>
-      {/* Outer Ring */}
-      <motion.div
-        className="fixed left-0 top-0 pointer-events-none z-998"
-        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
-      >
-        <div
-          className={cn(
-            "size-12 rounded-full border-2 border-white/20 transition-all duration-700",
-            {
-              "scale-[1.9] border-[#3335] border": isHovering,
-              "scale-50": isLink && !isHovering,
-              "scale-75": msg === "" && !isLink,
-            }
-          )}
-        />
-      </motion.div>
 
       {/* Inner Circle */}
       <motion.div
@@ -126,9 +111,9 @@ const Cursor = () => {
                 autoSpin
               >
                 {msg.toLowerCase().includes("private") ? (
-                  <LuLock className="size-4 text-zinc-900" />
+                  <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-zinc-900" />
                 ) : (
-                  <LuArrowUpRight className="size-4 text-zinc-900" />
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} className="text-zinc-900" />
                 )}
               </CircularText>
             </motion.div>
@@ -136,7 +121,7 @@ const Cursor = () => {
             <motion.div
               key="dot"
               className={cn(
-                "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-white/70",
+                "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-transparent",
                 {
                   "scale-0": isLink,
                   "scale-75": msg === "" && !isLink,

@@ -1,42 +1,77 @@
-import { LuArrowUpRight } from "react-icons/lu";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
+import { technologiesCollection } from "@/constants";
+import Tooltip from "../tooltip";
+import Image from "next/image";
+import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 export interface MinorProjectCardProps {
   title: string;
   description: string;
   liveUrl: string;
+  technologies?: (keyof typeof technologiesCollection)[];
 }
 
 export const MinorProjectCard = ({
   title,
   description,
   liveUrl,
+  technologies,
 }: MinorProjectCardProps) => (
   <div
-    className="group py-3"
+    className="group py-6 border-b border-white/5"
     role="listitem"
   >
-    <h3>
-      <a
-        href={liveUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-xl font-semibold text-white/90 mb-2 group-hover:text-destructive flex items-center before:content-['*'] before:text-2xl before:align-middle before:text-destructive before:mr-1"
-        aria-label={`${title} - ${description} (opens in new tab)`}
-      >
-        <span className="grow">{title}</span>
-        <div
-          className="relative size-10 rounded-full border border-destructive overflow-hidden" data-mouse-text="Visit"
-          aria-hidden="true"
-        >
-          <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
-            <LuArrowUpRight className="text-destructive" />
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
-            <LuArrowUpRight className="text-destructive" />
-          </div>
+    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex-1 space-y-1.5">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h3 className="text-lg lg:text-xl font-bold text-white/90 group-hover:text-destructive transition-colors duration-300">
+            {title}
+          </h3>
+          {technologies && technologies.length > 0 && (
+            <div className="flex gap-2 items-center">
+              {technologies.map((tech) => {
+                const techData = technologiesCollection[tech];
+                if (!techData) return null;
+                return (
+                  <Tooltip key={tech} content={techData.name}>
+                    <div className="size-5 opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+                      <Image src={techData.icon} alt={techData.name} width={20} height={20} className="grayscale group-hover:grayscale-0 transition-all duration-300" />
+                    </div>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          )}
         </div>
-      </a>
-    </h3>
-    <p className="text-white/60 text-sm mb-3">{description}</p>
+        <p className="text-white/50 text-sm leading-relaxed max-w-2xl">
+          {description}
+        </p>
+      </div>
+
+      <div className="flex items-center">
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-destructive group/visit"
+        >
+          <span className="group-hover/visit:mr-1 transition-all duration-300">Visit</span>
+          <div className="relative size-4 overflow-hidden">
+            <HugeiconsIcon
+              icon={ArrowUpRight01Icon}
+              size={14}
+              className="absolute transition-transform duration-300 group-hover/visit:translate-x-full group-hover/visit:-translate-y-full"
+            />
+            <HugeiconsIcon
+              icon={ArrowUpRight01Icon}
+              size={14}
+              className="absolute -translate-x-full translate-y-full transition-transform duration-300 group-hover/visit:translate-x-0 group-hover/visit:translate-y-0"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
-);
+);
