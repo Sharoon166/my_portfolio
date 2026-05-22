@@ -3,6 +3,7 @@ import {
   css,
   claude,
   cloudinary,
+  drizzle,
   edge,
   express,
   git,
@@ -14,6 +15,7 @@ import {
   javascript,
   mongo,
   motion,
+  neon,
   next,
   nextjs,
   nodejs,
@@ -24,6 +26,7 @@ import {
   reactRouter,
   react,
   shadcn,
+  svelte,
   tailwindcss,
   tanstack,
   typescript,
@@ -33,9 +36,13 @@ import {
   windsurf,
   zenBrowser,
   zustand,
+  zod,
 } from "./assets/technologies";
 import type { MinorProjectCardProps } from "./components/home/minor-project-card";
-import type { ProjectCardProps, ProjectCategory } from "./components/home/project-card";
+import type {
+  ProjectCardProps,
+  ProjectCategory,
+} from "./components/home/project-card";
 
 export const profile = {
   name: "Sharoon Shaleem",
@@ -45,7 +52,7 @@ export const profile = {
   email: "ssharoon166@gmail.com",
   emailLink: "mailto:ssharoon166@gmail.com",
   github: "https://github.com/Sharoon166",
-  linkenIn: "https://www.linkedin.com/in/sharoon-shaleem-0a7a85226/",
+  linkenIn: "https://www.linkedin.com/in/sharoon-shaleem/",
   instagram: "https://www.instagram.com/sharoonshaleem/",
   meeting: "https://cal.com/sharoon-shaleem/30min",
 };
@@ -53,6 +60,7 @@ export const profile = {
 export const technologiesCollection = {
   appwrite: { name: "Appwrite", icon: appwrite },
   css: { name: "CSS", icon: css },
+  drizzle: { name: "Drizzle ORM", icon: drizzle },
   claude: { name: "Claude", icon: claude },
   cloudinary: { name: "Cloudinary", icon: cloudinary },
   edge: { name: "Edge", icon: edge },
@@ -66,6 +74,7 @@ export const technologiesCollection = {
   javascript: { name: "JavaScript", icon: javascript },
   mongodb: { name: "MongoDB", icon: mongo },
   motion: { name: "Motion", icon: motion },
+  neon: { name: "Neon", icon: neon },
   next: { name: "Next.js", icon: next },
   nextjs: { name: "Next.js", icon: nextjs },
   nodejs: { name: "Node.js", icon: nodejs },
@@ -76,6 +85,7 @@ export const technologiesCollection = {
   reactrouter: { name: "React Router", icon: reactRouter },
   react: { name: "React", icon: react },
   shadcn: { name: "Shadcn", icon: shadcn },
+  svelte: { name: "Svelte", icon: svelte },
   tailwindcss: { name: "Tailwind CSS", icon: tailwindcss },
   tanstackQuery: { name: "TanStack Query", icon: tanstack },
   typescript: { name: "TypeScript", icon: typescript },
@@ -85,6 +95,7 @@ export const technologiesCollection = {
   windsurf: { name: "Windsurf", icon: windsurf },
   zenBrowser: { name: "Zen Browser", icon: zenBrowser },
   zustand: { name: "Zustand", icon: zustand },
+  zod: { name: "Zod", icon: zod },
 };
 
 export const technologies: (keyof typeof technologiesCollection)[] = [
@@ -112,129 +123,163 @@ export const tools: (keyof typeof technologiesCollection)[] = [
   "github",
   "postman",
   "vercel",
-  "vite"
+  "vite",
 ] as const;
 
-export const projects: ProjectCardProps[] = [{
-  title: "Diniiz",
-  description: "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
-  image: "/projects/diniiz.png",
-  githubUrl: "",
-  previewUrl: "https://diniiz.com",
-  technologies: ["react", "reactrouter", "tailwindcss", "shadcn", "nodejs", "express", "mongodb", "cloudinary"],
-  themeColor: "#0C9CDC",
-  categories: ["Full Stack", "Dashboard"],
-  caseStudyId: "diniiz",
-},
-{
-  title: "Newon",
-  description: "A centralized operations platform for inventory, invoicing, and financial management, built solo for a real business client.",
-  image: "/projects/newon.webp",
-  githubUrl: "",
-  previewUrl: "",
-  technologies: ["tailwindcss", "next", "typescript", "shadcn", "mongodb"],
-  themeColor: "#cb743f",
-  categories: ["Full Stack", "Dashboard"],
-  caseStudyId: "newon",
-},
-{
-  title: "Reverie",
-  description: "Internal operations platform built for Synctom to manage clients, finances, leads, and team operations in one place.",
-  image: "/projects/reverie.jpg",
-  githubUrl: "",
-  previewUrl: "",
-  technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
-  themeColor: "#FACA3F",
-  categories: ["Full Stack", "Dashboard"],
-  caseStudyId: "reverie",
-},
-{
-  title: "Brake Time",
-  description: "A powerful admin dashboard for Braketime's backoffice, streamlining employee records, customer data, and inventory management. 💼📊",
-  githubUrl: "https://github.com/Sharoon166/brake-time",
-  previewUrl: "https://brake-time.vercel.app",
-  image: "/projects/brake-time.png",
-  technologies: ["tailwindcss", "next", "heroUI"],
-  themeColor: "#1ECF76",
-  categories: ["Dashboard", "Frontend"],
-},
-{
-  title: "Metrics",
-  description: "Blue-themed dashboard template with a sleek design and comprehensive features for business analytics and data visualization. It was built just for fun 😜",
-  githubUrl: "https://github.com/Sharoon166/dashboard-pixelz",
-  previewUrl: "https://pixelz-dashboard.vercel.app",
-  image: "/projects/metrics.webp",
-  technologies: ["react", "tailwindcss", "shadcn", "motion"],
-  themeColor: "#6160ff",
-  categories: ["Dashboard", "Frontend"],
-},
-{
-  title: "Animadom",
-  description:
-    "Animadom is a sleek platform for anime lovers, offering genre-based exploration and detailed insights. 🎌✨ Dive into the world of anime with ease!",
-  githubUrl: "https://github.com/Sharoon166/Animadom",
-  previewUrl: "https://animadom.vercel.app",
-  image: "/projects/animadom.png",
-  technologies: ["tailwindcss", "shadcn", "reactrouter", "typescript", "graphql", "motion"],
-  themeColor: "#00abc2",
-  categories: ["Frontend", "Full Stack"],
-  caseStudyId: "animadom",
-},
-{
-  title: "Audix",
-  description:
-    "An interactive earbuds showcase with smooth animations and view-transitions. 🎧✨ Explore premium audio devices!",
-  githubUrl: "https://github.com/Sharoon166/audix",
-  previewUrl: "https://audixs.vercel.app/",
-  image: "/projects/audix.png",
-  technologies: ["tailwindcss", "next", "motion"],
-  themeColor: "#9FDAEC",
-  categories: ["Frontend"],
-},
-{
-  title: "Mangadom",
-  description: "Discover and explore a vast collection of manga titles. Browse genres and dive into captivating stories from our extensive library. 📚✨",
-  githubUrl: "https://github.com/Sharoon166/mangadom",
-  previewUrl: "https://mangadom.vercel.app/",
-  image: "/projects/mangadom.png",
-  technologies: ["tailwindcss", "shadcn", "next"],
-  themeColor: "#6B7280",
-  categories: ["Frontend"],
-},
-{
-  title: "Samurai Systems",
-  description:
-    "A practice project focused on replicating a high-end design and mastering complex GSAP animations in Next.js.",
-  githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
-  previewUrl: "https://samurai-systems166.vercel.app/",
-  image: "/projects/samurai-systems.png",
-  technologies: ["next", "tailwindcss", "gsap"],
-  themeColor: "#E74B4F",
-  categories: ["Frontend", "Web Design"],
-  caseStudyId: "samurai-systems",
-},
-{
-  title: "Halal Devco.",
-  description:
-    "A sleek website for Halal DevCo, showcasing halal investment opportunities, industry growth, and sustainable innovation. ",
-  githubUrl: "https://github.com/Sharoon166/halal_devco_frontend",
-  previewUrl: "https://halal-devco.vercel.app/",
-  image: "/projects/halal-devco.png",
-  technologies: ["next", "tailwindcss"],
-  themeColor: "#64B166",
-  categories: ["Frontend", "Web Design"],
-},
-{
-  title: "Voyager",
-  description:
-    "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
-  githubUrl: "https://github.com/Sharoon166",
-  previewUrl: "https://voyagertravels.vercel.app",
-  image: "/projects/voyager.png",
-  technologies: ["html", "tailwindcss", "vite"],
-  themeColor: "#CCF32F",
-  categories: ["Web Design", "Frontend"],
-},
+export const projects: ProjectCardProps[] = [
+  {
+    title: "Diniiz",
+    description:
+      "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
+    image: "/projects/diniiz.png",
+    githubUrl: "",
+    previewUrl: "https://diniiz.com",
+    technologies: [
+      "react",
+      "reactrouter",
+      "tailwindcss",
+      "shadcn",
+      "nodejs",
+      "express",
+      "mongodb",
+      "cloudinary",
+    ],
+    themeColor: "#0C9CDC",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "diniiz",
+  },
+  {
+    title: "Newon",
+    description:
+      "A centralized operations platform for inventory, invoicing, and financial management, built solo for a real business client.",
+    image: "/projects/newon.webp",
+    githubUrl: "",
+    previewUrl: "",
+    technologies: ["tailwindcss", "next", "typescript", "shadcn", "mongodb"],
+    themeColor: "#cb743f",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "newon",
+  },
+  {
+    title: "Reverie",
+    description:
+      "Internal operations platform built for Synctom to manage clients, finances, leads, and team operations in one place.",
+    image: "/projects/reverie.jpg",
+    githubUrl: "",
+    previewUrl: "",
+    technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
+    themeColor: "#FACA3F",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "reverie",
+  },
+  {
+    title: "Cool Care",
+    description:
+      "Personal invoicing and business management app for an electrical and AC repair shop",
+    image: "/projects/cool-care/cool-care.png",
+    githubUrl: "",
+    previewUrl: "",
+    technologies: ["tailwindcss", "typescript", "svelte", "drizzle", "neon", "zod"],
+    themeColor: "#AFF47C",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "coolcare",
+  },
+  {
+    title: "Brake Time",
+    description:
+      "A powerful admin dashboard for Braketime's backoffice, streamlining employee records, customer data, and inventory management. 💼📊",
+    githubUrl: "https://github.com/Sharoon166/brake-time",
+    previewUrl: "https://brake-time.vercel.app",
+    image: "/projects/brake-time.png",
+    technologies: ["tailwindcss", "next", "heroUI"],
+    themeColor: "#1ECF76",
+    categories: ["Dashboard", "Frontend"],
+  },
+  {
+    title: "Metrics",
+    description:
+      "Blue-themed dashboard template with a sleek design and comprehensive features for business analytics and data visualization. It was built just for fun 😜",
+    githubUrl: "https://github.com/Sharoon166/dashboard-pixelz",
+    previewUrl: "https://pixelz-dashboard.vercel.app",
+    image: "/projects/metrics.webp",
+    technologies: ["react", "tailwindcss", "shadcn", "motion"],
+    themeColor: "#6160ff",
+    categories: ["Dashboard", "Frontend"],
+  },
+  {
+    title: "Animadom",
+    description:
+      "Animadom is a sleek platform for anime lovers, offering genre-based exploration and detailed insights. 🎌✨ Dive into the world of anime with ease!",
+    githubUrl: "https://github.com/Sharoon166/Animadom",
+    previewUrl: "https://animadom.vercel.app",
+    image: "/projects/animadom.png",
+    technologies: [
+      "tailwindcss",
+      "shadcn",
+      "reactrouter",
+      "typescript",
+      "graphql",
+      "motion",
+    ],
+    themeColor: "#00abc2",
+    categories: ["Frontend", "Full Stack"],
+    caseStudyId: "animadom",
+  },
+  {
+    title: "Audix",
+    description:
+      "An interactive earbuds showcase with smooth animations and view-transitions. 🎧✨ Explore premium audio devices!",
+    githubUrl: "https://github.com/Sharoon166/audix",
+    previewUrl: "https://audixs.vercel.app/",
+    image: "/projects/audix.png",
+    technologies: ["tailwindcss", "next", "motion"],
+    themeColor: "#9FDAEC",
+    categories: ["Frontend"],
+  },
+  {
+    title: "Mangadom",
+    description:
+      "Discover and explore a vast collection of manga titles. Browse genres and dive into captivating stories from our extensive library. 📚✨",
+    githubUrl: "https://github.com/Sharoon166/mangadom",
+    previewUrl: "https://mangadom.vercel.app/",
+    image: "/projects/mangadom.png",
+    technologies: ["tailwindcss", "shadcn", "next"],
+    themeColor: "#6B7280",
+    categories: ["Frontend"],
+  },
+  {
+    title: "Samurai Systems",
+    description:
+      "A practice project focused on replicating a high-end design and mastering complex GSAP animations in Next.js.",
+    githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
+    previewUrl: "https://samurai-systems166.vercel.app/",
+    image: "/projects/samurai-systems.png",
+    technologies: ["next", "tailwindcss", "gsap"],
+    themeColor: "#E74B4F",
+    categories: ["Frontend", "Web Design"],
+  },
+  {
+    title: "Halal Devco.",
+    description:
+      "A sleek website for Halal DevCo, showcasing halal investment opportunities, industry growth, and sustainable innovation. ",
+    githubUrl: "https://github.com/Sharoon166/halal_devco_frontend",
+    previewUrl: "https://halal-devco.vercel.app/",
+    image: "/projects/halal-devco.png",
+    technologies: ["next", "tailwindcss"],
+    themeColor: "#64B166",
+    categories: ["Frontend", "Web Design"],
+  },
+  {
+    title: "Voyager",
+    description:
+      "A sleek tourism website design, showcasing destinations, travel guides, and curated experiences for adventurers.",
+    githubUrl: "https://github.com/Sharoon166",
+    previewUrl: "https://voyagertravels.vercel.app",
+    image: "/projects/voyager.png",
+    technologies: ["html", "tailwindcss", "vite"],
+    themeColor: "#CCF32F",
+    categories: ["Web Design", "Frontend"],
+  },
 ];
 
 export interface Testimonial {
@@ -271,9 +316,17 @@ export const experience: ExperienceItem[] = [
     testimonial: {
       name: "Ali Taqi",
       designation: "CEO @ Synctom",
-      testimony: "I've had the pleasure of working with Sharoon, and I can confidently say he is a highly capable and dependable Frontend Developer. He consistently transforms complex ideas into clean, responsive, and visually polished interfaces.",
+      testimony:
+        "I've had the pleasure of working with Sharoon, and I can confidently say he is a highly capable and dependable Frontend Developer. He consistently transforms complex ideas into clean, responsive, and visually polished interfaces.",
     },
-    technologies: ["react", "next", "nodejs", "mongodb", "tailwindcss", "typescript"],
+    technologies: [
+      "react",
+      "next",
+      "nodejs",
+      "mongodb",
+      "tailwindcss",
+      "typescript",
+    ],
   },
   {
     id: "02",
@@ -292,13 +345,15 @@ export const experience: ExperienceItem[] = [
 export const minorProjects: MinorProjectCardProps[] = [
   {
     title: "Z Digitizing",
-    description: "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
+    description:
+      "A modern portfolio showcasing 10+ years of unique embroidery designs and craftsmanship.",
     liveUrl: "https://z-digitizing.vercel.app/",
     technologies: ["react", "tailwindcss", "motion", "vite"],
   },
   {
     title: "DevHive",
-    description: "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
+    description:
+      "A modern developer community platform where tech professionals can connect, share knowledge, and stay updated with the latest industry trends.",
     liveUrl: "https://devhsr.vercel.app/",
     technologies: ["next", "tailwindcss", "typescript", "appwrite", "shadcn"],
   },
@@ -307,14 +362,39 @@ export const minorProjects: MinorProjectCardProps[] = [
 export const skillCategories = [
   {
     title: "Frontend Development",
-    skills: ["next", "react", "typescript", "javascript", "tailwindcss", "shadcn", "reactrouter", "zustand", "motion", "html", "css"] as (keyof typeof technologiesCollection)[]
+    skills: [
+      "next",
+      "react",
+      "typescript",
+      "javascript",
+      "tailwindcss",
+      "shadcn",
+      "reactrouter",
+      "zustand",
+      "motion",
+      "html",
+      "css",
+    ] as (keyof typeof technologiesCollection)[],
   },
   {
     title: "Backend & Database",
-    skills: ["nodejs", "express", "mongodb", "postgresql", "appwrite"] as (keyof typeof technologiesCollection)[]
+    skills: [
+      "nodejs",
+      "express",
+      "mongodb",
+      "postgresql",
+      "appwrite",
+    ] as (keyof typeof technologiesCollection)[],
   },
   {
     title: "Tools & Libraries",
-    skills: ["tanstackQuery", "git", "github", "postman", "vercel", "vite"] as (keyof typeof technologiesCollection)[]
-  }
+    skills: [
+      "tanstackQuery",
+      "git",
+      "github",
+      "postman",
+      "vercel",
+      "vite",
+    ] as (keyof typeof technologiesCollection)[],
+  },
 ];

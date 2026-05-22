@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/data/site-config";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -14,6 +16,20 @@ import {
 } from "@/constants";
 import { TimelineReimagined } from "@/components/timeline-reimagined";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Full-stack developer and CS student at NUML. Building production-grade web apps with React, Next.js, and Node.js.",
+  openGraph: {
+    title: "About — Sharoon Shaleem",
+    description:
+      "Full-stack developer and CS student at NUML. Building production-grade web apps with React, Next.js, and Node.js.",
+    url: `${siteConfig.url}/about`,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
+  },
+  alternates: { canonical: `${siteConfig.url}/about` },
+}
 
 export default function About() {
 

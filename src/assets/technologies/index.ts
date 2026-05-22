@@ -1,38 +1,42 @@
-import appwrite from "./appwrite.svg"
-import betterAuth from "./better-auth.svg"
-import claude from "./claude.svg"
-import cloudinary from "./cloudinary.svg"
-import css from "./css.svg"
-import edge from "./edge.svg"
-import express from "./express.svg"
-import git from "./git.svg"
-import github from "./github.svg"
-import graphql from "./graphql.svg"
-import gsap from "./gsap.svg"
-import heroUI from "./hero-ui.ico"
-import html from "./html.svg"
-import javascript from "./javascript.svg"
-import mongo from "./mongo.svg"
-import motion from "./motion.svg"
-import next from "./next.svg"
-import nextjs from "./nextjs.svg"
-import nodejs from "./nodejs.svg"
-import notion from "./notion.svg"
-import openAI from "./openai.svg"
-import postgresql from "./postgresql.svg"
-import postman from "./postman.svg"
-import reactRouter from "./react-router.svg"
-import react from "./react.svg"
-import shadcn from "./shadcn.svg"
-import tailwindcss from "./tailwindcss.svg"
-import tanstack from "./tanstack.svg"
-import typescript from "./typescript.svg"
-import vercel from "./vercel.svg"
-import vite from "./vite.svg"
-import vsCode from "./vs-code.svg"
-import windsurf from "./windsurf.svg"
-import zenBrowser from "./zen-browser.svg"
-import zustand from "./zustand.svg"
+import appwrite from "./appwrite.svg";
+import betterAuth from "./better-auth.svg";
+import claude from "./claude.svg";
+import cloudinary from "./cloudinary.svg";
+import css from "./css.svg";
+import drizzle from "./drizzle-orm.svg";
+import edge from "./edge.svg";
+import express from "./express.svg";
+import git from "./git.svg";
+import github from "./github.svg";
+import graphql from "./graphql.svg";
+import gsap from "./gsap.svg";
+import heroUI from "./hero-ui.ico";
+import html from "./html.svg";
+import javascript from "./javascript.svg";
+import mongo from "./mongo.svg";
+import motion from "./motion.svg";
+import neon from "./neon.svg";
+import next from "./next.svg";
+import nextjs from "./nextjs.svg";
+import nodejs from "./nodejs.svg";
+import notion from "./notion.svg";
+import openAI from "./openai.svg";
+import postgresql from "./postgresql.svg";
+import postman from "./postman.svg";
+import reactRouter from "./react-router.svg";
+import react from "./react.svg";
+import shadcn from "./shadcn.svg";
+import svelte from "./svelte.svg";
+import tailwindcss from "./tailwindcss.svg";
+import tanstack from "./tanstack.svg";
+import typescript from "./typescript.svg";
+import vercel from "./vercel.svg";
+import vite from "./vite.svg";
+import vsCode from "./vs-code.svg";
+import windsurf from "./windsurf.svg";
+import zenBrowser from "./zen-browser.svg";
+import zustand from "./zustand.svg";
+import zod from "./zod.svg";
 
 export {
   appwrite,
@@ -40,6 +44,7 @@ export {
   claude,
   css,
   cloudinary,
+  drizzle,
   edge,
   express,
   git,
@@ -51,6 +56,7 @@ export {
   javascript,
   mongo,
   motion,
+  neon,
   next,
   nextjs,
   nodejs,
@@ -61,6 +67,7 @@ export {
   reactRouter,
   react,
   shadcn,
+  svelte,
   tailwindcss,
   tanstack,
   typescript,
@@ -69,5 +76,6 @@ export {
   vsCode,
   windsurf,
   zenBrowser,
-  zustand
-}
+  zustand,
+  zod
+};

@@ -6,7 +6,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import CustomCursor from "@/components/mouse-cursor";
 import { MotionConfig } from "motion/react";
-import { GradientBg } from "@/components/gradient-bg";
+import { siteConfig } from "@/data/site-config";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -30,24 +31,45 @@ const firaCode = Fira_Code({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Sharoon • Developer",
-    template: "%s • Sharoon",
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
   },
-  description:
-    "Hey I'm Sharoon, a 22 y/o Computer Science student with a curious mind and a passion for exploration — both in tech and beyond.",
+  description: siteConfig.description,
+  keywords: ["Sharoon", "Sharoon Shaleem", "full-stack developer", "React developer", "Next.js developer", "Islamabad developer"],
   openGraph: {
-    title: "Sharoon • Developer",
-    description:
-      "Hey I'm Sharoon, a 22 y/o Computer Science student with a curious mind and a passion for exploration — both in tech and beyond.",
-    siteName: "Sharoon's Portfolio",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
     images: [
       {
-        url: "/og.webp",
+        url: siteConfig.ogImage,
         width: 1200,
-        height: 630
-      }
-    ]
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteConfig.url,
   },
   icons: {
     icon: [
@@ -65,6 +87,29 @@ export const metadata: Metadata = {
   },
 };
 
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: siteConfig.author.name,
+      url: siteConfig.author.url,
+      email: siteConfig.author.email,
+      image: `${siteConfig.url}/me.webp`,
+      sameAs: Object.values(siteConfig.links),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      description: siteConfig.description,
+      author: { "@id": `${siteConfig.url}/#person` },
+    },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -75,7 +120,7 @@ export default function RootLayout({
       <body
         className={`${firaCode.variable} ${bricolage.variable} ${caveat.variable} antialiased font-fira-code text-foreground/90 leading-relaxed`}
       >
-        {/* <GradientBg /> */}
+        <JsonLd data={siteSchema} />
         <MotionConfig reducedMotion="user">
           <div className="container py-6 min-h-screen space-y-4">
             <Header />

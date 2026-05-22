@@ -1,52 +1,71 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 
+export const metadata: Metadata = {
+  title: "404 — Page Not Found",
+  robots: { index: false },
+}
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {Array.from({ length: 50 }).map((_, i) => (
+        <span
+          key={i}
+          className="absolute rounded-full aspect-square bg-white"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            width: `${Math.random() * 2 + 1}px`,
+            animation: `twinkle ${Math.random() * 3 + 2}s infinite`,
+            animationDelay: `${Math.random() * 2}s`,
+          }}
+        />
+      ))}
       {/* Massive 404 Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
         <span className="text-[40vw] font-black font-bricolage tracking-tighter text-white opacity-5">
           404
         </span>
       </div>
+      {/* Content */}
+      <div className="relative z-10 text-center space-y-8 px-6 pt-24">
+        {/* Alien Astronaut Image */}
+        <div className="flex justify-center">
+          <div className="relative w-48 h-48 md:w-56 md:h-56 animate-float">
+            <Image
+              src="/astronaut.png"
+              alt="Lost astronaut"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <h1 className="font-black tracking-tighter leading-[0.9] italic">
+            <span className="text-destructive">Lost</span> in space
+          </h1>
+          <p className="text-muted-foreground max-w-md mx-auto">
+            This page drifted off course. Let&apos;s get you back to familiar territory.
+          </p>
+        </div>
 
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full aspect-square bg-white"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3}px`,
-              animation: `twinkle ${Math.random() * 3 + 1}s infinite`,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="text-center z-50">
-        <Image
-          src="/astronaut.png"
-          alt="Lost astronaut"
-          width={250}
-          height={250}
-          className="mx-auto mb-4 animate-float"
-        />
-        <h1 className="text-4xl font-bold text-white mb-4">Oops! Page Not Found</h1>
-        <p className="text-gray-300 mb-8">Looks like you&apos;ve ventured too far into space!</p>
         <Link
           href="/"
-          className="px-6 py-2 inline-flex items-center gap-2 rounded-xl bg-linear-to-br from-destructive via-red-500 to-red-600 hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30 transition-all duration-300 text-white font-medium"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-xl font-semibold text-sm hover:bg-zinc-200 transition-all group"
         >
-         <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
-          Return Home
-        </Link>      </div>
+          <HugeiconsIcon
+            icon={ArrowLeft01Icon}
+            size={20}
+            className="group-hover:-translate-x-1 transition-transform"
+          />
+          Back to Homepage
+        </Link>
+      </div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ContactSection } from "@/components/home/contact";
 import { cn } from "@/lib/utils";
+import { Gallery } from "@/components/case-studies/gallery";
 
 export default function CaseStudyPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = use(params);
@@ -201,6 +202,18 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
                 </motion.div>
               </div>
             </div>
+
+            {/* Gallery — only shown if case study has images */}
+            {study.images.length > 0 && (
+              <div className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <span className="meta-label">GALLERY</span>
+                  <div className="h-px flex-1 bg-white/3" />
+                </div>
+                <Gallery images={study.images} />
+              </div>
+            )}
+
             <Section number="01" label="Vision" title="Project Vision">
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 {study.overview}
@@ -297,7 +310,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
                     {activeSection === item.id && (
                       <motion.div
                         layoutId="toc-indicator"
-                        className="absolute left-0 top-0 bottom-0 w-[2px]"
+                        className="absolute left-0 top-0 bottom-0 w-0.5"
                         style={{ backgroundColor: brandColor, boxShadow: `0 0 10px ${brandColor}` }}
                       />
                     )}

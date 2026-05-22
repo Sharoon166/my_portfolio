@@ -1,9 +1,22 @@
-// "use client";
+import type { Metadata } from "next";
+import { siteConfig } from "@/data/site-config";
 import { HeroSection } from "@/components/home/hero";
 import { ProjectShowcase } from "@/components/home/project-showcase";
 import { AboutPreview } from "@/components/home/about";
 import { ContactSection } from "@/components/home/contact";
 import CurvedLoop from "@/components/CurvedLoop";
+
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
+  },
+  alternates: { canonical: siteConfig.url },
+}
 
 export default function Home() {
   return (

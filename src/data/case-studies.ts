@@ -11,6 +11,12 @@ export interface TechStack {
   services?: string[];
 }
 
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -34,6 +40,7 @@ export interface CaseStudy {
   challenges: Challenge[];
   outcome: string;
   learnings: string;
+  images: GalleryImage[];
 }
 
 export const caseStudies: Record<string, CaseStudy> = {
@@ -94,7 +101,8 @@ export const caseStudies: Record<string, CaseStudy> = {
       }
     ],
     outcome: "Deployed to production and actively used by real restaurant clients acquired by Synctom. The platform replaced manual processes across reservations, floor management, and staff coordination. The embeddable widget was successfully integrated into client websites including WordPress and React-based sites. Platform is temporarily offline due to internal changes at Synctom and expected to return shortly.",
-    learnings: "This was my first experience shipping software that real businesses depended on daily. I learned what separates a working demo from production-ready software — the widget especially taught me how to build for environments you don't control, where your code has to work cleanly inside someone else's site with zero assumptions. Real user feedback also fundamentally changed how I think about edge cases."
+    learnings: "This was my first experience shipping software that real businesses depended on daily. I learned what separates a working demo from production-ready software — the widget especially taught me how to build for environments you don't control, where your code has to work cleanly inside someone else's site with zero assumptions. Real user feedback also fundamentally changed how I think about edge cases.",
+    images: [],
   },
   newon: {
     id: "newon",
@@ -163,7 +171,8 @@ export const caseStudies: Record<string, CaseStudy> = {
       }
     ],
     outcome: "Delivered and deployed to the client through Synctom. The platform has been in active daily use since January 2026 and currently manages over 200 records across products, invoices, and customers. It replaced a collection of disconnected manual tools and gave the client a single place to run their operations.",
-    learnings: "This was the most complex thing I had built on my own up to that point. Designing interconnected modules where data flows correctly between inventory, invoices, customers, and the ledger taught me to think about the whole system before touching a single line of code. The FIFO engine especially pushed me to think carefully about state, ordering, and edge cases in a way that tutorials never do. Building it solo also meant every architectural decision was mine to own and mine to fix."
+    learnings: "This was the most complex thing I had built on my own up to that point. Designing interconnected modules where data flows correctly between inventory, invoices, customers, and the ledger taught me to think about the whole system before touching a single line of code. The FIFO engine especially pushed me to think carefully about state, ordering, and edge cases in a way that tutorials never do. Building it solo also meant every architectural decision was mine to own and mine to fix.",
+    images: [],
   },
   reverie: {
     id: "reverie",
@@ -223,7 +232,8 @@ export const caseStudies: Record<string, CaseStudy> = {
       }
     ],
     outcome: "Delivered and actively used by the Synctom team for managing their day to day operations. The platform gave the team a single place to track finances, employees, leads, and clients for the first time.",
-    learnings: "The quarter closing system was a good lesson in thinking through stateful operations carefully. When a process touches multiple collections and has real financial consequences, the order of operations and failure handling matter a lot more than they do in typical CRUD work. It also gave me my first real experience shipping a collaborative codebase and coordinating on shared UI without stepping on each other."
+    learnings: "The quarter closing system was a good lesson in thinking through stateful operations carefully. When a process touches multiple collections and has real financial consequences, the order of operations and failure handling matter a lot more than they do in typical CRUD work. It also gave me my first real experience shipping a collaborative codebase and coordinating on shared UI without stepping on each other.",
+    images: [],
   },
   animadom: {
     id: "animadom",
@@ -270,48 +280,68 @@ export const caseStudies: Record<string, CaseStudy> = {
       }
     ],
     outcome: "Live and fully functional. A project I'm genuinely proud of — it's both technically solid and built around something I care about.",
-    learnings: "Building something you actually want to use makes you a better developer. GraphQL's self-documenting nature and TypeScript integration made this one of the cleanest codebases I've written."
+    learnings: "Building something you actually want to use makes you a better developer. GraphQL's self-documenting nature and TypeScript integration made this one of the cleanest codebases I've written.",
+    images: [],
   },
-  "samurai-systems": {
-    id: "samurai-systems",
-    title: "Samurai Systems",
-    tagline: "Dark landing page for a startup IT and cybersecurity company",
-    type: "Marketing Website / Landing Page",
-    status: "Live",
-    year: "2023",
-    context: "A technical practice project built to master Next.js and complex GSAP animations. Replicated a high-end design to understand the mechanics of premium scroll-triggered sequences.",
-    role: "Solo Developer",
-    private: false,
-    githubUrl: "https://github.com/Sharoon166/Samurai_Systems",
-    previewUrl: "https://samurai-systems166.vercel.app/",
-    themeColor: "#E74B4F",
-    overview: "A sleek, dark-themed landing page for Samurai Systems, a startup IT company specializing in cybersecurity, IT infrastructure, and digital transformation. Built with GSAP for premium scroll animations.",
-    problem: "High-end marketing designs often feature complex, multi-layered animations and non-standard scroll behaviors that are difficult to implement without sacrificing performance or responsive integrity. Replicating such a design required a deep understanding of how to sequence animations across a long-form page.",
-    solution: "A technical study in advanced GSAP implementation. I rebuilt the design from the ground up in Next.js, focusing specifically on ScrollTrigger sequences, pinned section reveals, and smooth entrance effects. The goal was to prove that premium, cinematic web experiences can be built with clean, maintainable React code.",
-    features: [
-      "GSAP-powered scroll animations and entrance effects",
-      "Services section highlighting cybersecurity and IT offerings",
-      "Dark premium design aesthetic",
-      "Responsive layout",
-      "Smooth section transitions",
-      "Contact and CTA sections"
-    ],
-    techStack: {
-      frontend: ["Next", "Tailwind CSS", "GSAP"],
-    },
-    categories: ["Frontend", "Web Design"],
-    challenges: [
-      {
-        challenge: "First substantial GSAP project",
-        solution: "Started with ScrollTrigger for section reveals, then progressively added more complex timeline animations. GSAP's documentation is excellent — learned it mostly through their docs and experimenting."
+  coolcare: {
+      id: "coolcare",
+      title: "Cool Care",
+      tagline: "Personal invoicing and business management app for an electrical and AC repair shop",
+      type: "Full-stack Web Application",
+      status: "Production",
+      year: "April 2026 – Present",
+      context: "Built for a family-owned electrical and AC repair business in Islamabad. Actively used for daily operations.",
+      role: "Solo Developer",
+      private: true,
+      privateNote: "Personal project — codebase not public",
+      githubUrl: "",
+      previewUrl: "",
+      themeColor: "#AFF47C",
+      overview: "Cool Care is a full invoicing and business management platform I built for my family's electrical and AC repair business in Islamabad. It covers the complete workflow — quotations, invoices, payments, customer tracking, and a customer portal. The dashboard surfaces business-critical KPIs like outstanding AR, overdue amounts, collected revenue, and quote conversion rates alongside a revenue chart and payment method breakdown. Customers receive a unique link on their receipt to view their own invoices and download PDFs without any login.",
+      problem: "The business was managing invoices and customer records on paper or ad-hoc phone messages. There was no way to know who owed what, which invoices were overdue, or how much revenue had come in during a given period without manually flipping through paper. Customers had to call to check their invoice status. Payment methods like JazzCash and EasyPaisa (which the business actually uses) were not supported by typical invoicing software.",
+      solution: "A centralized full-stack platform built with SvelteKit 5, Drizzle ORM, and Neon PostgreSQL. The dashboard shows real-time KPIs — outstanding AR, overdue amounts, collected this month, and quote conversion rate — alongside a revenue chart and payment method breakdown. Invoices support partial payments and status progression (pending, partial, paid, overdue). Payments can be recorded as cash, JazzCash, EasyPaisa, or bank transfer. A customer portal provides token-based access so clients can view their invoices and download PDFs without any account setup.",
+      features: [
+        "Dashboard with KPI grid covering outstanding AR, overdue amounts, collected this month, and quote conversion rate",
+        "Revenue chart with configurable time ranges (7d, 30d, 6m, custom) built with layerchart AreaChart",
+        "Payment method breakdown pie chart built with layerchart PieChart with interactive legend",
+        "Full invoice lifecycle: draft, pending, partial, paid, overdue, with status progression dialog",
+        "Multi-payment support per invoice with automatic balance tracking and status updates",
+        "Payment methods aligned with local usage: cash, JazzCash, EasyPaisa, bank transfer, custom",
+        "Sequential invoice numbering with zero-padded counters (001, 002…) stored in its own DB table with atomic upserts",
+        "Quotation management with one-click conversion to invoice",
+        "Customer management with active/inactive toggle and per-row loading states",
+        "Customer portal with token-based access — no login required, unique URL printed on each receipt",
+        "Callout component with 5 variants (info, success, warning, error, note) for contextual messaging",
+        "Reusable UI component library built with tailwind-variants: buttons, badges, dialogs, selects, inputs, tables, date pickers, skeleton loaders",
+        "Brutalist design system with fat borders (border-2), heavy shadows (brutal-shadow), and rounded corners (rounded-2xl/3xl)"
+      ],
+      techStack: {
+        frontend: ["SvelteKit 5", "TypeScript", "Tailwind CSS", "Shadcn Svelte", "tailwind-variants", "layerchart"],
+        backend: ["SvelteKit Form Actions", "Drizzle ORM"],
+        database: ["Neon PostgreSQL"],
+        services: ["better-auth", "Vercel"]
       },
-      {
-        challenge: "Communicating technical services visually without being generic",
-        solution: "Used iconography, subtle grid patterns, and code-inspired visual elements to reinforce the technical brand without falling into stock photo territory."
-      }
-    ],
-    outcome: "Successfully replicated the design and mastered complex GSAP sequences. The project served as a critical learning milestone for building high-performance, animation-heavy marketing sites.",
-    learnings: "GSAP is genuinely powerful for marketing sites. Replicating a premium design taught me to think about layout and timing in a way that typical functional apps don't require."
-  }
-
+      categories: ["Full Stack", "Dashboard"],
+      challenges: [
+        {
+          challenge: "Advance payment tracking using magic string matching",
+          solution: "The original code identified advance payments by checking if payment notes contained specific text. I replaced this pattern with a proper isAdvance boolean column on the payments table, making queries explicit and eliminating the fragile string-matching logic across create, update, and convert routes."
+        },
+        {
+          challenge: "Sequential invoice numbering from random IDs",
+          solution: "Invoices initially used random CUID2 IDs which looked unprofessional on printed receipts. I implemented a DB counter table with atomic upserts to generate sequential zero-padded numbers (001, 002…) so printed invoices look legitimate and are easy to reference."
+        },
+        {
+          challenge: "Customer portal without authentication",
+          solution: "The portal needed to be accessible enough that a shop customer with minimal tech comfort could open a link and see their invoices. I used token-based access with a unique URL printed on their physical receipt instead of requiring login credentials. A data availability callout informs customers that invoices before the system cutover date are not available."
+        },
+        {
+          challenge: "Payment method alignment with local business needs",
+          solution: "Most SaaS invoicing templates assume Stripe or credit card as payment methods. This business actually gets paid via JazzCash, EasyPaisa, cash, and bank transfer. I replaced the default 'online' method with these real options in the payment form, validation schema, and all queries."
+        }
+      ],
+      outcome: "Actively used for daily business operations. The platform replaced paper-based invoicing and ad-hoc phone communication for tracking customer dues. The dashboard gives the business owner immediate visibility into outstanding revenue, overdue accounts, and monthly collections without manual work.",
+      learnings: "Building something your own family uses daily is a different kind of pressure — you can't hand-wave edge cases because someone you know will hit them. The advance payment string-matching bug was a concrete lesson in why you should never encode business logic in human-readable text fields. SvelteKit 5's runes ($state, $derived, $props) are genuinely pleasant once you understand the mental model. The brutalist theme developed naturally from wanting every component to feel deliberate rather than default.",
+      images: [],
+    }
 };
