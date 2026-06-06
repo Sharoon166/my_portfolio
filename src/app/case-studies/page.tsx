@@ -205,7 +205,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                     animate={{ opacity: 1, x: 0, rotateY: -20, rotateX: 8, scale: 1 }}
                     exit={{ opacity: 0, x: 40, scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="relative w-[380px] z-50 perspective-1000 hidden xl:block"
+                    className="relative w-[380px] aspect-video z-50 perspective-1000 hidden xl:block"
                   >
                     <div className="relative">
                       <div className="rounded-lg p-px bg-linear-to-br from-white/10 to-transparent relative overflow-hidden">
@@ -214,12 +214,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                             src={imageUrl}
                             alt={study.title}
                             fill
-                            className="object-cover"
-                          />
-                          <motion.div
-                            animate={{ y: ['-100%', '200%'] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-x-0 h-1/2 bg-linear-to-b from-transparent via-white/5 to-transparent shadow-2xl"
+                            className="object-cover object-top"
                           />
                         </div>
                       </div>

@@ -69,6 +69,7 @@
 
 "use client";
 
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 
@@ -97,8 +98,10 @@ const curve = {
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile()
+  
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || isMobile) {
     return <>{children}</>;
   }
 

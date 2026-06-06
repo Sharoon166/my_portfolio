@@ -164,7 +164,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
         {/* Narrative Grid */}
         <div className="grid grid-cols-12 gap-8 lg:gap-16 mb-32 relative">
           {/* Main Story Narrative - Now wider */}
-          <div className="col-span-12 lg:col-span-10 space-y-32">
+          <div className="col-span-10 lg:col-span-10 space-y-32">
             {study.private && (
               <div className="p-6 bg-destructive/5 border border-destructive/20 rounded-2xl flex gap-4 items-start mb-12">
                 <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-destructive shrink-0 mt-1" />
@@ -202,6 +202,12 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
                 </motion.div>
               </div>
             </div>
+            
+            <Section number="01" label="Vision" title="Project Vision">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                {study.overview}
+              </p>
+            </Section>
 
             {/* Gallery — only shown if case study has images */}
             {study.images.length > 0 && (
@@ -214,11 +220,6 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
               </div>
             )}
 
-            <Section number="01" label="Vision" title="Project Vision">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                {study.overview}
-              </p>
-            </Section>
 
             <Section number="02" label="Problem" title="The Friction">
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{study.problem}</p>

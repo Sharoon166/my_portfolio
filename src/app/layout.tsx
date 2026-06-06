@@ -97,6 +97,8 @@ const siteSchema = {
       url: siteConfig.author.url,
       email: siteConfig.author.email,
       image: `${siteConfig.url}/me.webp`,
+      jobTitle: "Full-Stack Developer",
+      description: siteConfig.description,
       sameAs: Object.values(siteConfig.links),
     },
     {

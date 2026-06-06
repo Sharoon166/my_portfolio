@@ -1,5 +1,5 @@
 export const siteConfig = {
-  url: "https://sharoon.vercel.app",
+  url: "https://sharoon.dev",
   name: "Sharoon Shaleem",
   title: "Sharoon Shaleem • Full-Stack Developer",
   description:
@@ -14,6 +14,6 @@ export const siteConfig = {
   author: {
     name: "Sharoon Shaleem",
     email: "ssharoon166@gmail.com",
-    url: "https://sharoon.vercel.app",
+    url: "https://sharoon.dev",
   },
 }

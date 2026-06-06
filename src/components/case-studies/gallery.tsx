@@ -101,7 +101,7 @@ function GalleryCard({
               : "0 4px 16px rgba(0,0,0,0.25)",
           }}
         >
-          <div className="aspect-[4/3] relative">
+          <div className="aspect-video relative">
             <Image
               src={image.src}
               alt={image.alt}

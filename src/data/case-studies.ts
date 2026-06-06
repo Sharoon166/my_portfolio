@@ -293,7 +293,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       context: "Built for a family-owned electrical and AC repair business in Islamabad. Actively used for daily operations.",
       role: "Solo Developer",
       private: true,
-      privateNote: "Personal project — codebase not public",
+      privateNote: "Personal project — Codebase is not public",
       githubUrl: "",
       previewUrl: "",
       themeColor: "#AFF47C",
