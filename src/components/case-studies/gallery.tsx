@@ -233,7 +233,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] flex flex-col bg-black select-none"
+            className="fixed inset-0 z-100 flex flex-col bg-black select-none"
             style={{ backgroundColor: "#050505" }}
             onMouseMove={() => showUi()}
           >

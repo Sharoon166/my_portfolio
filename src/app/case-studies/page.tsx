@@ -9,7 +9,7 @@ import { technologiesCollection, projects } from "@/constants";
 import { useState, useRef } from "react";
 import { ContactSection } from "@/components/home/contact";
 
-const categories = ["All", "Full-stack", "Internal Tool", "Frontend", "Web Design"];
+const categories = ["All", "Full-stack", "Internal Tool", "Frontend"];
 
 export default function CaseStudiesPage() {
   const [filter, setFilter] = useState("All");
@@ -57,8 +57,8 @@ export default function CaseStudiesPage() {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${filter === cat
-                  ? "bg-background border-foreground text-background"
+                className={`px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${filter === cat
+                  ? "bg-destructive border-destructive text-primary"
                   : "bg-white/5 border-white/10 hover:border-destructive/50 text-muted-foreground"
                   }`}
               >
@@ -70,7 +70,7 @@ export default function CaseStudiesPage() {
 
         {/* Accordion Style Projects Listing */}
         <div className="border-t border-border/50">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredStudies.map((study, index) => {
               const projectMeta = projects.find(p => p.caseStudyId === study.id);
               const imageUrl = projectMeta?.image || "";
@@ -136,7 +136,6 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
         mouseY.set(0);
       }}
       onMouseMove={handleMouseMove}
-      layout
       className="group border-b border-white/5 relative overflow-visible"
     >
       {/* Ambient Brand Highlight */}
@@ -184,7 +183,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                       initial={{ width: 0, opacity: 0 }}
                       animate={{ width: 80, opacity: 1 }}
                       exit={{ width: 0, opacity: 0 }}
-                      className="h-[4px] bg-current hidden lg:block"
+                      className="h-1 bg-current hidden lg:block"
                     />
                   )}
                 </AnimatePresence>

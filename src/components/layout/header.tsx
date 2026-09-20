@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { 
@@ -21,6 +21,8 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   const menuItems = [
     { href: "/", label: "Home", icon: <HugeiconsIcon icon={Home01Icon} size={18} /> },
@@ -40,10 +42,28 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.2);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > window.innerHeight * 0.2);
+
+      const isDesktop = window.matchMedia("(min-width: 640px)").matches;
+      if (!isDesktop || mobileMenuOpen) {
+        setHidden(false);
+        lastScrollY.current = y;
+        return;
+      }
+
+      if (y > 120 && y > lastScrollY.current + 4) {
+        setHidden(true);
+      } else if (y < lastScrollY.current - 4 || y < 120) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -53,6 +73,7 @@ export function Header() {
         style={{ left: 0, right: 0, marginLeft: "auto", marginRight: "auto" }}
         initial={{
           top: 0,
+          y: 0,
           width: "min(1400px, 100%)",
           padding: "16px 32px",
           borderRadius: 0,
@@ -63,6 +84,7 @@ export function Header() {
         }}
         animate={{
           top: scrolled ? 12 : 0,
+          y: hidden ? -160 : 0,
           width: scrolled ? "min(560px, 90vw)" : "min(1400px, 100%)",
           padding: scrolled ? "12px 24px" : "16px 32px",
           borderRadius: scrolled ? 9999 : 0,
@@ -124,6 +146,7 @@ export function Header() {
           >
             <motion.path
               stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+              initial={{ d: "M4 6h16M4 12h16M4 18h16" }}
               animate={mobileMenuOpen
                 ? { d: "M18 6L6 18M6 6l12 12" }
                 : { d: "M4 6h16M4 12h16M4 18h16" }

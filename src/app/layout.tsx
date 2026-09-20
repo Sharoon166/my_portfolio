@@ -139,7 +139,7 @@ export default function RootLayout({
             </div>
             <CustomCursor />
             <ScrollProgressButton />
-            <FontPreview />
+            {/*<FontPreview />*/}
             <CommandPallete />
             <ToastContainer
               position="bottom-right"

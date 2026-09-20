@@ -67,88 +67,88 @@
 // }
 
 
-"use client";
+// "use client";
 
-import { useIsMobile } from "@/hooks/use-is-mobile";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { usePathname } from "next/navigation";
+// import { useIsMobile } from "@/hooks/use-is-mobile";
+// import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+// import { usePathname } from "next/navigation";
 
-const transitionEase = [0.76, 0, 0.24, 1];
-const wipeColors = ["#000000", "#B22222", "#000000"];
+// const transitionEase = [0.76, 0, 0.24, 1];
+// const wipeColors = ["#000000", "#B22222", "#000000"];
 
-const curve = {
-  initial: {
-    d: "M0 100 L100 100 L100 100 Q50 100 0 100 Z", // Flat at bottom
-  },
-  animate: (i: number) => ({
-    d: [
-      "M0 100 L100 100 L100 100 Q50 100 0 100 Z", // Start (Bottom)
-      "M0 100 L100 100 L100 0 Q50 0 0 0 Z",      // Middle (Full Screen)
-      "M0 0 L100 0 L100 0 Q50 0 0 0 Z"           // End (Hidden Top)
-    ],
-    transition: {
-      duration: 1.4,
-      ease: transitionEase,
-      delay: 0.08 * i,
-      times: [0, 0.5, 1]
-    },
-  }),
-};
+// const curve = {
+//   initial: {
+//     d: "M0 100 L100 100 L100 100 Q50 100 0 100 Z", // Flat at bottom
+//   },
+//   animate: (i: number) => ({
+//     d: [
+//       "M0 100 L100 100 L100 100 Q50 100 0 100 Z", // Start (Bottom)
+//       "M0 100 L100 100 L100 0 Q50 0 0 0 Z",      // Middle (Full Screen)
+//       "M0 0 L100 0 L100 0 Q50 0 0 0 Z"           // End (Hidden Top)
+//     ],
+//     transition: {
+//       duration: 1.4,
+//       ease: transitionEase,
+//       delay: 0.08 * i,
+//       times: [0, 0.5, 1]
+//     },
+//   }),
+// };
 
-export default function Template({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const shouldReduceMotion = useReducedMotion();
-  const isMobile = useIsMobile()
+// export default function Template({ children }: { children: React.ReactNode }) {
+//   const pathname = usePathname();
+//   const shouldReduceMotion = useReducedMotion();
+//   const isMobile = useIsMobile()
   
 
-  if (shouldReduceMotion || isMobile) {
-    return <>{children}</>;
-  }
+//   if (shouldReduceMotion || isMobile) {
+//     return <>{children}</>;
+//   }
 
-  return (
-    <>
-      <div className="fixed inset-0 pointer-events-none z-[9999] h-screen w-screen">
-        <svg 
-          className="w-full h-full" 
-          viewBox="0 0 100 100" 
-          preserveAspectRatio="none"
-        >
-          {wipeColors.map((color, i) => (
-            <motion.path
-              key={`${pathname}-${i}`}
-              custom={i}
-              variants={curve}
-              initial="initial"
-              animate="animate"
-              fill={color}
-            />
-          ))}
-        </svg>
-      </div>
+//   return (
+//     <>
+//       <div className="fixed inset-0 pointer-events-none z-[9999] h-screen w-screen">
+//         <svg 
+//           className="w-full h-full" 
+//           viewBox="0 0 100 100" 
+//           preserveAspectRatio="none"
+//         >
+//           {wipeColors.map((color, i) => (
+//             <motion.path
+//               key={`${pathname}-${i}`}
+//               custom={i}
+//               variants={curve}
+//               initial="initial"
+//               animate="animate"
+//               fill={color}
+//             />
+//           ))}
+//         </svg>
+//       </div>
 
-      <AnimatePresence mode="popLayout">
-        <motion.div
-          key={pathname}
-          // Initial/Animate handle the "Entry" of the NEW page
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          // Exit handles the "Departure" of the OLD page
-          exit={{ opacity: 0 }} 
-          transition={{ 
-            // Entry is delayed so the wipe covers the screen first
-            opacity: { delay: 0.7, duration: 0.3 },
-            // Exit is instant (duration 0)
-            default: { duration: 0 } 
-          }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </>
-  );
-}
-
-
-// export default function Template({children}: {children: React.ReactNode}){
-//     return <>{children}</>
+//       <AnimatePresence mode="popLayout">
+//         <motion.div
+//           key={pathname}
+//           // Initial/Animate handle the "Entry" of the NEW page
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           // Exit handles the "Departure" of the OLD page
+//           exit={{ opacity: 0 }} 
+//           transition={{ 
+//             // Entry is delayed so the wipe covers the screen first
+//             opacity: { delay: 0.7, duration: 0.3 },
+//             // Exit is instant (duration 0)
+//             default: { duration: 0 } 
+//           }}
+//         >
+//           {children}
+//         </motion.div>
+//       </AnimatePresence>
+//     </>
+//   );
 // }
+
+
+export default function Template({children}: {children: React.ReactNode}){
+    return <>{children}</>
+}

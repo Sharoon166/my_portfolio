@@ -58,13 +58,13 @@ export default function Projects() {
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   className={cn(
-                    "px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer",
+                    "px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 border cursor-pointer",
                     selectedCategory === cat
-                      ? "bg-primary border-primary text-background"
+                      ? "bg-destructive border-destructive text-primary"
                       : "bg-white/5 border-white/10 hover:border-destructive/50 text-muted-foreground"
                   )}
                 >
-                  {cat} <span className="opacity-40 text-[9px]">({count})</span>
+                  {cat} <span className="text-xs">({count})</span>
                 </button>
               );
             })}

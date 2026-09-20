@@ -8,13 +8,12 @@ import {
   ArrowUpRight01Icon,
   LockPasswordIcon,
 } from "@hugeicons/core-free-icons";
-import Link from "next/link";
 import { use, useEffect, useState } from "react";
 import { technologiesCollection, projects } from "@/constants";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { ContactSection } from "@/components/home/contact";
-import { cn } from "@/lib/utils";
+import { TableOfContents } from "@/components/case-studies/table-of-contents";
 import { Gallery } from "@/components/case-studies/gallery";
 
 export default function CaseStudyPage({ params }: { params: Promise<{ projectId: string }> }) {
@@ -23,33 +22,34 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
   const project = projects.find(p => p.caseStudyId === projectId);
   const [activeSection, setActiveSection] = useState("01");
 
-  // HUD Navigation Logic
+  // HUD Navigation Logic — scrollspy picks the last section whose top
+  // has crossed the 25% viewport line, so short sections track correctly.
   useEffect(() => {
     if (!study) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find intersecting entries
-        const visibleElements = entries.filter((entry) => entry.isIntersecting);
-        if (visibleElements.length > 0) {
-          // Update to the first intersecting element's assigned id
-          const id = visibleElements[0].target.getAttribute("data-section-index");
-          if (id) setActiveSection(id);
-        }
-      },
-      // Uses a narrow detection band in the upper third of the screen 
-      // instead of a percentage threshold to correctly handle very tall sections
-      { threshold: 0, rootMargin: "-20% 0px -60% 0px" }
-    );
+    let sections: HTMLElement[] = [];
 
-    // Delay to ensure DOM sections are rendered
+    const update = () => {
+      const line = window.innerHeight * 0.25;
+      let current = sections[0]?.getAttribute("data-section-index") ?? "01";
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= line) {
+          current = section.getAttribute("data-section-index") ?? current;
+        }
+      }
+      setActiveSection(current);
+    };
+
     const timeout = setTimeout(() => {
-      document.querySelectorAll("[data-section-index]").forEach((section) => observer.observe(section));
+      sections = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-section-index]")
+      );
+      window.addEventListener("scroll", update, { passive: true });
     }, 100);
 
     return () => {
       clearTimeout(timeout);
-      observer.disconnect();
+      window.removeEventListener("scroll", update);
     };
   }, [study]);
 
@@ -74,7 +74,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
   const scrollToSection = (id: string) => {
     const element = document.querySelector(`[data-section-index="${id}"]`);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -161,47 +161,60 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
           </div>
         </div>
 
+        {study.private && (
+          <div className="p-6 bg-destructive/5 border border-destructive/20 rounded-2xl flex gap-4 items-start mb-12">
+            <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-destructive shrink-0 mt-1" />
+            <p className="text-xs text-destructive/80 leading-relaxed italic">
+              {study.privateNote}
+            </p>
+          </div>
+        )}
+        {/* The Stage (Immersion) - Home Card Animation Style */}
+        <div className="relative mb-32 group">
+          <div className="absolute inset-0 bg-white/5 blur-3xl -z-10 opacity-10 group-hover:opacity-20 transition-opacity" />
+          <div
+            className="rounded-2xl p-1 px-3 border relative overflow-hidden max-h-[300px] md:max-h-[500px] bg-zinc-900"
+            style={{ backgroundColor: study.themeColor, borderColor: study.themeColor }}
+          >
+            <motion.div
+              initial={{ y: "60%", scale: 0.95, rotate: -2 }}
+              animate={{ y: "8%" }}
+              whileHover={{ scale: 1 }}
+              transition={{
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8,
+              }}
+              className="relative rounded-xl overflow-hidden aspect-video shadow-2xl"
+            >
+              {project?.image && (
+                <Image
+                  src={project.image}
+                  alt={study.title}
+                  fill
+                  className="object-cover select-none brightness-95 group-hover:brightness-100 transition-all duration-500"
+                />
+              )}
+            </motion.div>
+          </div>
+        </div>
+
         {/* Narrative Grid */}
         <div className="grid grid-cols-12 gap-8 lg:gap-16 mb-32 relative">
-          {/* Main Story Narrative - Now wider */}
-          <div className="col-span-10 lg:col-span-10 space-y-32">
-            {study.private && (
-              <div className="p-6 bg-destructive/5 border border-destructive/20 rounded-2xl flex gap-4 items-start mb-12">
-                <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-destructive shrink-0 mt-1" />
-                <p className="text-xs text-destructive/80 leading-relaxed italic">
-                  {study.privateNote}
-                </p>
-              </div>
-            )}
-            {/* The Stage (Immersion) - Home Card Animation Style */}
-            <div className="relative mb-32 group">
-              <div className="absolute inset-0 bg-white/5 blur-3xl -z-10 opacity-10 group-hover:opacity-20 transition-opacity" />
-              <div
-                className="rounded-2xl p-1 px-3 border relative overflow-hidden max-h-[300px] md:max-h-[500px] bg-zinc-900"
-                style={{ backgroundColor: study.themeColor, borderColor: study.themeColor }}
-              >
-                <motion.div
-                  initial={{ y: "60%", scale: 0.95, rotate: -2 }}
-                  animate={{ y: "8%" }}
-                  whileHover={{ scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    bounce: 0.4,
-                    duration: 0.8,
-                  }}
-                  className="relative rounded-xl overflow-hidden aspect-video shadow-2xl"
-                >
-                  {project?.image && (
-                    <Image
-                      src={project.image}
-                      alt={study.title}
-                      fill
-                      className="object-cover select-none brightness-95 group-hover:brightness-100 transition-all duration-500"
-                    />
-                  )}
-                </motion.div>
-              </div>
+          {/* Left Aside (Table of Contents) */}
+          <aside className="col-span-12 lg:col-span-2 hidden lg:block">
+            <div className="sticky top-24">
+              <TableOfContents
+                items={navItems}
+                activeId={activeSection}
+                onSelect={scrollToSection}
+              />
             </div>
+          </aside>
+
+          {/* Main Story Narrative */}
+          <div className="col-span-12 lg:col-span-10 space-y-32">
+            
             
             <Section number="01" label="Vision" title="Project Vision">
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -285,51 +298,6 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
               </div>
             </Section>
           </div>
-
-          {/* Right Aside (Table of Contents) */}
-          <aside className="col-span-12 lg:col-span-2 hidden lg:block">
-            <div className="sticky top-24">
-              <div className="meta-label mb-6 pl-4 font-bold">
-                Contents
-              </div>
-              <nav className="flex flex-col relative">
-                {/* Base Track line */}
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
-
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={cn(
-                      "group relative text-left py-3 pl-6 text-xs tracking-wide  transition-all duration-300 cursor-pointer",
-                      activeSection === item.id
-                        ? "text-foreground font-bold"
-                        : "text-muted-foreground hover:text-foreground/80"
-                    )}
-                  >
-                    {/* Active Item Indicator Line */}
-                    {activeSection === item.id && (
-                      <motion.div
-                        layoutId="toc-indicator"
-                        className="absolute left-0 top-0 bottom-0 w-0.5"
-                        style={{ backgroundColor: brandColor, boxShadow: `0 0 10px ${brandColor}` }}
-                      />
-                    )}
-
-                    <div className="flex items-center gap-4">
-                      <span className={cn(
-                        "transition-colors duration-300",
-                        activeSection === item.id ? "opacity-100" : "opacity-30"
-                      )} style={activeSection === item.id ? { color: brandColor } : {}}>
-                        {item.id}
-                      </span>
-                      <span>{item.label}</span>
-                    </div>
-                  </button>
-                ))}
-              </nav>
-            </div>
-          </aside>
         </div>
 
         <div className="mt-32 border-t border-white/5 pt-32">
@@ -351,7 +319,7 @@ function MetaField({ label, value }: { label: string, value: string }) {
 
 function Section({ number, label, title, children }: { number: string, label: string, title: string, children: React.ReactNode }) {
   return (
-    <div className="space-y-6 scroll-mt-32" data-section-index={number}>
+    <div className="space-y-6 scroll-mt-32" data-section-index={number} id={`section-${number}`}>
       <div className="flex items-center gap-4">
         <span className="meta-label">{number} // {label}</span>
         <div className="h-px flex-1 bg-white/3" />
