@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono, Caveat, Fira_Code } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CommandPallete from "@/components/command-pallete";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import CustomCursor from "@/components/mouse-cursor";
+import { ScrollProgressButton } from "@/components/layout/scroll-progress-button";
+import { FontPreview } from "@/components/font-preview";
 import { MotionConfig } from "motion/react";
 import { siteConfig } from "@/data/site-config";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -23,8 +28,8 @@ const caveat = Caveat({
   preload: true,
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   preload: true,
@@ -120,20 +125,32 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${firaCode.variable} ${bricolage.variable} ${caveat.variable} antialiased font-fira-code text-foreground/90 leading-relaxed`}
+        className={`${jetBrainsMono.variable} ${bricolage.variable} ${caveat.variable} antialiased font-body text-foreground/90 leading-relaxed`}
       >
         <JsonLd data={siteSchema} />
-        <MotionConfig reducedMotion="user">
-          <div className="container py-6 min-h-screen space-y-4">
-            <Header />
-            <main className="relative" role="main">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <CustomCursor />
-          <CommandPallete />
-        </MotionConfig>
+        <SmoothScrollProvider>
+          <MotionConfig reducedMotion="user">
+            <div className="container py-6 min-h-screen space-y-4">
+              <Header />
+              <main className="relative" role="main">
+                {children}
+              </main>
+              <Footer />
+            </div>
+            <CustomCursor />
+            <ScrollProgressButton />
+            <FontPreview />
+            <CommandPallete />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={2000}
+              closeOnClick
+              pauseOnHover={false}
+              draggable={false}
+              theme="dark"
+            />
+          </MotionConfig>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
