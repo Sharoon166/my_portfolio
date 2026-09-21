@@ -43,7 +43,7 @@ export function ProjectCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={cn(
-        `mx-auto flex flex-col-reverse lg:flex-row lg:items-center justify-between gap-x-20 gap-y-2 sm:gap-y-6 max-lg:max-w-xl lg:group max-sm:p-2 p-4 max-lg:border-2 border-zinc-800/80 rounded-xl max-lg:bg-muted/10 max-lg:backdrop-blur-3xl`,
+        `mx-auto flex flex-col-reverse lg:flex-row lg:items-center justify-between gap-x-20 gap-y-2 sm:gap-y-6 max-lg:max-w-xl lg:group max-sm:p-2 p-4 max-lg:border-2 border-border rounded-xl max-lg:bg-muted/10 max-lg:backdrop-blur-3xl`,
         {
           "lg:flex-row-reverse": reverse,
         }
@@ -115,7 +115,7 @@ export function ProjectCard({
                   >
                     <Tooltip content={name} className="max-lg:hidden">
                       <motion.div
-                        className="flex items-center gap-0.5 bg-zinc-800 backdrop-blur-sm rounded-xl overflow-hidden"
+                        className="flex items-center gap-0.5 bg-muted backdrop-blur-sm rounded-xl overflow-hidden"
                         whileHover={{ scale: 1.1 }}
                         viewport={{ once: true }}
                         transition={{
@@ -124,7 +124,7 @@ export function ProjectCard({
                           damping: 10,
                         }}
                       >
-                        <span className="size-9 lg:size-12 p-2 bg-zinc-800/80 max-lg:hidden flex items-center justify-center">
+                        <span className="size-9 lg:size-12 p-2 bg-muted/80 max-lg:hidden flex items-center justify-center">
                           <Image src={icon} alt={name} />
                         </span>
                         <span className="text-xs! px-2 py-1 text-(--themeColor) lg:hidden">
@@ -142,7 +142,7 @@ export function ProjectCard({
           {caseStudyId && (
             <Link href={`/case-studies/${caseStudyId}`}>
               <motion.div
-                className="text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full"
+                className="text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full"
                 whileHover={{ scale: 1.1 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -154,7 +154,8 @@ export function ProjectCard({
           <motion.a
             href={githubUrl}
             target="_blank"
-            className={cn("text-2xl bg-zinc-800/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
+            rel="noopener noreferrer"
+            className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -164,6 +165,7 @@ export function ProjectCard({
           <motion.a
             href={previewUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group", !previewUrl && "pointer-events-none cursor-not-allowed opacity-80")}
             whileHover={{ scale: 1.1 }}
             viewport={{ once: true }}
@@ -171,10 +173,10 @@ export function ProjectCard({
           >
             <div className="relative size-6 overflow-hidden" aria-hidden="true">
               <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-black" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
               </div>
               <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-black" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
               </div>
             </div>
           </motion.a>{" "}
@@ -205,6 +207,7 @@ export function ProjectCard({
             <motion.a
               href={githubUrl}
               target="_blank"
+              rel="noopener noreferrer"
               whileTap={{ scale: 0.98 }}
             >
               <span>View Code</span>
@@ -221,6 +224,7 @@ export function ProjectCard({
             <motion.a
               href={previewUrl}
               target="_blank"
+              rel="noopener noreferrer"
               // whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -233,6 +237,7 @@ export function ProjectCard({
       <div className="relative lg:w-1/2 xl:w-2/3 group overflow-hidden">
         <a
           target="_blank"
+          rel="noopener noreferrer"
           href={previewUrl}
           className="rounded-xl p-1 px-3 border bg-(--themeColor)  relative block overflow-hidden max-h-[280px]"
           data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}

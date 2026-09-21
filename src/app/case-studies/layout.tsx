@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "In-depth case studies of projects I've built — the problem, the approach, key decisions, and lessons learned.",
   openGraph: {
-    title: "Case Studies — Sharoon Shaleem",
+    title: "Case Studies | Sharoon Shaleem",
     description:
       "In-depth case studies of projects I've built — the problem, the approach, key decisions, and lessons learned.",
     url: `${siteConfig.url}/case-studies`,

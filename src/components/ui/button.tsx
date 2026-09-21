@@ -11,13 +11,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-linear-to-br from-destructive via-red-500 to-red-600 text-white shadow-[0_0_20px_rgba(255,0,0,0.15)] hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30",
+          "bg-linear-to-br from-destructive via-red-500 to-red-600 text-primary-foreground shadow-[0_0_20px_rgba(255,0,0,0.15)] hover:from-destructive hover:via-red-600 hover:to-red-700 border border-destructive/30",
         destructive:
           "bg-destructive text-destructive shadow-xs hover:bg-destructive/90",
         outline:
-          "border border-white/10 bg-transparent text-white hover:bg-white/5 hover:border-white/20",
+          "border border-border bg-transparent text-foreground hover:bg-muted hover:border-border",
         secondary:
-          "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-destructive/50 hover:text-destructive transition-all shadow-sm",
+          "bg-muted/50 text-foreground border border-border hover:bg-muted hover:border-destructive/50 hover:text-destructive transition-all shadow-sm",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-destructive underline-offset-4 hover:underline",
       },

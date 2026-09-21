@@ -5,7 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 
 export const metadata: Metadata = {
-  title: "404 — Page Not Found",
+  title: "404 | Page Not Found",
   robots: { index: false },
 }
 
@@ -15,7 +15,7 @@ export default function NotFound() {
       {Array.from({ length: 50 }).map((_, i) => (
         <span
           key={i}
-          className="absolute rounded-full aspect-square bg-white"
+          className="absolute rounded-full aspect-square bg-muted"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -27,7 +27,7 @@ export default function NotFound() {
       ))}
       {/* Massive 404 Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-        <span className="text-[40vw] font-black font-bricolage tracking-tighter text-white opacity-5">
+        <span className="text-[40vw] font-black font-bricolage tracking-tighter text-foreground opacity-5">
           404
         </span>
       </div>
@@ -56,7 +56,7 @@ export default function NotFound() {
 
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-xl font-semibold text-sm hover:bg-zinc-200 transition-all group"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-xl font-semibold text-sm hover:bg-primary/90 transition-all group"
         >
           <HugeiconsIcon
             icon={ArrowLeft01Icon}

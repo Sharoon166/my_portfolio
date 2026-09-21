@@ -8,6 +8,7 @@ import { ArrowRight01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons
 import { caseStudies } from "@/data/case-studies";
 import { projects } from "@/constants";
 import { useRef } from "react";
+import { CometCard } from "../ui/comet-card";
 
 /* Only projects that have a case study */
 const featuredStudies = projects
@@ -16,33 +17,6 @@ const featuredStudies = projects
     ...p,
     study: caseStudies[p.caseStudyId!],
   }));
-
-/*
- * Layout from the reference:
- *
- * ┌───────────────────┐   ┌───────────────────┐
- * │                   │   │  ✦ Case Studies    │
- * │   Card 1          │   │  Selected Work...  │
- * │  (olive bg)       │   ├───────────────────┤
- * │                   │   │                   │
- * ├───────────────────┤   │   Card 3          │
- * │                   │   │  (cream bg)       │
- * │   Card 2          │   │                   │
- * │  (lavender bg)    │   ├───────────────────┤
- * │                   │   │                   │
- * ├───────────────────┤   │   Card 4          │
- * │  "I help brands"  │   │  (mauve bg)       │
- * │  [View All Work]  │   │                   │
- * └───────────────────┘   └───────────────────┘
- */
-
-/* Card background colors matching the muted pastel tones from the image */
-const cardBgColors = [
-  "bg-[#b5c4a1]/30", // olive/sage — Card 1
-  "bg-[#c5b8d9]/30", // lavender — Card 2
-  "bg-[#e8e0d0]/30", // cream — Card 3
-  "bg-[#d4b8b8]/30", // mauve/rose — Card 4
-];
 
 function ParallaxCard({
   children,
@@ -73,33 +47,38 @@ function CaseStudyCard({
   index: number;
 }) {
   const study = project.study;
-  const bg = cardBgColors[index % cardBgColors.length];
 
   return (
     <Link
       href={`/case-studies/${project.caseStudyId}`}
       className="group block space-y-4"
     >
-      {/* Image area — rounded container with pastel bg and mockup */}
+      {/* Image area — themed frame with spring reveal + 3D tilt, like the project cards */}
       <div
-        className={`relative aspect-[3/2] rounded-[24px] overflow-hidden ${bg} flex items-center justify-center p-6`}
+        className="relative  rounded-2xl overflow-hidden border border-border flex items-center justify-center p-1 px-3"
+        style={{ backgroundColor: project.themeColor }}
       >
-        {/* Subtle grid pattern on the background */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: "20px 20px",
-        }} />
-
-        {/* Project screenshot with device-like framing */}
-        <div className="relative w-full h-full rounded-xl overflow-hidden border border-white/10 shadow-2xl group-hover:scale-[1.03] transition-transform duration-700 ease-out">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover object-top"
-          />
-          {/* Subtle inner shadow for depth */}
-          <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl" />
+        <div
+          className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl"
+          data-mouse-text="Case Study · Case Study · "
+        >
+          <CometCard transparent className="w-full">
+            <motion.div
+              initial={{ y: "60%", scale: 0.95, rotate: index % 2 === 0 ? -2 : 2 }}
+              whileInView={{ y: "8%" }}
+              whileHover={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+              className="relative aspect-3/2 w-full"
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover object-top brightness-95 group-hover:brightness-100 transition-[filter] duration-500"
+              />
+            </motion.div>
+          </CometCard>
         </div>
       </div>
 
@@ -111,9 +90,9 @@ function CaseStudyCard({
           </h3>
           <HugeiconsIcon
             icon={ArrowUpRight01Icon}
-            size={18}
+            size={32}
             className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300 shrink-0"
-            style={{ color: `${project.themeColor}60` }}
+            style={{ color: `${project.themeColor}` }}
           />
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
@@ -121,7 +100,7 @@ function CaseStudyCard({
         </p>
         {/* Tag pill */}
         {study?.type && (
-          <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-white/[0.06] text-white/50 border border-white/[0.06]">
+          <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-muted/50 text-foreground/50 border border-border">
             {study.type}
           </span>
         )}
@@ -162,14 +141,14 @@ export function CaseStudiesGrid() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6 pt-4"
           >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-white">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-foreground">
               I help ambitious brands stand out,{" "}
               <span className="text-destructive">make more money</span>
             </h3>
             <MagneticButton>
               <Link
                 href="/case-studies"
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300 group"
               >
                 View All Work
                 <HugeiconsIcon

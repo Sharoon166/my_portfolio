@@ -36,7 +36,7 @@ export function ScrollProgressButton() {
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label={`Scroll to top — ${progress}% read`}
-          className="group fixed bottom-6 right-6 z-40 size-16 cursor-pointer rounded-full bg-black/80 shadow-lg shadow-black/40 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:ring-destructive/40"
+          className="group fixed bottom-6 right-6 z-40 size-16 cursor-pointer rounded-full bg-background/80 shadow-lg shadow-background/40 ring-1 ring-border backdrop-blur-md transition-colors hover:ring-destructive/40"
         >
           <svg viewBox="0 0 100 100" className="absolute inset-0 size-full -rotate-90">
             <circle

@@ -59,7 +59,7 @@ export default function CaseStudiesPage() {
                 onClick={() => setFilter(cat)}
                 className={`px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${filter === cat
                   ? "bg-destructive border-destructive text-primary"
-                  : "bg-white/5 border-white/10 hover:border-destructive/50 text-muted-foreground"
+                  : "bg-muted/50 border-border hover:border-destructive/50 text-muted-foreground"
                   }`}
               >
                 {cat}
@@ -136,7 +136,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
         mouseY.set(0);
       }}
       onMouseMove={handleMouseMove}
-      className="group border-b border-white/5 relative overflow-visible"
+      className="group border-b border-border/50 relative overflow-visible"
     >
       {/* Ambient Brand Highlight */}
       <div
@@ -147,7 +147,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
         }}
       />
 
-      <Link href={`/case-studies/${study.id}`} className="block relative z-10 py-8 lg:py-16 hover:bg-white/1 transition-colors">
+      <Link href={`/case-studies/${study.id}`} className="block relative z-10 py-8 lg:py-16 hover:bg-muted/50 transition-colors">
         <div className="grid grid-cols-12 items-center px-4 md:px-12 gap-4">
           {/* Index */}
           <div className="col-span-1 hidden lg:block">
@@ -167,7 +167,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
             <div className="flex flex-col gap-1 lg:gap-2">
               <div className="flex items-center gap-3 lg:hidden">
                 <span className="text-xs font-bold opacity-20 italic">{(index + 1).toString().padStart(2, '0')}</span>
-                <div className="h-px flex-1 bg-white/5" />
+                <div className="h-px flex-1 bg-muted/50" />
               </div>
               <motion.h3
                 animate={{
@@ -208,7 +208,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                   >
                     <div className="relative">
                       <div className="rounded-lg p-px bg-linear-to-br from-white/10 to-transparent relative overflow-hidden">
-                        <div className="rounded-[inherit] overflow-hidden bg-zinc-950/80 backdrop-blur-xl border border-white/5 aspect-video relative">
+                        <div className="rounded-[inherit] overflow-hidden bg-card/80 backdrop-blur-xl border border-border/50 aspect-video relative">
                           <Image
                             src={imageUrl}
                             alt={study.title}

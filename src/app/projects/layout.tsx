@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "A curated collection of projects — from production SaaS platforms to design experiments. Built with React, Next.js, and Node.js.",
   openGraph: {
-    title: "Projects — Sharoon Shaleem",
+    title: "Projects | Sharoon Shaleem",
     description:
       "A curated collection of projects — from production SaaS platforms to design experiments.",
     url: `${siteConfig.url}/projects`,

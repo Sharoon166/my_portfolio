@@ -115,7 +115,9 @@ export default function CommandPalette() {
   }, [recents]);
 
   const addRecent = (id: string) =>
-    setRecents((prev) => [id, ...prev.filter((r) => r !== id)].slice(0, MAX_RECENTS));
+    setRecents((prev) =>
+      [id, ...prev.filter((r) => r !== id)].slice(0, MAX_RECENTS),
+    );
 
   const notify = (message: string) =>
     toast.success(message, {
@@ -166,23 +168,81 @@ export default function CommandPalette() {
     setOpen(false);
   };
 
-  const makeIcon = (icon: React.ComponentProps<typeof HugeiconsIcon>["icon"]) => (
+  const makeIcon = (
+    icon: React.ComponentProps<typeof HugeiconsIcon>["icon"],
+  ) => (
     <HugeiconsIcon
       icon={icon}
       size={18}
-      className="text-zinc-500 transition-colors duration-150 group-data-[selected=true]/item:text-destructive"
+      className="text-muted-foreground transition-colors duration-150 group-data-[selected=true]/item:text-destructive"
     />
   );
 
   const items: PaletteItem[] = [
-    { id: "page:home", group: "Pages", label: "Home", hint: "Back to the start", icon: makeIcon(Home01Icon), run: () => navigate("/") },
-    { id: "page:case-studies", group: "Pages", label: "Case Studies", hint: "Deep dives into selected projects", icon: makeIcon(DashboardSquare01Icon), run: () => navigate("/case-studies") },
-    { id: "page:about", group: "Pages", label: "About", hint: "Bio, skills & experience", icon: makeIcon(UserIcon), run: () => navigate("/about") },
-    { id: "action:resume", group: "Actions", label: "Download Résumé", hint: "Get a copy of my CV", icon: makeIcon(FileDownloadIcon), run: downloadResume },
-    { id: "action:meeting", group: "Actions", label: "Schedule a Meeting", hint: "Book a 30 min call", icon: makeIcon(Calendar03Icon), run: () => openExternal(profile.meeting) },
-    { id: "action:email", group: "Actions", label: "Copy Email", hint: profile.email, icon: makeIcon(Copy01Icon), run: () => copyText(profile.email, "Email copied to clipboard") },
-    { id: "action:copy-url", group: "Actions", label: "Copy Page URL", hint: "Link to this page", icon: makeIcon(Link01Icon), run: () => copyText(window.location.href, "Page URL copied to clipboard") },
-    { id: "action:top", group: "Actions", label: "Back to Top", hint: "Scroll to the top", icon: makeIcon(ArrowUp01Icon), run: scrollToTop },
+    {
+      id: "page:home",
+      group: "Pages",
+      label: "Home",
+      hint: "Back to the start",
+      icon: makeIcon(Home01Icon),
+      run: () => navigate("/"),
+    },
+    {
+      id: "page:case-studies",
+      group: "Pages",
+      label: "Case Studies",
+      hint: "Deep dives into selected projects",
+      icon: makeIcon(DashboardSquare01Icon),
+      run: () => navigate("/case-studies"),
+    },
+    {
+      id: "page:about",
+      group: "Pages",
+      label: "About",
+      hint: "Bio, skills & experience",
+      icon: makeIcon(UserIcon),
+      run: () => navigate("/about"),
+    },
+    {
+      id: "action:resume",
+      group: "Actions",
+      label: "Download Résumé",
+      hint: "Get a copy of my CV",
+      icon: makeIcon(FileDownloadIcon),
+      run: downloadResume,
+    },
+    {
+      id: "action:meeting",
+      group: "Actions",
+      label: "Schedule a Meeting",
+      hint: "Book a 30 min call",
+      icon: makeIcon(Calendar03Icon),
+      run: () => openExternal(profile.meeting),
+    },
+    {
+      id: "action:email",
+      group: "Actions",
+      label: "Copy Email",
+      hint: profile.email,
+      icon: makeIcon(Copy01Icon),
+      run: () => copyText(profile.email, "Email copied to clipboard"),
+    },
+    {
+      id: "action:copy-url",
+      group: "Actions",
+      label: "Copy Page URL",
+      hint: "Link to this page",
+      icon: makeIcon(Link01Icon),
+      run: () => copyText(window.location.href, "Page URL copied to clipboard"),
+    },
+    {
+      id: "action:top",
+      group: "Actions",
+      label: "Back to Top",
+      hint: "Scroll to the top",
+      icon: makeIcon(ArrowUp01Icon),
+      run: scrollToTop,
+    },
     ...projects.map((project) => ({
       id: `project:${project.title.toLowerCase()}`,
       group: "Projects" as const,
@@ -219,9 +279,33 @@ export default function CommandPalette() {
       external: true,
       run: () => openExternal(project.liveUrl),
     })),
-    { id: "social:github", group: "Socials", label: "GitHub", hint: "@Sharoon166", external: true, icon: makeIcon(GithubIcon), run: () => openExternal(profile.github) },
-    { id: "social:linkedin", group: "Socials", label: "LinkedIn", hint: "Sharoon Shaleem", external: true, icon: makeIcon(Linkedin01Icon), run: () => openExternal(profile.linkenIn) },
-    { id: "social:instagram", group: "Socials", label: "Instagram", hint: "@sharoonshaleem", external: true, icon: makeIcon(InstagramIcon), run: () => openExternal(profile.instagram) },
+    {
+      id: "social:github",
+      group: "Socials",
+      label: "GitHub",
+      hint: "@Sharoon166",
+      external: true,
+      icon: makeIcon(GithubIcon),
+      run: () => openExternal(profile.github),
+    },
+    {
+      id: "social:linkedin",
+      group: "Socials",
+      label: "LinkedIn",
+      hint: "Sharoon Shaleem",
+      external: true,
+      icon: makeIcon(Linkedin01Icon),
+      run: () => openExternal(profile.linkenIn),
+    },
+    {
+      id: "social:instagram",
+      group: "Socials",
+      label: "Instagram",
+      hint: "@sharoonshaleem",
+      external: true,
+      icon: makeIcon(InstagramIcon),
+      run: () => openExternal(profile.instagram),
+    },
   ];
 
   const itemById = new Map(items.map((item) => [item.id, item]));
@@ -246,12 +330,15 @@ export default function CommandPalette() {
   };
 
   const visibleOrder: PaletteItem[] = [];
-  if (search === "" && effectiveTab === "All") visibleOrder.push(...recentItems);
+  if (search === "" && effectiveTab === "All")
+    visibleOrder.push(...recentItems);
   for (const group of effectiveTab === "All" ? GROUP_ORDER : [effectiveTab]) {
     visibleOrder.push(
       ...items.filter(
         (item) =>
-          item.group === group && !recentIdSet.has(item.id) && matchesQuery(item),
+          item.group === group &&
+          !recentIdSet.has(item.id) &&
+          matchesQuery(item),
       ),
     );
   }
@@ -273,10 +360,10 @@ export default function CommandPalette() {
         key={item.id}
         onSelect={() => runItem(item)}
         keywords={item.keywords}
-        className="group/item my-0.5 gap-3 rounded-xl px-2.5 py-2.5 transition-colors duration-150 data-[selected=true]:bg-white/[0.06]"
+        className="group/item my-0.5 gap-3 rounded-xl px-2.5 py-2.5 transition-colors duration-150 data-[selected=true]:bg-muted/50"
       >
         <div className="relative shrink-0">
-          <div className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/[0.03] ring-1 ring-white/[0.06] transition-colors duration-150 group-data-[selected=true]/item:bg-destructive/10 group-data-[selected=true]/item:ring-destructive/20">
+          <div className="relative flex h-9 w-9 shrink-0 items-center justify-center  rounded-xl bg-muted/30 ring-1 ring-border transition-colors duration-150 group-data-[selected=true]/item:bg-destructive/10 group-data-[selected=true]/item:ring-destructive/20">
             {item.thumb ? (
               <Image
                 src={item.thumb}
@@ -291,7 +378,7 @@ export default function CommandPalette() {
           </div>
           {item.accent && (
             <span
-              className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full ring-2 ring-[#0b0b10]"
+              className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full ring-2 ring-background"
               style={{ backgroundColor: item.accent }}
             />
           )}
@@ -302,7 +389,7 @@ export default function CommandPalette() {
             <Highlight text={item.label} query={search} />
           </span>
           {item.hint && (
-            <span className="truncate text-xs leading-tight text-zinc-500 transition-colors duration-150 group-data-[selected=true]/item:text-zinc-400">
+            <span className="truncate text-xs leading-tight text-muted-foreground transition-colors duration-150 group-data-[selected=true]/item:text-muted-foreground">
               <Highlight text={item.hint} query={search} />
             </span>
           )}
@@ -315,14 +402,14 @@ export default function CommandPalette() {
             </span>
           )}
           {showDigit ? (
-            <span className="font-mono text-[10px] leading-none text-zinc-500 opacity-0 transition-opacity duration-150 group-data-[selected=true]/item:opacity-100">
+            <span className="font-mono text-[10px] leading-none text-muted-foreground opacity-0 transition-opacity duration-150 group-data-[selected=true]/item:opacity-100">
               {idx + 1}
             </span>
           ) : item.external ? (
             <HugeiconsIcon
               icon={ArrowUpRight01Icon}
               size={14}
-              className="text-zinc-500 opacity-0 transition-opacity duration-150 group-data-[selected=true]/item:opacity-100"
+              className="text-muted-foreground opacity-0 transition-opacity duration-150 group-data-[selected=true]/item:opacity-100"
             />
           ) : null}
         </div>
@@ -339,7 +426,9 @@ export default function CommandPalette() {
       group,
       items: items.filter(
         (item) =>
-          item.group === group && !recentIdSet.has(item.id) && matchesQuery(item),
+          item.group === group &&
+          !recentIdSet.has(item.id) &&
+          matchesQuery(item),
       ),
     }))
     .filter((block) => block.items.length > 0)
@@ -351,7 +440,7 @@ export default function CommandPalette() {
           )}
         <CommandGroup
           heading={
-            <span className="px-1 pt-1 pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
+            <span className="px-1 pt-1 pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
               {block.group}
             </span>
           }
@@ -384,32 +473,32 @@ export default function CommandPalette() {
           className="pointer-events-none absolute -top-24 left-1/2 h-56 w-4/5 -translate-x-1/2 rounded-full bg-destructive/15 blur-3xl"
         />
 
-        <div className="relative overflow-hidden rounded-3xl bg-[#0b0b10]/90 shadow-2xl shadow-black/60 ring-1 ring-white/10 backdrop-blur-2xl">
-          <DialogTitle className="sr-only">Command Palette</DialogTitle>
+        <div className="relative overflow-hidden rounded-4xl bg-background/95 shadow-2xl shadow-black/60 ring-1 ring-border backdrop-blur-2xl flex flex-col h-[min(70vh,560px)]">
+          {/*<DialogTitle className="sr-only">Command Palette</DialogTitle>*/}
 
           {/* top hairline */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent"
           />
 
           {/* search */}
-          <div className="flex items-center gap-2 px-3 pt-2 pb-1">
+          <div className="flex items-center gap-2 px-3 pt-2 pb-1 overflow-hidden">
             <CommandInput
               value={search}
               onValueChange={setSearch}
               onKeyDown={onInputKeyDown}
-              wrapperClassName="min-w-0 flex-1 rounded-2xl bg-white/[0.03] px-4 ring-1 ring-white/[0.05] transition-[background-color,box-shadow] duration-200 focus-within:bg-white/[0.05] focus-within:ring-white/10"
-              className="h-11 border-none bg-transparent text-[15px] outline-none placeholder:text-zinc-500"
+              wrapperClassName="min-w-0 flex-1 rounded-2xl bg-muted/30 px-4 ring-1 ring-border transition-[background-color,box-shadow] duration-200 focus-within:bg-muted/50 focus-within:ring-foreground/10"
+              className="h-11 border-none bg-transparent text-[15px] outline-none placeholder:text-muted-foreground"
               placeholder="Search pages, projects, actions..."
             />
-            <div className="hidden shrink-0 select-none items-center rounded-lg bg-white/[0.03] px-2 py-1.5 font-mono text-[11px] text-zinc-500 ring-1 ring-white/[0.05] sm:flex">
+            <div className="hidden shrink-0 select-none items-center rounded-lg bg-muted/30 px-2 py-1.5 font-mono text-[11px] text-muted-foreground ring-1 ring-border sm:flex">
               esc
             </div>
           </div>
 
           {/* tabs */}
-          <div className="scrollbar-hide flex gap-1.5 overflow-x-auto px-4 pt-1.5 pb-2">
+          <div className="flex gap-1.5 overflow-x-auto px-4 pt-1.5 pb-2">
             {TABS.map((tab) => {
               const active = effectiveTab === tab;
               return (
@@ -424,7 +513,7 @@ export default function CommandPalette() {
                     "shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors duration-150",
                     active
                       ? "bg-destructive/15 text-destructive"
-                      : "text-zinc-500 hover:bg-white/4 hover:text-zinc-200",
+                      : "text-muted-foreground hover:bg-muted/40 hover:text-foreground",
                   )}
                 >
                   {tab}
@@ -433,75 +522,89 @@ export default function CommandPalette() {
             })}
           </div>
 
-          <CommandList className="scrollbar-hide max-h-[min(48vh,400px)] px-1.5 pb-1.5">
+          <CommandList
+            data-lenis-prevent
+            className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1.5 pb-1.5"
+          >
             {!hasResults && (
               <div className="px-4 py-14 text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 ring-1 ring-white/6">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-muted/30 ring-1 ring-border">
                   <HugeiconsIcon
                     icon={Search01Icon}
                     size={20}
-                    className="text-zinc-500"
+                    className="text-muted-foreground"
                   />
                 </div>
-                <p className="mt-4 text-sm font-medium text-zinc-200">
+                <p className="mt-4 text-sm font-medium text-foreground">
                   No results for{" "}
                   <span className="text-destructive">“{search}”</span>
                 </p>
-                <p className="mt-1 text-xs text-zinc-500">
+                <p className="mt-1 text-xs text-muted-foreground">
                   Try “react”, “resume”, “github” or “meeting”
                 </p>
                 <button
                   type="button"
                   onClick={() => setSearch("")}
-                  className="mt-5 rounded-full bg-white/4 px-3.5 py-1.5 text-xs font-medium text-zinc-300 ring-1 ring-white/10 transition-colors hover:bg-white/8 hover:text-zinc-100"
+                  className="mt-5 rounded-full bg-muted/40 px-3.5 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-border transition-colors hover:bg-muted/80 hover:text-foreground"
                 >
                   Clear search
                 </button>
               </div>
             )}
 
-            {search === "" && effectiveTab === "All" && recentItems.length > 0 && (
-              <>
-                <CommandGroup
-                  heading={
-                    <div className="flex items-center justify-between px-1 pr-2">
-                      <span className="flex items-center gap-1.5 pt-1 pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
-                        <HugeiconsIcon icon={TransactionHistoryIcon} size={12} />
-                        Recents
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setRecents([])}
-                        className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium text-zinc-500 transition-colors hover:bg-destructive/10 hover:text-destructive"
-                      >
-                        <HugeiconsIcon icon={Delete01Icon} size={12} />
-                        Clear
-                      </button>
-                    </div>
-                  }
-                >
-                  {recentItems.map(renderRow)}
-                </CommandGroup>
-                <CommandSeparator className="mx-3 my-2 bg-linear-to-r from-transparent via-white/10 to-transparent" />
-              </>
-            )}
+            {search === "" &&
+              effectiveTab === "All" &&
+              recentItems.length > 0 && (
+                <>
+                  <CommandGroup
+                    heading={
+                      <div className="flex items-center justify-between px-1 pr-2">
+                        <span className="flex items-center gap-1.5 pt-1 pb-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                          <HugeiconsIcon
+                            icon={TransactionHistoryIcon}
+                            size={12}
+                          />
+                          Recents
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setRecents([])}
+                          className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+                        >
+                          <HugeiconsIcon icon={Delete01Icon} size={12} />
+                          Clear
+                        </button>
+                      </div>
+                    }
+                  >
+                    {recentItems.map(renderRow)}
+                  </CommandGroup>
+                  <CommandSeparator className="mx-3 my-2 bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                </>
+              )}
 
             {groupBlocks}
           </CommandList>
 
           {/* footer */}
-          <div className="flex items-center justify-between border-t border-white/6 bg-white/2 px-4 py-2.5 text-[11px] text-zinc-500">
+          <div className="flex items-center justify-between border-t border-border bg-muted/20 px-4 py-2.5 text-[11px] text-muted-foreground">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
-                <span className="font-mono text-[10px] text-zinc-400">↑↓</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  ↑↓
+                </span>
                 Navigate
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="font-mono text-[10px] text-zinc-400">↵</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  ↵
+                </span>
                 Select
               </span>
               <span className="hidden items-center gap-1.5 sm:flex">
-                <span className="font-mono text-[10px] text-zinc-400">esc</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  esc
+                </span>
                 Close
               </span>
             </div>

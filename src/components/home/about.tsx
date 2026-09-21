@@ -5,8 +5,11 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { motion } from "motion/react";
 import { DottedMap } from "@/components/ui/dotted-map";
 import { LinkPreview } from "../ui/link-preview";
+import { useTheme } from "@/components/theme-provider";
 
 export function AboutPreview() {
+  const { theme } = useTheme();
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -23,7 +26,7 @@ export function AboutPreview() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         className="relative max-w-3xl md:text-xl leading-relaxed z-20"
       >
-        I&apos;m a full-stack developer specializing in building scalable, user-focused applications. I gained my professional footing at <LinkPreview url="https://synctom.com" className="underline">Synctom</LinkPreview>, a startup where I worked directly with clients, shipped production-ready apps, and solved real business problems under real constraints. I love exploring new technologies and constantly push myself to stay sharp and ahead of the curve.
+        I&apos;m a full-stack developer specializing in building scalable, user-focused applications. I gained my professional footing at <LinkPreview url="https://synctom.com" className="underline text-destructive!">Synctom</LinkPreview>, a startup where I worked directly with clients, shipped production-ready apps, and solved real business problems under real constraints. I love exploring new technologies and constantly push myself to stay sharp and ahead of the curve.
       </motion.div>
 
       <motion.div
@@ -38,14 +41,14 @@ export function AboutPreview() {
             width={300}
             height={150}
             markers={[{ lat: 33.6844, lng: 73.0479, size: 1, pulse: true,}]}
-            markerColor="#A0FF00"
+            markerColor={theme === "dark" ? "#A0FF00" : "hsl(0, 84%, 55%)"}
             dotColor="currentColor"
             renderMarkerOverlay={({ x, y }) => (
               <text
                 x={x}
                 y={y - 8}
                 textAnchor="middle"
-                className="text-[8px] sm:text-[4px] font-semibold fill-foreground select-auto"
+                className="text-[8px] sm:text-[6px] font-semibold fill-foreground select-auto"
               >
                 Based in Islamabad
               </text>

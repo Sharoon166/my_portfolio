@@ -46,9 +46,8 @@ import type {
 
 export const profile = {
   name: "Sharoon Shaleem",
-  resume: "/Sharoon-Shaleem.pdf",
-  resumeLink:
-    "https://drive.google.com/file/d/1gpLw3Yi4TKH_Voi6klOKW1uxBFcDSYR6/view?usp=drive_link",
+  resume: "/sharoon-shaleem.pdf",
+  resumeLink: "/sharoon-shaleem.pdf",
   email: "ssharoon166@gmail.com",
   emailLink: "mailto:ssharoon166@gmail.com",
   github: "https://github.com/Sharoon166",
@@ -179,7 +178,14 @@ export const projects: ProjectCardProps[] = [
     image: "/projects/cool-care/cool-care.png",
     githubUrl: "",
     previewUrl: "",
-    technologies: ["tailwindcss", "typescript", "svelte", "drizzle", "neon", "zod"],
+    technologies: [
+      "tailwindcss",
+      "typescript",
+      "svelte",
+      "drizzle",
+      "neon",
+      "zod",
+    ],
     themeColor: "#AFF47C",
     categories: ["Full Stack", "Dashboard"],
     caseStudyId: "coolcare",
@@ -286,6 +292,15 @@ export interface Testimonial {
   name: string;
   designation: string;
   testimony: string;
+  /** Optional local path (e.g. "/testimonials/ali.webp"). Falls back to an initials monogram. */
+  avatar?: string;
+  /** Optional rating out of 5 — the star row is hidden when omitted. */
+  rating?: number;
+  /** Optional link to where the quote was originally published (LinkedIn post, etc.). Hidden when omitted. */
+  source?: {
+    url: string;
+    label?: string;
+  };
 }
 
 export interface ExperienceItem {
@@ -318,6 +333,10 @@ export const experience: ExperienceItem[] = [
       designation: "CEO @ Synctom",
       testimony:
         "I've had the pleasure of working with Sharoon, and I can confidently say he is a highly capable and dependable Frontend Developer. He consistently transforms complex ideas into clean, responsive, and visually polished interfaces.",
+      source: {
+        url: "https://www.linkedin.com/in/sharoon-shaleem/",
+        label: "Read on LinkedIn",
+      },
     },
     technologies: [
       "react",
@@ -334,11 +353,35 @@ export const experience: ExperienceItem[] = [
     company: "NUML",
     role: "Student",
     location: "University",
-    desc: "My time at NUML has been about much more than just a degree—it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
+    desc: "My time at NUML has been about much more than just a degree — it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
     tags: ["CS", "DSA", "Algorithms", "OS", "DBMS", "SDLC"],
     type: "Education",
     icon: "graduation-cap",
     technologies: ["javascript", "typescript", "html", "css"],
+  },
+];
+
+/* Extra quotes for the home-page carousel.
+   ⚠️ PLACEHOLDERS — replace names, roles, and wording with real client words before shipping. */
+export const extraTestimonials: Testimonial[] = [
+  {
+    name: "Bilal Ahmed",
+    designation: "Founder @ Z Digitizing",
+    rating: 5,
+    testimony:
+      "Sharoon turned a rough brief into a site that feels genuinely ours. Fast, sharp, and shipped ahead of the deadline — exactly what a small team needs.",
+    // ⚠️ Placeholder source — swap for the real link (or delete the field) with the quote above
+    source: {
+      url: "https://www.linkedin.com/in/sharoon-shaleem/",
+      label: "Read on LinkedIn",
+    },
+  },
+  {
+    name: "Sara Mehmood",
+    designation: "Product Lead @ Newon",
+    rating: 5,
+    testimony:
+      "He has a rare habit of sweating the small stuff — spacing, states, motion — without ever slowing the build down. Our dashboard went from clunky to something people actually enjoy opening.",
   },
 ];
 

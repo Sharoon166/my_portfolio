@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import CircularText from "./circular-text";
@@ -11,7 +10,6 @@ const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [msg, setMsg] = useState("");
-  const [isLink, setIsLink] = useState(false);
 
   // Mouse position tracking
   const mouseX = useMotionValue(0);
@@ -38,9 +36,13 @@ const Cursor = () => {
   useEffect(() => {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const mouseText = target.getAttribute("data-mouse-text") ?? "";
+      // Match the hovered element itself or any ancestor, so the badge also
+      // appears when the pointer lands on a child of a data-mouse-text element.
+      const mouseText =
+        target
+          .closest("[data-mouse-text]")
+          ?.getAttribute("data-mouse-text") ?? "";
       const isLinkElement = target.closest("a");
-      setIsLink(!!isLinkElement);
       if (mouseText) {
         setMsg(mouseText);
         setIsHovering(true);
@@ -54,7 +56,6 @@ const Cursor = () => {
       if (!(e.relatedTarget as HTMLElement)?.closest("a")) {
         setIsHovering(false);
         setMsg("");
-        setIsLink(false);
       }
     };
 
@@ -103,7 +104,7 @@ const Cursor = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center justify-center text-zinc-900 bg-zinc-200/90 backdrop-blur-md rounded-full border-2 border-dotted border-zinc-400"
+              className="flex items-center justify-center text-background bg-foreground/90 backdrop-blur-md rounded-full border-2 border-dotted border-background/40"
             >
               <CircularText
                 text={`${msg.toUpperCase()}`}
@@ -111,24 +112,13 @@ const Cursor = () => {
                 autoSpin
               >
                 {msg.toLowerCase().includes("private") ? (
-                  <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-zinc-900" />
+                  <HugeiconsIcon icon={LockPasswordIcon} size={16} className="text-background" />
                 ) : (
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} className="text-zinc-900" />
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} className="text-background" />
                 )}
               </CircularText>
             </motion.div>
-          ) : (
-            <motion.div
-              key="dot"
-              className={cn(
-                "size-2 rounded-full text-center flex items-center justify-center transition-all duration-700 bg-transparent",
-                {
-                  "scale-0": isLink,
-                  "scale-75": msg === "" && !isLink,
-                }
-              )}
-            />
-          )}
+          ) : null}
         </AnimatePresence>
       </motion.div>
     </>

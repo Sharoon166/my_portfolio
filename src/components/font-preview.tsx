@@ -52,7 +52,7 @@ export function FontPreview() {
   return (
     <div className="fixed bottom-6 right-6 z-60">
       {open ? (
-        <div className="w-80 rounded-2xl border border-white/10 bg-black/90 p-4 shadow-2xl backdrop-blur-xl">
+        <div className="w-80 rounded-2xl border border-border bg-background/95 p-4 shadow-2xl backdrop-blur-xl">
           <div className="mb-3 flex items-center justify-between">
             <span className="meta-label font-bold">Font Lab</span>
             <button
@@ -63,7 +63,7 @@ export function FontPreview() {
             </button>
           </div>
 
-          <div className="mb-3 space-y-2 rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="mb-3 space-y-2 rounded-xl border border-border bg-muted/50 p-4">
             <p className="text-xs leading-relaxed" style={{ fontFamily: selectedBody.font.style.fontFamily }}>
               The quick brown fox jumps over the lazy dog — 0123456789, &lt;code&gt; &amp; _*
             </p>
@@ -76,7 +76,7 @@ export function FontPreview() {
                   onClick={() => applyBody(option.id)}
                   className={cn(
                     "flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-left transition-colors",
-                    body === option.id ? "bg-white/10" : "hover:bg-white/5"
+                    body === option.id ? "bg-muted" : "hover:bg-muted/50"
                   )}
                 >
                   <span className="text-sm" style={{ fontFamily: option.font.style.fontFamily }}>
@@ -100,7 +100,7 @@ export function FontPreview() {
       ) : (
         <button
           onClick={() => setOpen(true)}
-          className="rounded-full border border-white/10 bg-black/90 px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-2xl backdrop-blur-xl transition-colors hover:border-destructive/40"
+          className="rounded-full border border-border bg-background/95 px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-2xl backdrop-blur-xl transition-colors hover:border-destructive/40"
         >
           Font Lab
         </button>

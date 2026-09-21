@@ -20,13 +20,13 @@ export const MinorProjectCard = ({
   technologies,
 }: MinorProjectCardProps) => (
   <div
-    className="group py-6 border-b border-white/5"
+    className="group py-6 border-b border-border/50"
     role="listitem"
   >
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div className="flex-1 space-y-1.5">
         <div className="flex items-center gap-3 flex-wrap">
-          <h3 className="text-lg lg:text-xl font-bold text-white/90 group-hover:text-destructive transition-colors duration-300">
+          <h3 className="text-lg lg:text-xl font-bold text-foreground group-hover:text-destructive transition-colors duration-300">
             {title}
           </h3>
           {technologies && technologies.length > 0 && (
@@ -45,7 +45,7 @@ export const MinorProjectCard = ({
             </div>
           )}
         </div>
-        <p className="text-white/50 text-sm leading-relaxed max-w-2xl">
+        <p className="text-muted-foreground text-sm leading-relaxed max-w-2xl">
           {description}
         </p>
       </div>

@@ -52,7 +52,7 @@ export function ExperienceSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="relative border-l border-white/10 lg:col-span-7"
+          className="relative border-l border-border lg:col-span-7"
         >
           {experience.map((item) => (
             <motion.li
@@ -66,7 +66,7 @@ export function ExperienceSection() {
                 <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                   {item.period}
                 </span>
-                <span className="rounded-full border border-white/10 px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 transition-colors duration-300 group-hover:border-destructive/40 group-hover:text-destructive">
+                <span className="rounded-full border border-border px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-colors duration-300 group-hover:border-destructive/40 group-hover:text-destructive">
                   {item.type}
                 </span>
               </div>
@@ -75,7 +75,7 @@ export function ExperienceSection() {
                 {item.role}
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                {item.company} <span className="text-white/30">·</span> {item.location}
+                {item.company} <span className="text-muted-foreground/60">·</span> {item.location}
               </p>
 
               <p className="mt-5 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-muted-foreground/90">
@@ -90,7 +90,7 @@ export function ExperienceSection() {
                     return (
                       <span
                         key={techKey}
-                        className="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/45 transition-colors duration-300 group-hover:text-white/65"
+                        className="inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground/70 transition-colors duration-300 group-hover:text-foreground/70"
                       >
                         <span className="relative size-3.5 shrink-0 opacity-60">
                           <Image

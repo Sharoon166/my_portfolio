@@ -7,7 +7,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="max-w-6xl mx-auto py-12 md:px-8 md:py-20 space-y-10 border-2 border-zinc-800 bg-stone-900/40 rounded-[3rem] md:rounded-[4rem] text-center"
+      className="max-w-6xl mx-auto py-12 md:px-8 md:py-20 space-y-10 border-2 border-border bg-card/40 rounded-[3rem] md:rounded-[4rem] text-center"
     >
       <div className="text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bricolage text-pretty">
         Got an idea? Let&apos;s turn it into something real
@@ -24,6 +24,7 @@ export function ContactSection() {
           <a
             href={profile.github}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
           >
             <HugeiconsIcon icon={GithubIcon} size={20} className="md:text-destructive group-hover:scale-150 transition-transform" />
@@ -32,6 +33,7 @@ export function ContactSection() {
           <a
             href={profile.linkenIn}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 hover:text-destructive transition-colors group"
           >
             <HugeiconsIcon icon={Linkedin01Icon} size={20} className="md:text-destructive group-hover:scale-150 transition-transform" />
@@ -43,6 +45,7 @@ export function ContactSection() {
           <a
             href={profile.meeting}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 group relative overflow-hidden text-lg md:text-2xl text-destructive hover:underline underline-offset-4 p-3"
           >
             Let&apos;s Talk{" "}

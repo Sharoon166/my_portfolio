@@ -12,7 +12,10 @@ import { FontPreview } from "@/components/font-preview";
 import { MotionConfig } from "motion/react";
 import { siteConfig } from "@/data/site-config";
 import { JsonLd } from "@/components/seo/json-ld";
+import { siteSchema } from "@/data/json-ld";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s — ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: ["Sharoon", "Sharoon Shaleem", "full-stack developer", "React developer", "Next.js developer", "Islamabad developer"],
@@ -92,65 +95,51 @@ export const metadata: Metadata = {
   },
 };
 
-const siteSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": `${siteConfig.url}/#person`,
-      name: siteConfig.author.name,
-      url: siteConfig.author.url,
-      email: siteConfig.author.email,
-      image: `${siteConfig.url}/me.webp`,
-      jobTitle: "Full-Stack Developer",
-      description: siteConfig.description,
-      sameAs: Object.values(siteConfig.links),
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteConfig.url}/#website`,
-      url: siteConfig.url,
-      name: siteConfig.name,
-      description: siteConfig.description,
-      author: { "@id": `${siteConfig.url}/#person` },
-    },
-  ],
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.remove('dark');else document.documentElement.classList.add('dark')}catch(e){document.documentElement.classList.add('dark')}})()`,
+          }}
+        />
+      </head>
       <body
         className={`${jetBrainsMono.variable} ${bricolage.variable} ${caveat.variable} antialiased font-body text-foreground/90 leading-relaxed`}
       >
         <JsonLd data={siteSchema} />
-        <SmoothScrollProvider>
-          <MotionConfig reducedMotion="user">
-            <div className="container py-6 min-h-screen space-y-4">
-              <Header />
-              <main className="relative" role="main">
-                {children}
-              </main>
-              <Footer />
-            </div>
-            <CustomCursor />
-            <ScrollProgressButton />
-            {/*<FontPreview />*/}
-            <CommandPallete />
-            <ToastContainer
-              position="bottom-right"
-              autoClose={2000}
-              closeOnClick
-              pauseOnHover={false}
-              draggable={false}
-              theme="dark"
-            />
-          </MotionConfig>
-        </SmoothScrollProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <MotionConfig reducedMotion="user">
+              <div className="container py-6 min-h-screen space-y-4">
+                <Header />
+                <main className="relative" role="main">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+              <CustomCursor />
+              <ScrollProgressButton />
+              {/*<FontPreview />*/}
+              <CommandPallete />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                closeOnClick
+                pauseOnHover={false}
+                draggable={false}
+                theme="dark"
+              />
+            </MotionConfig>
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

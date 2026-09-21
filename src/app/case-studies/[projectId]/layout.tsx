@@ -1,5 +1,6 @@
 import { caseStudies } from "@/data/case-studies"
 import { siteConfig } from "@/data/site-config"
+import { articleSchema, breadcrumbSchema } from "@/data/json-ld"
 import { JsonLd } from "@/components/seo/json-ld"
 import type { Metadata } from "next"
 
@@ -35,28 +36,16 @@ export default async function CaseStudyDetailLayout({
 
   if (!study) return children
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: study.title,
-    description: study.tagline,
-    author: { "@type": "Person", name: siteConfig.author.name },
-  }
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      { "@type": "ListItem", position: 2, name: "Case Studies", item: `${siteConfig.url}/case-studies` },
-      { "@type": "ListItem", position: 3, name: study.title, item: `${siteConfig.url}/case-studies/${projectId}` },
-    ],
-  }
-
   return (
     <>
-      <JsonLd data={articleSchema} />
-      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={articleSchema(study.title, study.tagline)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: siteConfig.url },
+          { name: "Case Studies", url: `${siteConfig.url}/case-studies` },
+          { name: study.title, url: `${siteConfig.url}/case-studies/${projectId}` },
+        ])}
+      />
       {children}
     </>
   )

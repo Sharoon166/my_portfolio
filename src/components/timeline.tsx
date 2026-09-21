@@ -49,8 +49,8 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
 
           {/* Middle: Line with dot */}
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-800 -translate-x-1/2" />
-            <div className="absolute left-1/2 top-6 size-8 rounded-full border-2 border-zinc-700 bg-background z-10 -translate-x-1/2 flex items-center justify-center max-md:hidden">
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
+            <div className="absolute left-1/2 top-6 size-8 rounded-full border-2 border-border bg-background z-10 -translate-x-1/2 flex items-center justify-center max-md:hidden">
               {item.icon && iconMap[item.icon] ? (
                 (() => {
                   const Icon = iconMap[item.icon];
@@ -62,7 +62,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
 
           {/* Right: Card with content */}
           <div>
-            <div className="group relative rounded-xl border border-zinc-800/60 bg-zinc-900/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50">
+            <div className="group relative rounded-xl border border-border/60 bg-card/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-border hover:bg-card/50">
               <div className="space-y-1 md:text-right md:hidden">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">
                   {item.period}
@@ -85,7 +85,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs px-2.5 py-1 rounded-full bg-zinc-800/50 text-muted-foreground border border-zinc-700/50"
+                      className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border"
                     >
                       {tag}
                     </span>

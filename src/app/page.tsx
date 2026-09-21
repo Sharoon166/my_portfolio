@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <div className="-mt-18">
+      <div className="-mt-[10%]">
         <CurvedLoop
           marqueeText="REACT ✦ NEXT.JS ✦ NODE.JS ✦ MONGODB ✦ TAILWIND ✦ TYPESCRIPT ✦ POSTGRESQL ✦ EXPRESS ✦ Sveltekit"
           speed={2}

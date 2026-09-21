@@ -25,7 +25,7 @@ export function LegacyTableOfContents({
 }: LegacyTableOfContentsProps) {
   return (
     <nav className={cn("flex flex-col relative", className)}>
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-foreground/10" />
 
       {items.map((item) => (
         <button

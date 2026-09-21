@@ -310,7 +310,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         "Sequential invoice numbering with zero-padded counters (001, 002…) stored in its own DB table with atomic upserts",
         "Quotation management with one-click conversion to invoice",
         "Customer management with active/inactive toggle and per-row loading states",
-        "Customer portal with token-based access — no login required, unique URL printed on each receipt",
+        "Customer portal with token-based access; no login required, unique URL printed on each receipt",
         "Callout component with 5 variants (info, success, warning, error, note) for contextual messaging",
         "Reusable UI component library built with tailwind-variants: buttons, badges, dialogs, selects, inputs, tables, date pickers, skeleton loaders",
         "Brutalist design system with fat borders (border-2), heavy shadows (brutal-shadow), and rounded corners (rounded-2xl/3xl)"
@@ -341,7 +341,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         }
       ],
       outcome: "Actively used for daily business operations. The platform replaced paper-based invoicing and ad-hoc phone communication for tracking customer dues. The dashboard gives the business owner immediate visibility into outstanding revenue, overdue accounts, and monthly collections without manual work.",
-      learnings: "Building something your own family uses daily is a different kind of pressure — you can't hand-wave edge cases because someone you know will hit them. The advance payment string-matching bug was a concrete lesson in why you should never encode business logic in human-readable text fields. SvelteKit 5's runes ($state, $derived, $props) are genuinely pleasant once you understand the mental model. The brutalist theme developed naturally from wanting every component to feel deliberate rather than default.",
+      learnings: "Building something your own family uses daily is a different kind of pressure where you can't hand-wave edge cases because someone you know will hit them. The advance payment string-matching bug was a concrete lesson in why you should never encode business logic in human-readable text fields. SvelteKit 5's runes ($state, $derived, $props) are genuinely pleasant once you understand the mental model. The brutalist theme developed naturally from wanting every component to feel deliberate rather than default.",
       images: [],
     }
 };

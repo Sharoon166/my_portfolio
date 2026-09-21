@@ -1,6 +1,7 @@
-import { ContactSection } from "@/components/home/contact";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { JsonLd } from "@/components/seo/json-ld";
+import { aboutSchema } from "@/data/json-ld";
 
 export const metadata: Metadata = {
   title: "About",
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-32">
-      {children}
-      <ContactSection />
-    </div>
+    <>
+      <JsonLd data={aboutSchema} />
+      <div className="space-y-32">{children}</div>
+    </>
   );
 }

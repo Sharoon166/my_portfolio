@@ -79,7 +79,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
   };
 
   return (
-    <div className="min-h-screen bg-background selection:bg-white selection:text-black">
+    <div className="min-h-screen selection:bg-primary selection:text-primary-foreground">
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-32 py-24">
         {/* Hero Content */}
@@ -98,13 +98,13 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
             {/* Action Links */}
             <div className="flex flex-col gap-4">
               {study.previewUrl && (
-                <a href={study.previewUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 px-6 py-4 bg-white text-black rounded-xl hover:bg-zinc-200 transition-colors group">
+                <a href={study.previewUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 px-6 py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors group">
                   <span className="font-semibold text-sm tracking-tight">Preview</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </a>
               )}
               {study.githubUrl && (
-                <a href={study.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 px-6 py-4 border border-white/10 rounded-xl hover:bg-white/5 transition-colors group">
+                <a href={study.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 px-6 py-4 border border-border rounded-xl hover:bg-muted/50 transition-colors group">
                   <span className="font-semibold text-sm tracking-tight">Source Code</span>
                   <HugeiconsIcon icon={GithubIcon} size={24} className="opacity-50 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -114,7 +114,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
         </header>
 
         {/* Project Metadata & Stack Grid - Replaces Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 border-y border-white/5 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 border-y border-border/50 py-12">
           {/* Left: Meta Fields */}
           <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-8">
             <MetaField label="Role" value={study.role} />
@@ -130,7 +130,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
               {Object.entries(study.techStack).map(([category, techs]) => (
                 techs && (techs as string[]).length > 0 && (
                   <div key={category} className="space-y-3">
-                    <h5 className="text-[10px] uppercase tracking-[0.2em] text-white/20">
+                    <h5 className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
                       {category}
                     </h5>
                     <div className="flex flex-wrap gap-2">
@@ -140,14 +140,14 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
                         return (
                           <div 
                             key={i} 
-                            className="flex items-center gap-2 px-2 py-1 rounded-md bg-white/2 border border-white/5 hover:border-white/10 transition-colors"
+                            className="flex items-center gap-2 px-2 py-1 rounded-md bg-muted/30 border border-border/50 hover:border-border transition-colors"
                           >
                             {techInfo?.icon && (
                               <div className="size-3 relative shrink-0 opacity-60">
                                 <Image src={techInfo.icon} alt={tech} fill className="object-contain" />
                               </div>
                             )}
-                            <span className="text-[10px] font-medium text-zinc-400 uppercase tracking-tight">
+                            <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-tight">
                               {tech}
                             </span>
                           </div>
@@ -171,9 +171,9 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
         )}
         {/* The Stage (Immersion) - Home Card Animation Style */}
         <div className="relative mb-32 group">
-          <div className="absolute inset-0 bg-white/5 blur-3xl -z-10 opacity-10 group-hover:opacity-20 transition-opacity" />
+          <div className="absolute inset-0 bg-muted/50 blur-3xl -z-10 opacity-10 group-hover:opacity-20 transition-opacity" />
           <div
-            className="rounded-2xl p-1 px-3 border relative overflow-hidden max-h-[300px] md:max-h-[500px] bg-zinc-900"
+            className="rounded-2xl p-1 px-3 border relative overflow-hidden max-h-[300px] md:max-h-[500px] bg-card"
             style={{ backgroundColor: study.themeColor, borderColor: study.themeColor }}
           >
             <motion.div
@@ -227,7 +227,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
               <div className="space-y-8">
                 <div className="flex items-center gap-4">
                   <span className="meta-label">GALLERY</span>
-                  <div className="h-px flex-1 bg-white/3" />
+                  <div className="h-px flex-1 bg-foreground/3" />
                 </div>
                 <Gallery images={study.images} />
               </div>
@@ -246,7 +246,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
               <div className="grid gap-4">
                 {study.features.map((feature, i) => (
                   <div key={i} className="flex items-start gap-4 group/item">
-                    <div className="size-8 min-w-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-xs opacity-40 group-hover/item:border-brand-color group-hover/item:opacity-100 transition-all mt-1">
+                    <div className="size-8 min-w-8 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center text-xs opacity-40 group-hover/item:border-brand-color group-hover/item:opacity-100 transition-all mt-1">
                       {i + 1}
                     </div>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{feature}</p>
@@ -262,7 +262,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
                   {study.challenges.map((c, i) => (
                     <div key={i} className="group relative">
                       {/* Content Stack */}
-                      <div className="space-y-10 mt-8 pb-6 border-b border-white/5 ">
+                      <div className="space-y-10 mt-8 pb-6 border-b border-border/50">
                         {/* Narrative */}
                         <div className="space-y-6 max-w-3xl">
                           <div className="space-y-2">
@@ -293,14 +293,14 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
             </Section>
 
             <Section number={study.challenges.length > 0 ? "07" : "06"} label="Reflection" title="Key Learnings">
-              <div className="p-8 border border-white/5 rounded-3xl bg-destructive/3 border-l-destructive/50 text-base md:text-lg text-muted-foreground leading-relaxed italic">
+              <div className="p-8 border border-border/50 rounded-3xl bg-destructive/3 border-l-destructive/50 text-base md:text-lg text-muted-foreground leading-relaxed italic">
                 "{study.learnings}"
               </div>
             </Section>
           </div>
         </div>
 
-        <div className="mt-32 border-t border-white/5 pt-32">
+        <div className="mt-32 border-t border-border/50 pt-32">
           <ContactSection />
         </div>
       </div>
@@ -311,7 +311,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ projectId:
 function MetaField({ label, value }: { label: string, value: string }) {
   return (
     <div className="space-y-1">
-      <h4 className="text-xs uppercase tracking-widest text-white/30">{label}</h4>
+      <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60">{label}</h4>
       <p className="text-sm font-medium text-foreground/90 tracking-tight">{value}</p>
     </div>
   );
@@ -322,7 +322,7 @@ function Section({ number, label, title, children }: { number: string, label: st
     <div className="space-y-6 scroll-mt-32" data-section-index={number} id={`section-${number}`}>
       <div className="flex items-center gap-4">
         <span className="meta-label">{number} // {label}</span>
-        <div className="h-px flex-1 bg-white/3" />
+        <div className="h-px flex-1 bg-foreground/3" />
       </div>
       <h3 className="dot-suffix w-fit">{title}</h3>
       <div className="pt-2 max-w-[80ch]">

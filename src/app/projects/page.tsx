@@ -61,7 +61,7 @@ export default function Projects() {
                     "px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 border cursor-pointer",
                     selectedCategory === cat
                       ? "bg-destructive border-destructive text-primary"
-                      : "bg-white/5 border-white/10 hover:border-destructive/50 text-muted-foreground"
+                      : "bg-muted/50 border-border hover:border-destructive/50 text-muted-foreground"
                   )}
                 >
                   {cat} <span className="text-xs">({count})</span>

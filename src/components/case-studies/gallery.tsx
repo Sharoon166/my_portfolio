@@ -90,7 +90,7 @@ function GalleryCard({
       >
         <div
           className={cn(
-            "relative overflow-hidden transition-all duration-500 bg-zinc-900 rounded-sm",
+            "relative overflow-hidden transition-all duration-500 bg-card rounded-sm",
             hovered ? "scale-[1.015]" : "scale-100",
           )}
           style={{
@@ -124,8 +124,8 @@ function GalleryCard({
               : "translate-y-1 opacity-0 pointer-events-none",
           )}
         >
-          <span className="size-1 rounded-full bg-white/30 shrink-0" />
-          <span className="text-[10px] font-mono text-white/40 tracking-wide">
+          <span className="size-1 rounded-full bg-foreground/30 shrink-0" />
+          <span className="text-[10px] font-mono text-muted-foreground tracking-wide">
             {label ?? image.caption}
           </span>
         </div>
@@ -233,8 +233,8 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-100 flex flex-col bg-black select-none"
-            style={{ backgroundColor: "#050505" }}
+            className="fixed inset-0 z-100 flex flex-col bg-background select-none"
+            style={{ backgroundColor: "hsl(var(--background))" }}
             onMouseMove={() => showUi()}
           >
             {/* click zones */}
@@ -249,9 +249,9 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
 
             {/* counter */}
             <div className="absolute top-5 left-5 z-40">
-              <span className="text-[10px] font-mono text-white/20 tracking-widest">
+              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-widest">
                 {String(selectedIndex + 1).padStart(2, "0")}
-                <span className="text-white/10 mx-1">/</span>
+                <span className="text-muted-foreground/20 mx-1">/</span>
                 {String(images.length).padStart(2, "0")}
               </span>
             </div>
@@ -259,7 +259,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
             {/* close */}
             <button
               onClick={close}
-              className="absolute top-4 right-4 z-40 size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-40 size-8 flex items-center justify-center rounded-full bg-muted/50 hover:bg-muted/70 transition-colors cursor-pointer"
             >
               <svg
                 width="12"
@@ -268,7 +268,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.2"
-                className="text-white/40"
+                className="text-muted-foreground"
               >
                 <path d="M18 6L6 18M6 6l12 12" />
               </svg>
@@ -284,7 +284,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -8 }}
                     onClick={goPrev}
-                    className="absolute left-4 lg:left-8 z-20 size-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-colors cursor-pointer text-white/30 hover:text-white"
+                    className="absolute left-4 lg:left-8 z-20 size-10 flex items-center justify-center rounded-full bg-muted/50 hover:bg-muted/70 backdrop-blur-sm transition-colors cursor-pointer text-muted-foreground/60 hover:text-foreground"
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M15 18l-6-6 6-6" />
@@ -324,7 +324,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 8 }}
                     onClick={goNext}
-                    className="absolute right-4 lg:right-8 z-20 size-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-colors cursor-pointer text-white/30 hover:text-white"
+                    className="absolute right-4 lg:right-8 z-20 size-10 flex items-center justify-center rounded-full bg-muted/50 hover:bg-muted/70 backdrop-blur-sm transition-colors cursor-pointer text-muted-foreground/60 hover:text-foreground"
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M9 18l6-6-6-6" />
@@ -344,11 +344,11 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                   transition={{ duration: 0.2 }}
                   className="relative z-40 flex items-center justify-center px-6 py-3"
                 >
-                  <div className="h-px flex-1 bg-white/5 max-w-20" />
-                  <p className="text-[11px] text-white/35 font-mono tracking-wide px-4 text-center">
+                  <div className="h-px flex-1 bg-muted/50 max-w-20" />
+                  <p className="text-[11px] text-muted-foreground/70 font-mono tracking-wide px-4 text-center">
                     {images[selectedIndex].caption}
                   </p>
-                  <div className="h-px flex-1 bg-white/5 max-w-20" />
+                  <div className="h-px flex-1 bg-muted/50 max-w-20" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -361,7 +361,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
                   transition={{ duration: 0.2 }}
-                  className="relative z-40 border-t border-white/5"
+                  className="relative z-40 border-t border-border/50"
                 >
                   <div
                     ref={stripRef}
@@ -382,8 +382,8 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
                           "relative shrink-0 w-14 aspect-video rounded-sm overflow-hidden transition-all duration-300 cursor-pointer",
                           "border",
                           i === selectedIndex
-                            ? "border-white/60 ring-1 ring-white/20 scale-110"
-                            : "border-white/10 opacity-40 hover:opacity-80",
+                            ? "border-foreground/60 ring-1 ring-foreground/20 scale-110"
+                            : "border-border opacity-40 hover:opacity-80",
                         )}
                       >
                         <Image src={img.src} alt="" fill className="object-cover" sizes="56px" />

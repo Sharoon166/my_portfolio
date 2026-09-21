@@ -12,13 +12,17 @@ import {
   UserIcon, 
   GithubIcon, 
   Linkedin01Icon, 
-  InstagramIcon 
+  InstagramIcon,
+  Sun01Icon,
+  Moon02Icon
 } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { profile } from "@/constants";
+import { useTheme } from "@/components/theme-provider";
 
 export function Header() {
   const pathname = usePathname();
+  const { theme, toggle } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -77,7 +81,7 @@ export function Header() {
           width: "min(1400px, 100%)",
           padding: "16px 32px",
           borderRadius: 0,
-          backgroundColor: "rgba(10,10,10,0)",
+          backgroundColor: "hsl(var(--background) / 0)",
           backdropFilter: "blur(0px)",
           borderWidth: 0,
           boxShadow: "0 0px 0px rgba(0,0,0,0)",
@@ -88,19 +92,19 @@ export function Header() {
           width: scrolled ? "min(560px, 90vw)" : "min(1400px, 100%)",
           padding: scrolled ? "12px 24px" : "16px 32px",
           borderRadius: scrolled ? 9999 : 0,
-          backgroundColor: scrolled ? "rgba(10,10,10,0.85)" : "rgba(10,10,10,0)",
+          backgroundColor: scrolled ? "hsl(var(--background) / 0.85)" : "hsl(var(--background) / 0)",
           backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
           borderWidth: scrolled ? 0.5 : 0,
-          borderColor: "rgba(255,255,255,0.08)",
+          borderColor: "hsl(var(--border))",
           borderStyle: "solid",
-          boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.3)" : "0 0px 0px rgba(0,0,0,0)",
+          boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.15)" : "0 0px 0px rgba(0,0,0,0)",
         }}
         transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       >
         {/* Logo — no size animation, just static */}
         <Link href="/">
           <h2 className="inline-flex items-center gap-1.5 text-xl text-muted-foreground font-semibold font-caveat">
-            <Image src="/logo_bw.png" alt="logo" width={32} height={32} />
+            <Image src={theme === "dark" ? "/logo_bw.png" : "/logo.png"} alt="logo" width={32} height={32} />
             <span className={cn(scrolled && "hidden")}>Sharoon S.</span>
           </h2>
         </Link>
@@ -134,12 +138,20 @@ export function Header() {
         </nav>
 
         {/* Mobile hamburger */}
-        <button
-          className="sm:hidden z-50 cursor-pointer"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-label="Menu"
-        >
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggle}
+            className="size-9 flex items-center justify-center rounded-full bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <HugeiconsIcon icon={theme === "dark" ? Sun01Icon : Moon02Icon} size={16} />
+          </button>
+          <button
+            className="sm:hidden z-50 cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label="Menu"
+          >
           <motion.svg
             width="24" height="24" viewBox="0 0 24 24"
             fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -155,6 +167,7 @@ export function Header() {
             />
           </motion.svg>
         </button>
+        </div>
       </motion.header>
 
       {/* ── Mobile menu — OUTSIDE header so y:100% works correctly ── */}
@@ -166,7 +179,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-md z-40 sm:hidden mb-0"
+              className="fixed inset-0 bg-background/30 backdrop-blur-md z-40 sm:hidden mb-0"
               onClick={() => setMobileMenuOpen(false)}
             />
 
@@ -176,7 +189,7 @@ export function Header() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed bottom-0 left-0 w-full bg-black/90 z-100 sm:hidden px-8 pt-10 pb-8 border-t border-border/70 rounded-t-[2.5rem] shadow-xl mb-0"
+              className="fixed bottom-0 left-0 w-full bg-background/95 z-100 sm:hidden px-8 pt-10 pb-8 border-t border-border/70 rounded-t-[2.5rem] shadow-xl mb-0"
               role="dialog"
               aria-modal="true"
             >
@@ -217,7 +230,7 @@ export function Header() {
                 </ul>
 
                 {/* social links */}
-                <div className="flex items-center gap-6 pt-4 border-t border-white/5">
+                <div className="flex items-center gap-6 pt-4 border-t border-border/50">
                   {[
                     { href: profile.github, icon: <HugeiconsIcon icon={GithubIcon} size={22} /> },
                     { href: profile.linkenIn, icon: <HugeiconsIcon icon={Linkedin01Icon} size={22} /> },
@@ -227,6 +240,7 @@ export function Header() {
                       key={href}
                       href={href}
                       target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
