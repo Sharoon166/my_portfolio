@@ -241,7 +241,7 @@ export function ProjectCard({
           href={previewUrl}
           className="rounded-xl p-1 px-3 border bg-(--themeColor)  relative block overflow-hidden max-h-[280px]"
           data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
-        >
+        >        
           <CometCard transparent className="rounded-[inherit]">
             <motion.div
               initial={{ y: "60%", scale: 0.95, rotate: reverse ? 2 : -2 }}

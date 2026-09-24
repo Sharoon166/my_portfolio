@@ -116,9 +116,9 @@ export function CaseStudiesGrid() {
 
   return (
     <section id="case-studies" className="relative">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+      <div className="grid  md:grid-cols-2 gap-8 md:gap-12 items-start">
         {/* ── LEFT COLUMN ─────────────────────────────────── */}
-        <div className="space-y-10 md:pt-16">
+        <div className="space-y-10 md:pt-16 max-md:order-2">
           {leftStudies.map((project, i) => (
             <motion.div
               key={project.title}

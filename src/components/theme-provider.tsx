@@ -23,7 +23,7 @@ export function useTheme() {
 function updateFavicon(theme: Theme) {
   const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
   if (link) {
-    link.href = theme === "dark" ? "/logo_bw.png" : "/logo.png";
+    link.href = theme !== "dark" ? "/logo_bw.png" : "/logo.png";
   }
 }
 

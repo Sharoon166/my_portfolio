@@ -6,25 +6,12 @@ import Image from "next/image";
 import { Plus, ArrowUpRight } from "lucide-react";
 import type { ExperienceItem } from "@/constants";
 import { technologiesCollection, profile } from "@/constants";
+import { FLOOD, stampClass } from "@/lib/dossier";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /* Shared column grid: PERIOD | ROLE | COMPANY | TYPE | toggle */
 const COLS = "md:grid-cols-[11rem_1fr_1fr_7rem_1.5rem]";
-
-/* Hover paint-flood — same left-to-right wipe language as the CTA fill */
-const FLOOD =
-  "absolute inset-0 origin-left scale-x-0 bg-destructive transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none";
-
-const STAMP: Record<string, string> = {
-  Work: "border-destructive/50 text-destructive group-hover:border-destructive-foreground/60 group-hover:text-destructive-foreground",
-  Education:
-    "border-border text-muted-foreground group-hover:border-destructive-foreground/40 group-hover:text-destructive-foreground/80",
-  Status: "border-destructive bg-destructive text-destructive-foreground group-hover:border-destructive-foreground group-hover:bg-destructive-foreground group-hover:text-destructive",
-};
-
-const stampClass = (type: string) =>
-  `inline-flex w-fit items-center rounded-full border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 ${STAMP[type] ?? STAMP.Education}`;
 
 interface LedgerRow {
   id?: string;
@@ -139,7 +126,7 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.5, ease: EASE }}
-                  className="overflow-hidden"
+                  className="overflow-hidden mt-4"
                 >
                   <div className="grid gap-10 px-4 pb-10 md:grid-cols-[1fr_20rem] md:gap-12 md:px-5">
                     {/* Narrative */}

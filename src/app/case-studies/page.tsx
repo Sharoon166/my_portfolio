@@ -34,8 +34,8 @@ export default function CaseStudiesPage() {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h1 className="font-bold tracking-tight leading-[1.1] max-w-4xl">
-              Under the <span className="text-destructive">hood</span>
+            <h1 className="font-bold tracking-tight leading-[1.1] max-w-4xl text-pretty">
+              How I actually <span className="text-destructive">get things done</span>
             </h1>
 
             <p className="ml-auto text-muted-foreground leading-snug max-w-2xl">
@@ -58,7 +58,7 @@ export default function CaseStudiesPage() {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`px-4 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${filter === cat
-                  ? "bg-destructive border-destructive text-primary"
+                  ? "bg-destructive border-destructive"
                   : "bg-muted/50 border-border hover:border-destructive/50 text-muted-foreground"
                   }`}
               >
@@ -152,11 +152,9 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
           {/* Index */}
           <div className="col-span-1 hidden lg:block">
             <motion.span
-              animate={{
-                color: isHovered ? brandColor : "rgba(255,255,255,0.05)",
-                x: isHovered ? 10 : 0
-              }}
-              className="text-5xl font-black italic select-none"
+              animate={{ x: isHovered ? 10 : 0 }}
+              style={{ color: isHovered ? brandColor : undefined }}
+              className="text-5xl font-black italic select-none text-foreground/10 dark:text-foreground/5 transition-colors duration-500"
             >
               {(index + 1).toString().padStart(2, '0')}
             </motion.span>
@@ -166,15 +164,13 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
           <div className="col-span-10 lg:col-span-5 relative">
             <div className="flex flex-col gap-1 lg:gap-2">
               <div className="flex items-center gap-3 lg:hidden">
-                <span className="text-xs font-bold opacity-20 italic">{(index + 1).toString().padStart(2, '0')}</span>
+                <span className="text-xs font-bold opacity-50 dark:opacity-20 italic">{(index + 1).toString().padStart(2, '0')}</span>
                 <div className="h-px flex-1 bg-muted/50" />
               </div>
               <motion.h3
-                animate={{
-                  color: isHovered ? brandColor : "rgba(200,200,200,0.8)",
-                  x: isHovered ? 20 : 0
-                }}
-                className="text-2xl md:text-6xl font-extrabold tracking-tighter leading-none italic uppercase flex items-center lg:gap-4"
+                animate={{ x: isHovered ? 20 : 0 }}
+                style={{ color: isHovered ? brandColor : undefined }}
+                className="text-2xl md:text-6xl font-extrabold tracking-tighter leading-none italic uppercase flex items-center lg:gap-4 text-foreground/70 dark:text-foreground/70 transition-colors duration-500"
               >
                 <span className="">{study.title}</span>
                 <AnimatePresence mode="popLayout">
@@ -188,7 +184,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                   )}
                 </AnimatePresence>
               </motion.h3>
-              <span className="text-xs uppercase opacity-30">
+              <span className="text-xs uppercase opacity-60 dark:opacity-30">
                 {study.type} • {study.year}
               </span>
             </div>
@@ -228,7 +224,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                             );
                           })}
                         </div>
-                        <span className="text-[10px] opacity-20 italic">REF_{study.id.toUpperCase()}</span>
+                        <span className="text-[10px] opacity-40 dark:opacity-20 italic">REF_{study.id.toUpperCase()}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -242,7 +238,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
             <motion.div
               ref={containerRef}
               style={{ x: springX, y: springY }}
-              className={`size-10 lg:size-16 rounded-full border flex items-center justify-center transition-all duration-500 ${isHovered ? 'border-foreground text-foreground bg-foreground/5' : 'border-border text-muted-foreground/10'
+              className={`size-10 lg:size-16 rounded-full border flex items-center justify-center transition-all duration-500 ${isHovered ? 'border-foreground text-foreground bg-foreground/5' : 'border-border text-muted-foreground/70 dark:text-muted-foreground/10'
                 }`}
             >
               <HugeiconsIcon icon={ArrowRight01Icon} size={24} className={`transition-all duration-700 ${isHovered ? '-rotate-45' : ''}`} />
@@ -277,7 +273,7 @@ function ProjectAccordionItem({ study, imageUrl, index }: { study: any, imageUrl
                               <Image src={techInfo.icon} alt={techInfo.name} fill className="object-contain" />
                             </div>
                           )}
-                          <span className="text-[10px] font-bold opacity-30 group-hover/icon:opacity-100 transition-opacity uppercase">
+                          <span className="text-[10px] font-bold opacity-70 dark:opacity-30 group-hover/icon:opacity-100 transition-opacity uppercase">
                             {techInfo?.name || techKey}
                           </span>
                         </div>

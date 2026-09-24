@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site-config";
 import { HeroSection } from "@/components/home/hero";
-import { ExperienceSection } from "@/components/home/experience-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { ProjectShowcase } from "@/components/home/project-showcase";
 import { AboutPreview } from "@/components/home/about";
 import { ContactSection } from "@/components/home/contact";
 import { CaseStudiesGrid } from "@/components/home/case-studies-grid";
 import CurvedLoop from "@/components/CurvedLoop";
+import { ExperienceRecord } from "@/components/about/experience-record";
+import { experience } from "@/constants";
+
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -36,7 +38,10 @@ export default function Home() {
       <div className="space-y-32 lg:space-y-44">
         <ProjectShowcase />
         <CaseStudiesGrid />
-        <ExperienceSection />
+        <div className="space-y-8">
+          <h2 className="dot-suffix">My Journey</h2>
+          <ExperienceRecord items={experience} />
+        </div>
         <TestimonialsSection />
         <AboutPreview />
         <ContactSection />

@@ -135,13 +135,13 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-sm:-mt-[60%] mb-2 flex items-center gap-3 px-4 py-2 rounded-full bg-muted/50 border border-border backdrop-blur-md w-fit relative z-20 "
+          className="max-sm:-mt-[60%] mb-2 flex items-center gap-3 px-4 py-2 rounded-full bg-muted/50 border border-border backdrop-blur-md w-fit relative -z-10 "
         >
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-green-600 animate-ping opacity-75" />
             <div className="relative size-2 rounded-full bg-green-500" />
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-widest font-bold text-muted-foreground">
+          <span className="text-xs font-mono uppercase tracking-widest font-bold text-muted-foreground">
             Available for new projects
           </span>
         </motion.div>
