@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { siteConfig } from "@/data/site-config"
+import { breadcrumbSchema } from "@/data/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -16,5 +18,15 @@ export const metadata: Metadata = {
 }
 
 export default function CaseStudiesLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: siteConfig.url },
+          { name: "Case Studies", url: `${siteConfig.url}/case-studies` },
+        ])}
+      />
+      {children}
+    </>
+  )
 }

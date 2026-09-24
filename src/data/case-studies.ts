@@ -24,6 +24,9 @@ export interface CaseStudy {
   type: string;
   status: string;
   year: string;
+  /** ISO dates — used by Article JSON-LD and the sitemap lastmod. */
+  datePublished: string;
+  dateModified: string;
   context: string;
   role: string;
   private: boolean;
@@ -51,6 +54,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     type: "Full-stack Web Application",
     status: "Production",
     year: "June 2025 – November 2025",
+    datePublished: "2025-06-01",
+    dateModified: "2025-11-30",
     context: "Built during employment at Synctom, Islamabad. Deployed to real restaurant clients.",
     role: "Frontend Developer",
     private: true,
@@ -111,6 +116,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     type: "Full-stack Web Application",
     status: "Production",
     year: "October 2025 – January 2026",
+    datePublished: "2025-10-01",
+    dateModified: "2026-01-31",
     context: "Solely designed and developed during employment at Synctom for a real business client. Currently in active use.",
     role: "Full-stack Developer",
     private: true,
@@ -181,6 +188,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     type: "Internal Tool / Web Application",
     status: "Production",
     year: "October 2025 – December 2025",
+    datePublished: "2025-10-01",
+    dateModified: "2025-12-31",
     context: "Built collaboratively with a colleague during employment at Synctom. Used internally by the team for day to day operations.",
     role: "Full-stack Developer",
     private: true,
@@ -242,6 +251,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     type: "Frontend Web Application",
     status: "Live",
     year: "2023",
+    datePublished: "2023-06-01",
+    dateModified: "2023-12-31",
     context: "A collaborative project where I helped a friend build a clean, modern anime discovery platform.",
     role: "Collaborative Developer",
     private: false,
@@ -290,6 +301,8 @@ export const caseStudies: Record<string, CaseStudy> = {
       type: "Full-stack Web Application",
       status: "Production",
       year: "April 2026 – Present",
+      datePublished: "2026-04-01",
+      dateModified: "2026-09-01",
       context: "Built for a family-owned electrical and AC repair business in Islamabad. Actively used for daily operations.",
       role: "Solo Developer",
       private: true,

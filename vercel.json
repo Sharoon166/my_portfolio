@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "sharoon.vercel.app"
+        }
+      ],
+      "destination": "https://sharoon.dev/$1",
+      "permanent": true
+    }
+  ]
+}

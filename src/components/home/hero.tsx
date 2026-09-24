@@ -157,32 +157,40 @@ export function HeroSection() {
             >
               001 - Full-stack Developer
             </motion.span>
-            {/* "Digital Experiences" — behind the image */}
-            <motion.h1
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: 0.4,
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! relative z-1 text-center"
-            >
-              Digital Experiences
-            </motion.h1>
-            {/* "That Actually Matter" — on top of the image */}
-            <motion.h1
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: 0.6,
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! text-destructive stroked relative z-30"
-            >
-              That Actually Matter
-            </motion.h1>
+            <h1 className="space-y-2">
+              <span className="sr-only">
+                Sharoon Shaleem — Full-stack Developer. Digital Experiences That
+                Actually Matter
+              </span>
+              {/* "Digital Experiences" — behind the image */}
+              <motion.span
+                aria-hidden="true"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: 0.4,
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="block text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! relative z-1 text-center"
+              >
+                Digital Experiences
+              </motion.span>
+              {/* "That Actually Matter" — on top of the image */}
+              <motion.span
+                aria-hidden="true"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: 0.6,
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="block text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! text-destructive stroked relative z-30"
+              >
+                That Actually Matter
+              </motion.span>
+            </h1>
           </div>
 
           <motion.p

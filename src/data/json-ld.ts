@@ -66,13 +66,27 @@ export const aboutSchema = {
 };
 
 /** Article schema for a case-study detail page. */
-export function articleSchema(title: string, description: string) {
+export function articleSchema(opts: {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  datePublished: string;
+  dateModified: string;
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: title,
-    description,
-    author: { "@type": "Person", name: siteConfig.author.name },
+    headline: opts.title,
+    description: opts.description,
+    image: opts.image,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    inLanguage: "en",
+    mainEntityOfPage: { "@type": "WebPage", "@id": opts.url },
+    author: { "@id": `${siteConfig.url}/#person` },
+    publisher: { "@id": `${siteConfig.url}/#person` },
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
   };
 }
 
