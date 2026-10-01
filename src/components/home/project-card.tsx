@@ -140,7 +140,7 @@ export function ProjectCard({
         </div>
         <div className="hidden lg:flex items-center">
           {caseStudyId && (
-            <Link href={`/case-studies/${caseStudyId}`}>
+            <Link href={`/case-studies/${caseStudyId}`} aria-label={`Read the ${title} case study`}>
               <motion.div
                 className="text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full"
                 whileHover={{ scale: 1.1 }}
@@ -151,35 +151,59 @@ export function ProjectCard({
               </motion.div>
             </Link>
           )}
-          <motion.a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full", !githubUrl && "pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
-            whileHover={{ scale: 1.1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <HugeiconsIcon icon={GithubIcon} size={24} />
-          </motion.a>
-          <motion.a
-            href={previewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group", !previewUrl && "pointer-events-none cursor-not-allowed opacity-80")}
-            whileHover={{ scale: 1.1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <div className="relative size-6 overflow-hidden" aria-hidden="true">
-              <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+          {githubUrl ? (
+            <motion.a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${title} source code on GitHub`}
+              className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full", caseStudyId && "-ml-4")}
+              whileHover={{ scale: 1.1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <HugeiconsIcon icon={GithubIcon} size={24} />
+            </motion.a>
+          ) : (
+            <span
+              aria-hidden="true"
+              className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
+            >
+              <HugeiconsIcon icon={GithubIcon} size={24} />
+            </span>
+          )}
+          {previewUrl ? (
+            <motion.a
+              href={previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit the ${title} live site`}
+              className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group")}
+              whileHover={{ scale: 1.1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <div className="relative size-6 overflow-hidden" aria-hidden="true">
+                <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                </div>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+            </motion.a>
+          ) : (
+            <span
+              aria-hidden="true"
+              className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group pointer-events-none cursor-not-allowed opacity-80")}
+            >
+              <div className="relative size-6 overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                </div>
               </div>
-            </div>
-          </motion.a>{" "}
+            </span>
+          )}
         </div>
 
         <div className="lg:hidden flex items-center *:grow lg:justify-start flex-wrap gap-3 mt-6">

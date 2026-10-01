@@ -232,15 +232,16 @@ export function Header() {
                 {/* social links */}
                 <div className="flex items-center gap-6 pt-4 border-t border-border/50">
                   {[
-                    { href: profile.github, icon: <HugeiconsIcon icon={GithubIcon} size={22} /> },
-                    { href: profile.linkenIn, icon: <HugeiconsIcon icon={Linkedin01Icon} size={22} /> },
-                    { href: profile.instagram, icon: <HugeiconsIcon icon={InstagramIcon} size={22} /> },
-                  ].map(({ href, icon }) => (
+                    { href: profile.github, label: "GitHub", icon: <HugeiconsIcon icon={GithubIcon} size={22} /> },
+                    { href: profile.linkenIn, label: "LinkedIn", icon: <HugeiconsIcon icon={Linkedin01Icon} size={22} /> },
+                    { href: profile.instagram, label: "Instagram", icon: <HugeiconsIcon icon={InstagramIcon} size={22} /> },
+                  ].map(({ href, label, icon }) => (
                     <Link
                       key={href}
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={label}
                       onClick={() => setMobileMenuOpen(false)}
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >

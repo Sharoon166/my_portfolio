@@ -67,7 +67,7 @@ export function AboutPreview() {
           href="/about"
           className="mt-4 py-3 inline-flex items-center gap-2 group relative overflow-hidden text-2xl text-destructive hover:underline underline-offset-4"
         >
-          Learn More{" "}
+          More about me{" "}
           <HugeiconsIcon icon={ArrowRight02Icon} size={24} className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-destructive" />
         </Link>
       </motion.div>
