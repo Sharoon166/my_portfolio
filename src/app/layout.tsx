@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import CustomCursor from "@/components/mouse-cursor";
 import { ScrollProgressButton } from "@/components/layout/scroll-progress-button";
+// import { FontPreview } from "@/components/font-preview";
 import { MotionConfig } from "motion/react";
 import { siteConfig } from "@/data/site-config";
 import { JsonLd } from "@/components/seo/json-ld";

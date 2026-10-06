@@ -8,7 +8,6 @@ import { ArrowRight01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons
 import { caseStudies } from "@/data/case-studies";
 import { projects } from "@/constants";
 import { useRef } from "react";
-import { CometCard } from "../ui/comet-card";
 
 /* Only projects that have a case study */
 const featuredStudies = projects

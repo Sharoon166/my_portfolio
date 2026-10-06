@@ -186,7 +186,7 @@ export function HeroSection() {
                   duration: 0.8,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="block text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! text-destructive stroked relative z-30"
+                className="block text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bricolage font-black tracking-tighter leading-[0.9] italic! text-destructive relative z-30"
               >
                 That Actually Matter
               </motion.span>
