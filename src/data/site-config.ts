@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     "Full-stack developer based in Islamabad specializing in React, Next.js, and Node.js. Building production-grade web applications.",
   locale: "en_US",
-  ogImage: "/og.webp",
+  ogImage: "/og-image.jpg",
   links: {
     github: "https://github.com/Sharoon166",
     linkedin: "https://www.linkedin.com/in/sharoon-shaleem/",
