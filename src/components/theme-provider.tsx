@@ -20,25 +20,48 @@ export function useTheme() {
   return useContext(ThemeContext);
 }
 
+const DARK_MEDIA = "(prefers-color-scheme: dark)";
+
+function getSystemTheme(): Theme {
+  return window.matchMedia(DARK_MEDIA).matches ? "dark" : "light";
+}
+
+/**
+ * A saved user choice always wins. With nothing saved, fall back to the OS
+ * preference — and keep following it live until the user picks a theme.
+ */
+function resolveTheme(): { theme: Theme; persisted: boolean } {
+  const saved = localStorage.getItem("theme");
+  if (saved === "light" || saved === "dark") {
+    return { theme: saved, persisted: true };
+  }
+  return { theme: getSystemTheme(), persisted: false };
+}
+
 function updateFavicon(theme: Theme) {
   const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
   if (link) {
-    link.href = theme !== "dark" ? "/logo_bw.png" : "/logo.png";
+    // logo.png = black mark (light bg), logo_bw.png = white mark (dark bg)
+    link.href = theme === "light" ? "/logo.png" : "/logo_bw.png";
   }
 }
 
 function updateMetaThemeColor(theme: Theme) {
-  const meta = document.querySelector<HTMLMetaElement>(
-    "meta[name='theme-color']",
-  );
-  if (meta) {
-    meta.content = theme === "dark" ? "#050505" : "#fafafa";
-  }
+  const color = theme === "dark" ? "#050505" : "#fafafa";
+  // Update every theme-color tag (layout ships a light + a dark one).
+  // Once JS has run, the app state is the truth — so drop the media
+  // attribute that was only a pre-hydration guess based on the OS.
+  document
+    .querySelectorAll<HTMLMetaElement>("meta[name='theme-color']")
+    .forEach((meta) => {
+      meta.content = color;
+      meta.removeAttribute("media");
+    });
 }
 
-function applyTheme(theme: Theme) {
+function applyTheme(theme: Theme, persist = true) {
   document.documentElement.classList.toggle("dark", theme === "dark");
-  localStorage.setItem("theme", theme);
+  if (persist) localStorage.setItem("theme", theme);
   updateFavicon(theme);
   updateMetaThemeColor(theme);
 }
@@ -47,11 +70,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    if (saved) {
-      setTheme(saved);
-      applyTheme(saved);
-    }
+    const { theme: resolved, persisted } = resolveTheme();
+    setTheme(resolved);
+    applyTheme(resolved, persisted);
+
+    // Only follow live OS changes while the user hasn't chosen a theme —
+    // once they toggle, their explicit choice is persisted and sticky.
+    if (persisted) return;
+
+    const mq = window.matchMedia(DARK_MEDIA);
+    const onChange = () => {
+      const next = getSystemTheme();
+      setTheme(next);
+      applyTheme(next, false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   const toggle = useCallback(
@@ -66,17 +100,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       document.documentElement.style.setProperty("--theme-x", `${x}px`);
       document.documentElement.style.setProperty("--theme-y", `${y}px`);
 
+      // Persist the explicit choice so the OS preference no longer overrides it
+      const commit = () => {
+        setTheme(next);
+        applyTheme(next, true);
+      };
+
       // Use View Transitions API if supported
       if (!document.startViewTransition) {
-        setTheme(next);
-        applyTheme(next);
+        commit();
         return;
       }
 
-      document.startViewTransition(() => {
-        setTheme(next);
-        applyTheme(next);
-      });
+      document.startViewTransition(commit);
     },
     [theme],
   );
