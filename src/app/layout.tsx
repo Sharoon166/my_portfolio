@@ -8,7 +8,6 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import CustomCursor from "@/components/mouse-cursor";
 import { ScrollProgressButton } from "@/components/layout/scroll-progress-button";
-import { FontPreview } from "@/components/font-preview";
 import { MotionConfig } from "motion/react";
 import { siteConfig } from "@/data/site-config";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -27,7 +26,7 @@ const bricolage = Bricolage_Grotesque({
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600"],
   preload: true,
 });
 
@@ -90,8 +89,8 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
     ],
-    shortcut: ["/logo.png"],
-    apple: ["/logo.png"],
+    shortcut: ["/logo_pwa.png"],
+    apple: ["/logo_pwa.png"],
   },
 };
 
@@ -107,7 +106,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
         <Script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.remove('dark');else document.documentElement.classList.add('dark')}catch(e){document.documentElement.classList.add('dark')}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}})()`,
           }}
         />
       </head>
