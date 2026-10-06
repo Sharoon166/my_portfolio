@@ -130,7 +130,7 @@ export const projects: ProjectCardProps[] = [
     title: "Diniiz",
     description:
       "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
-    image: "/projects/diniiz.png",
+    image: "/projects/diniiz.jpg",
     githubUrl: "",
     previewUrl: "https://diniiz.com",
     technologies: [
@@ -320,7 +320,19 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     id: "01",
-    period: "July 2025 – April 2026",
+    period: "Sep 2022 – Oct 2026",
+    company: "NUML",
+    role: "Student",
+    location: "University",
+    desc: "My time at NUML has been about much more than just a degree — it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Achieved a 97.3rd percentile score on the Higher Education Commission (HEC) Competency Test.\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
+    tags: ["CS", "DSA", "Algorithms", "OS", "DBMS", "SDLC"],
+    type: "Education",
+    icon: "graduation-cap",
+    technologies: ["javascript", "typescript", "html", "css"],
+  },
+  {
+    id: "02",
+    period: "July 2025 – Ongoing (On project basis)",
     company: "Synctom",
     role: "Web Developer",
     location: "Full-time",
@@ -347,43 +359,12 @@ export const experience: ExperienceItem[] = [
       "typescript",
     ],
   },
-  {
-    id: "02",
-    period: "Sep 2022 – Oct 2026",
-    company: "NUML",
-    role: "Student",
-    location: "University",
-    desc: "My time at NUML has been about much more than just a degree — it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
-    tags: ["CS", "DSA", "Algorithms", "OS", "DBMS", "SDLC"],
-    type: "Education",
-    icon: "graduation-cap",
-    technologies: ["javascript", "typescript", "html", "css"],
-  },
+
 ];
 
 /* Extra quotes for the home-page carousel.
    ⚠️ PLACEHOLDERS — replace names, roles, and wording with real client words before shipping. */
-export const extraTestimonials: Testimonial[] = [
-  {
-    name: "Bilal Ahmed",
-    designation: "Founder @ Z Digitizing",
-    rating: 5,
-    testimony:
-      "Sharoon turned a rough brief into a site that feels genuinely ours. Fast, sharp, and shipped ahead of the deadline — exactly what a small team needs.",
-    // ⚠️ Placeholder source — swap for the real link (or delete the field) with the quote above
-    source: {
-      url: "https://www.linkedin.com/in/sharoon-shaleem/",
-      label: "Read on LinkedIn",
-    },
-  },
-  {
-    name: "Sara Mehmood",
-    designation: "Product Lead @ Newon",
-    rating: 5,
-    testimony:
-      "He has a rare habit of sweating the small stuff — spacing, states, motion — without ever slowing the build down. Our dashboard went from clunky to something people actually enjoy opening.",
-  },
-];
+export const extraTestimonials: Testimonial[] = [];
 
 export const minorProjects: MinorProjectCardProps[] = [
   {
