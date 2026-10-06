@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CommandPallete from "@/components/command-pallete";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import CustomCursor from "@/components/mouse-cursor";
-import { ScrollProgressButton } from "@/components/layout/scroll-progress-button";
 // import { FontPreview } from "@/components/font-preview";
 import { MotionConfig } from "motion/react";
 import { siteConfig } from "@/data/site-config";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteSchema } from "@/data/json-ld";
-import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import Script from "next/script";
+import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import { ClientWidgets } from "@/components/layout/client-widgets";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -125,18 +122,8 @@ export default function RootLayout({
                 </main>
                 <Footer />
               </div>
-              <CustomCursor />
-              <ScrollProgressButton />
+              <ClientWidgets />
               {/*<FontPreview />*/}
-              <CommandPallete />
-              <ToastContainer
-                position="bottom-right"
-                autoClose={2000}
-                closeOnClick
-                pauseOnHover={false}
-                draggable={false}
-                theme="dark"
-              />
             </MotionConfig>
           </SmoothScrollProvider>
         </ThemeProvider>
