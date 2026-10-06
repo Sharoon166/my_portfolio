@@ -25,10 +25,10 @@ interface LedgerRow {
 
 /* The closing beat of the record — the story doesn't stop at the last job. */
 const NOW_ROW: LedgerRow = {
-  period: "April 2026 – Present",
+  period: "Present",
   role: "Open to Work",
   company: "Islamabad, Pakistan",
-  location: "Remote · UTC+5",
+  location: "OnSite / Remote · UTC+5",
   type: "Status",
   note: "your move →",
 };
@@ -130,7 +130,7 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                 >
                   <div className="grid gap-10 px-4 pb-10 md:grid-cols-[1fr_20rem] md:gap-12 md:px-5">
                     {/* Narrative */}
-                    <div className="space-y-6 lg:ml-[12.5rem]">
+                    <div className="space-y-6 lg:ml-50">
                       <p className="max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-muted-foreground md:text-base">
                         {item.desc}
                       </p>

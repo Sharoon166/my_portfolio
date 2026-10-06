@@ -436,7 +436,7 @@ export default function CommandPalette() {
       <Fragment key={block.group}>
         {effectiveTab === "All" &&
           (i > 0 || (search === "" && recentItems.length > 0)) && (
-            <CommandSeparator className="mx-3 my-2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <CommandSeparator className="mx-3 my-2 bg-linear-to-r from-transparent via-white/10 to-transparent" />
           )}
         <CommandGroup
           heading={

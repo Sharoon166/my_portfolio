@@ -100,7 +100,7 @@ export function CtaFill() {
         rel="noopener noreferrer"
         data-mouse-text="LET'S TALK - LET'S TALK -"
         aria-label="Book a call with Sharoon"
-        className="group relative block w-full overflow-hidden py-8 text-center my-0"
+        className="group relative block w-full overflow-hidden py-14 sm:py-8 text-center my-0"
       >
         <span className={`block ${SIZE} ${TYPE}`}>
           {WORDS.map((word, i) => (
