@@ -40,9 +40,10 @@ export function AboutPreview() {
           <DottedMap
             width={300}
             height={150}
+            dotRadius={0.25}
             markers={[{ lat: 33.6844, lng: 73.0479, size: 1, pulse: true,}]}
             markerColor={theme === "dark" ? "#A0FF00" : "hsl(0, 84%, 55%)"}
-            dotColor="currentColor"
+            dotColor={theme === "dark" ? "hsl(0, 84%, 55%)" : "#121212"}
             renderMarkerOverlay={({ x, y }) => (
               <text
                 x={x}
