@@ -114,7 +114,7 @@ export function CtaFill() {
 
       {/* The big email — second way in */}
       <div className="flex flex-col items-center gap-3 pt-4 text-center mb-18">
-        <span className="font-mono text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground">
+        <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">
           or reach me at
         </span>
         <motion.a

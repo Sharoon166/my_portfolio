@@ -155,7 +155,7 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                           {item.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground"
+                              className="rounded-full border border-border px-2.5 py-1 text-xs uppercase text-muted-foreground"
                             >
                               {tag}
                             </span>
@@ -207,7 +207,7 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                             <span className="text-sm font-bold text-foreground">
                               {item.testimonial.name}
                             </span>
-                            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+                            <span className="text-xs uppercase text-muted-foreground/70">
                               {item.testimonial.designation}
                             </span>
                           </span>
@@ -217,7 +217,7 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                             href={item.testimonial.source.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-3 inline-block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-destructive hover:underline"
+                            className="mt-3 inline-block text-xs font-semibold uppercase tracking-wider text-destructive hover:underline"
                           >
                             {item.testimonial.source.label ?? "Source"} ↗
                           </a>

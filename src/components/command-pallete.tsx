@@ -492,7 +492,7 @@ export default function CommandPalette() {
               className="h-11 border-none bg-transparent text-[15px] outline-none placeholder:text-muted-foreground"
               placeholder="Search pages, projects, actions..."
             />
-            <div className="hidden shrink-0 select-none items-center rounded-lg bg-muted/30 px-2 py-1.5 font-mono text-[11px] text-muted-foreground ring-1 ring-border sm:flex">
+            <div className="hidden shrink-0 select-none items-center rounded-lg bg-muted/30 px-2 py-1.5 text-[11px] text-muted-foreground ring-1 ring-border sm:flex">
               esc
             </div>
           </div>

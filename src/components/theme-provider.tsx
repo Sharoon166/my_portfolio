@@ -38,14 +38,6 @@ function resolveTheme(): { theme: Theme; persisted: boolean } {
   return { theme: getSystemTheme(), persisted: false };
 }
 
-function updateFavicon(theme: Theme) {
-  const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
-  if (link) {
-    // logo.png = black mark (light bg), logo_bw.png = white mark (dark bg)
-    link.href = theme === "light" ? "/logo.png" : "/logo_bw.png";
-  }
-}
-
 function updateMetaThemeColor(theme: Theme) {
   const color = theme === "dark" ? "#050505" : "#fafafa";
   // Update every theme-color tag (layout ships a light + a dark one).
@@ -62,7 +54,6 @@ function updateMetaThemeColor(theme: Theme) {
 function applyTheme(theme: Theme, persist = true) {
   document.documentElement.classList.toggle("dark", theme === "dark");
   if (persist) localStorage.setItem("theme", theme);
-  updateFavicon(theme);
   updateMetaThemeColor(theme);
 }
 
@@ -119,12 +110,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggle }}>
-      <head>
-        <link
-          rel="icon"
-          href={theme === "light" ? "logo.png" : "logo_bw.png"}
-        />
-      </head>
       {children}
     </ThemeContext.Provider>
   );

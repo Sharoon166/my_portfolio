@@ -60,7 +60,7 @@ export function ScrollProgressButton() {
             />
           </svg>
           <span className="absolute inset-0 flex items-center justify-center">
-            <span className="absolute font-mono text-[11px] font-semibold text-foreground/80 transition-opacity duration-200 group-hover:opacity-0">
+            <span className="absolute text-xs font-semibold text-foreground/80 transition-opacity duration-200 group-hover:opacity-0">
               {progress}%
             </span>
             <HugeiconsIcon

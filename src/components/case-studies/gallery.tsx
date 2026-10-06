@@ -125,7 +125,7 @@ function GalleryCard({
           )}
         >
           <span className="size-1 rounded-full bg-foreground/30 shrink-0" />
-          <span className="text-[10px] font-mono text-muted-foreground tracking-wide">
+          <span className="text-xs text-muted-foreground tracking-wide">
             {label ?? image.caption}
           </span>
         </div>
@@ -249,7 +249,7 @@ export function Gallery({ images, projectLabels }: GalleryProps) {
 
             {/* counter */}
             <div className="absolute top-5 left-5 z-40">
-              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-widest">
+              <span className="text-xs text-muted-foreground/40 tracking-widest">
                 {String(selectedIndex + 1).padStart(2, "0")}
                 <span className="text-muted-foreground/20 mx-1">/</span>
                 {String(images.length).padStart(2, "0")}

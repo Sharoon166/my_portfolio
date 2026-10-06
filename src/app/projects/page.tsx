@@ -33,7 +33,7 @@ export default function Projects() {
               Built, shipped, <span className="text-destructive">iterated</span> & deployed
             </h1>
 
-            <p className="ml-auto text-muted-foreground leading-snug max-w-2xl font-mono">
+            <p className="ml-auto text-muted-foreground leading-snug max-w-2xl">
               Real products for real clients. From restaurant platforms to analytics dashboards. Every project here solved a problem that mattered.
             </p>
           </motion.div>
