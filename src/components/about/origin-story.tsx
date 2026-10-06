@@ -329,11 +329,11 @@ export function OriginStory() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-        className="mx-auto mt-8 max-w-3xl space-y-6 text-center"
+        className="mx-auto mt-8 max-w-3xl space-y-6 lg:text-center text-justify"
       >
         <p
           ref={leadRef}
-          className="mx-auto max-w-2xl font-medium font-bricolage text-xl leading-snug text-pretty text-foreground/90 sm:text-2xl lg:text-4xl"
+          className="mx-auto max-w-2xl font-medium font-bricolage text-3xl leading-snug text-pretty text-foreground/90 lg:text-4xl"
         >
           {LEAD_WORDS.map((word, i) => (
             <LitWord
