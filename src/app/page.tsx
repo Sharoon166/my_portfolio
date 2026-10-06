@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div>
+    <div className="sm:pt-6">
       <HeroSection />
       <div className="-mt-[10%]">
         <CurvedLoop
@@ -35,11 +35,12 @@ export default function Home() {
           className="max-sm:hidden text-4xl"
         />
       </div>
-      <div className="space-y-32 lg:space-y-44">
+      <div className="mt-14 space-y-32 lg:space-y-44">
         <ProjectShowcase />
         <CaseStudiesGrid />
         <div className="space-y-8">
           <h2 className="dot-suffix">My Journey</h2>
+          <p></p>
           <ExperienceRecord items={experience} />
         </div>
         <TestimonialsSection />

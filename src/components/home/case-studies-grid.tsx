@@ -59,12 +59,11 @@ function CaseStudyCard({
         style={{ backgroundColor: project.themeColor }}
       >
         <div
-          className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl"
+          className="relative flex h-full w-full items-center justify-center rounded-xl"
           data-mouse-text="Case Study · Case Study · "
         >
-          <CometCard transparent className="w-full">
             <motion.div
-              initial={{ y: "60%", scale: 0.95, rotate: index % 2 === 0 ? -2 : 2 }}
+              initial={{ y: "60%", scale: 0.95}}
               whileInView={{ y: "8%" }}
               whileHover={{ scale: 1 }}
               viewport={{ once: true }}
@@ -75,10 +74,9 @@ function CaseStudyCard({
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover object-top brightness-95 group-hover:brightness-100 transition-[filter] duration-500"
+                className="object-cover object-top brightness-95 group-hover:brightness-100 transition-[filter] duration-500 rounded-xl overflow-hidden"
               />
             </motion.div>
-          </CometCard>
         </div>
       </div>
 

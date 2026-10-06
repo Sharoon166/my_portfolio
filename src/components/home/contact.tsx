@@ -9,11 +9,11 @@ export function ContactSection() {
       id="contact"
       className="max-w-6xl mx-auto py-12 md:px-8 md:py-20 space-y-10 border-2 border-border bg-card/40 rounded-[3rem] md:rounded-[4rem] text-center"
     >
-      <div className="text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bricolage text-pretty">
+      <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bricolage text-pretty">
         Got an idea? Let&apos;s turn it into something real
       </div>
       <div className="space-y-8">
-        <div className="inline-flex items-center gap-2 text-sm sm:text-lg md:text-3xl text-destructive drop-shadow-[2px_2px_10px_currentcolor]">
+        <div className="inline-flex items-center gap-2 text-sm sm:text-xl md:text-3xl text-destructive drop-shadow-[2px_2px_10px_currentcolor]">
           <a href={profile.emailLink}>{profile.email}</a>
           <CopyButton
             text={profile.email}

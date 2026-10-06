@@ -5,16 +5,16 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { 
-  Home01Icon, 
-  CodeIcon, 
-  Note01Icon, 
-  UserIcon, 
-  GithubIcon, 
-  Linkedin01Icon, 
+import {
+  Home01Icon,
+  CodeIcon,
+  Note01Icon,
+  UserIcon,
+  GithubIcon,
+  Linkedin01Icon,
   InstagramIcon,
   Sun01Icon,
-  Moon02Icon
+  Moon02Icon,
 } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { profile } from "@/constants";
@@ -29,20 +29,39 @@ export function Header() {
   const lastScrollY = useRef(0);
 
   const menuItems = [
-    { href: "/", label: "Home", icon: <HugeiconsIcon icon={Home01Icon} size={18} /> },
-    { href: "/projects", label: "Projects", icon: <HugeiconsIcon icon={CodeIcon} size={18} /> },
-    { href: "/case-studies", label: "Case Studies", icon: <HugeiconsIcon icon={Note01Icon} size={18} /> },
-    { href: "/about", label: "About", icon: <HugeiconsIcon icon={UserIcon} size={18} /> },
+    {
+      href: "/",
+      label: "Home",
+      icon: <HugeiconsIcon icon={Home01Icon} size={18} />,
+    },
+    {
+      href: "/projects",
+      label: "Projects",
+      icon: <HugeiconsIcon icon={CodeIcon} size={18} />,
+    },
+    {
+      href: "/case-studies",
+      label: "Case Studies",
+      icon: <HugeiconsIcon icon={Note01Icon} size={18} />,
+    },
+    {
+      href: "/about",
+      label: "About",
+      icon: <HugeiconsIcon icon={UserIcon} size={18} />,
+    },
   ];
 
   useEffect(() => {
     window.addEventListener("resize", () => setMobileMenuOpen(false));
-    return () => window.removeEventListener("resize", () => setMobileMenuOpen(false));
+    return () =>
+      window.removeEventListener("resize", () => setMobileMenuOpen(false));
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   useEffect(() => {
@@ -92,26 +111,35 @@ export function Header() {
           width: scrolled ? "min(560px, 90vw)" : "min(1400px, 100%)",
           padding: scrolled ? "12px 24px" : "16px 32px",
           borderRadius: scrolled ? 9999 : 0,
-          backgroundColor: scrolled ? "hsl(var(--background) / 0.85)" : "hsl(var(--background) / 0)",
+          backgroundColor: scrolled
+            ? "hsl(var(--background) / 0.85)"
+            : "hsl(var(--background) / 0)",
           backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
           borderWidth: scrolled ? 0.5 : 0,
           borderColor: "hsl(var(--border))",
           borderStyle: "solid",
-          boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.15)" : "0 0px 0px rgba(0,0,0,0)",
+          boxShadow: scrolled
+            ? "0 4px 24px rgba(0,0,0,0.15)"
+            : "0 0px 0px rgba(0,0,0,0)",
         }}
         transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       >
         {/* Logo — no size animation, just static */}
         <Link href="/">
           <h2 className="inline-flex items-center gap-1.5 text-xl text-muted-foreground font-semibold font-caveat">
-            <Image src={theme === "dark" ? "/logo_bw.png" : "/logo.png"} alt="logo" width={32} height={32} />
+            <Image
+              src={theme === "dark" ? "/logo_bw.png" : "/logo.png"}
+              alt="logo"
+              width={32}
+              height={32}
+            />
             <span className={cn(scrolled && "hidden")}>Sharoon S.</span>
           </h2>
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden sm:block" aria-label="Desktop navigation">
-          <ul className="flex gap-4 items-center" role="list">
+          <ul className="flex gap-6 items-center" role="list">
             {menuItems.map((item) => (
               <li key={item.href} className="relative">
                 {pathname === item.href && (
@@ -122,14 +150,22 @@ export function Header() {
                 )}
                 <Link
                   href={item.href}
-                  className={cn("navlink", pathname === item.href && "text-destructive")}
+                  className={cn(
+                    "navlink",
+                    pathname === item.href && "text-destructive",
+                  )}
                   aria-current={pathname === item.href ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li className={cn("text-muted-foreground text-mono", scrolled && "hidden")}>
+            <li
+              className={cn(
+                "text-muted-foreground text-mono",
+                scrolled && "hidden",
+              )}
+            >
               <kbd>⌘ K</kbd>
               <span className="text-xs"> or </span>
               <kbd>/</kbd>
@@ -144,7 +180,10 @@ export function Header() {
             className="size-9 flex items-center justify-center rounded-full bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            <HugeiconsIcon icon={theme === "dark" ? Sun01Icon : Moon02Icon} size={16} />
+            <HugeiconsIcon
+              icon={theme === "dark" ? Sun01Icon : Moon02Icon}
+              size={16}
+            />
           </button>
           <button
             className="sm:hidden z-50 cursor-pointer"
@@ -152,21 +191,27 @@ export function Header() {
             aria-expanded={mobileMenuOpen}
             aria-label="Menu"
           >
-          <motion.svg
-            width="24" height="24" viewBox="0 0 24 24"
-            fill="none" xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-              initial={{ d: "M4 6h16M4 12h16M4 18h16" }}
-              animate={mobileMenuOpen
-                ? { d: "M18 6L6 18M6 6l12 12" }
-                : { d: "M4 6h16M4 12h16M4 18h16" }
-              }
-              transition={{ duration: 0.2 }}
-            />
-          </motion.svg>
-        </button>
+            <motion.svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <motion.path
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                initial={{ d: "M4 6h16M4 12h16M4 18h16" }}
+                animate={
+                  mobileMenuOpen
+                    ? { d: "M18 6L6 18M6 6l12 12" }
+                    : { d: "M4 6h16M4 12h16M4 18h16" }
+                }
+                transition={{ duration: 0.2 }}
+              />
+            </motion.svg>
+          </button>
         </div>
       </motion.header>
 
@@ -185,7 +230,7 @@ export function Header() {
 
             {/* drawer — slides up from actual bottom of screen */}
             <motion.div
-              initial={{ y: "100%" }}   // now 100% of viewport, not header
+              initial={{ y: "100%" }} // now 100% of viewport, not header
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -193,34 +238,56 @@ export function Header() {
               role="dialog"
               aria-modal="true"
             >
-              <nav className="flex flex-col gap-10" aria-label="Mobile navigation">
+              <nav
+                className="flex flex-col gap-10"
+                aria-label="Mobile navigation"
+              >
                 <ul className="flex flex-col gap-5" role="list">
                   {[
                     ...menuItems,
-                    { href: profile.resumeLink, label: "Résumé", icon: <HugeiconsIcon icon={Note01Icon} size={20} /> },
+                    {
+                      href: profile.resumeLink,
+                      label: "Résumé",
+                      icon: <HugeiconsIcon icon={Note01Icon} size={20} />,
+                    },
                   ].map((item, index) => (
                     <motion.li
                       key={item.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05, type: "spring", stiffness: 260, damping: 22 }}
+                      transition={{
+                        delay: index * 0.05,
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 22,
+                      }}
                     >
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        target={item.href === profile.resumeLink ? "_blank" : undefined}
-                        aria-current={pathname === item.href ? "page" : undefined}
+                        target={
+                          item.href === profile.resumeLink
+                            ? "_blank"
+                            : undefined
+                        }
+                        aria-current={
+                          pathname === item.href ? "page" : undefined
+                        }
                         className={cn(
                           "text-xl flex items-center gap-4 transition-colors py-1",
                           pathname === item.href
                             ? "text-destructive font-semibold"
-                            : "text-foreground hover:text-muted-foreground"
+                            : "text-foreground hover:text-muted-foreground",
                         )}
                       >
-                        <span className={cn(
-                          "transition-colors",
-                          pathname === item.href ? "text-destructive" : "text-muted-foreground"
-                        )}>
+                        <span
+                          className={cn(
+                            "transition-colors",
+                            pathname === item.href
+                              ? "text-destructive"
+                              : "text-muted-foreground",
+                          )}
+                        >
                           {item.icon}
                         </span>
                         {item.label}
@@ -232,9 +299,21 @@ export function Header() {
                 {/* social links */}
                 <div className="flex items-center gap-6 pt-4 border-t border-border/50">
                   {[
-                    { href: profile.github, label: "GitHub", icon: <HugeiconsIcon icon={GithubIcon} size={22} /> },
-                    { href: profile.linkenIn, label: "LinkedIn", icon: <HugeiconsIcon icon={Linkedin01Icon} size={22} /> },
-                    { href: profile.instagram, label: "Instagram", icon: <HugeiconsIcon icon={InstagramIcon} size={22} /> },
+                    {
+                      href: profile.github,
+                      label: "GitHub",
+                      icon: <HugeiconsIcon icon={GithubIcon} size={22} />,
+                    },
+                    {
+                      href: profile.linkenIn,
+                      label: "LinkedIn",
+                      icon: <HugeiconsIcon icon={Linkedin01Icon} size={22} />,
+                    },
+                    {
+                      href: profile.instagram,
+                      label: "Instagram",
+                      icon: <HugeiconsIcon icon={InstagramIcon} size={22} />,
+                    },
                   ].map(({ href, label, icon }) => (
                     <Link
                       key={href}

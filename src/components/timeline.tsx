@@ -77,9 +77,27 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                   {item.location}
                 </p>
               </div>
-              <p className="text-sm text-muted-foreground/80 leading-relaxed mb-4 whitespace-pre-line max-md:pt-4">
-                {item.desc}
-              </p>
+              {item.desc && (
+                <p className="text-sm text-muted-foreground/80 leading-relaxed mb-4 max-md:pt-4">
+                  {item.desc}
+                </p>
+              )}
+              {item.points && item.points.length > 0 && (
+                <ul
+                  className={`list-disc pl-4 space-y-1.5 marker:text-muted-foreground/50 ${
+                    item.desc ? "mb-4" : "max-md:pt-4"
+                  }`}
+                >
+                  {item.points.map((point) => (
+                    <li
+                      key={point}
+                      className="text-sm text-muted-foreground/80 leading-relaxed"
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              )}
               {item.tags && item.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (

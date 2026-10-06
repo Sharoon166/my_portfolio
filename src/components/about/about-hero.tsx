@@ -94,7 +94,7 @@ export function AboutHero() {
           transition={{ duration: 0.7, ease: EASE, delay: 0.7 }}
           className="flex py-4 gap-4 lg:self-end"
         >
-          <Button asChild size="lg" variant="secondary">
+          <Button asChild>
             <a href={profile.resumeLink} target="_blank" rel="noopener noreferrer">
               <span>View Résumé</span>
               <HugeiconsIcon

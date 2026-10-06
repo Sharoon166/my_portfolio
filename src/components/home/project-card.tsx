@@ -1,16 +1,24 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight02Icon, ArrowUpRight01Icon, GithubIcon, Scroll01Icon, } from "@hugeicons/core-free-icons";
+import {
+  ArrowUpRight01Icon,
+  GithubIcon,
+} from "@hugeicons/core-free-icons";
 import Tooltip from "../tooltip";
 import { technologiesCollection } from "@/constants";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Button } from "../ui/button";
-import Link from "next/link";
 import { CometCard } from "../ui/comet-card";
+import { withEffectGate } from "../ui/effect-gate";
 
-export type ProjectCategory = "Full Stack" | "Frontend" | "Dashboard" | "Web Design";
+/* 3D tilt/glare only on md+; below that the gate renders the image bare. */
+const GatedCometCard = withEffectGate(CometCard, {
+  enableQuery: "(min-width: 768px)",
+});
+
+export type ProjectCategory =
+  "Full Stack" | "Frontend" | "Dashboard" | "Web Design";
 
 export interface ProjectCardProps {
   title: string;
@@ -34,7 +42,6 @@ export function ProjectCard({
   technologies,
   reverse,
   themeColor,
-  caseStudyId,
 }: ProjectCardProps) {
   return (
     <motion.div
@@ -43,21 +50,21 @@ export function ProjectCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={cn(
-        `mx-auto flex flex-col-reverse lg:flex-row lg:items-center justify-between gap-x-20 gap-y-2 sm:gap-y-6 max-lg:max-w-xl lg:group max-sm:p-2 p-4 max-lg:border-2 border-border rounded-xl max-lg:bg-muted/10 max-lg:backdrop-blur-3xl`,
+        `mx-auto flex flex-col-reverse lg:flex-row lg:items-center justify-between gap-x-20 gap-y-2 sm:gap-y-6 max-lg:max-w-2xl lg:group`,
         {
           "lg:flex-row-reverse": reverse,
-        }
+        },
       )}
       style={{ "--themeColor": themeColor || "coral" } as React.CSSProperties}
     >
       <motion.div
-        className="lg:w-1/2 space-y-4 sm:space-y-6 max-sm:px-2"
+        className="lg:w-1/2 space-y-4 sm:space-y-6 py-2 px-4"
         initial={{ opacity: 0, x: reverse ? 20 : -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="w-full ">
+        <div className="w-full">
           <motion.h3
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -85,7 +92,7 @@ export function ProjectCard({
             </motion.span>
           </motion.h3>
           <motion.p
-            className="max-w-lg text-muted-foreground text-sm lg:text-base mt-1 lg:mt-4 text-pretty max-sm:line-clamp-3"
+            className="max-w-lg text-muted-foreground text-sm lg:text-base mt-1 lg:mt-4 text-pretty max-md:line-clamp-2"
             initial={{ opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -94,7 +101,7 @@ export function ProjectCard({
             {description}
           </motion.p>
           <div className="sm:space-y-4 mt-2 lg:mt-8">
-            <h4 className="text-sm font-semibold text-gray-100 uppercase max-lg:hidden">
+            <h4 className="text-sm font-semibold text-foreground uppercase max-lg:hidden">
               <span className="mr-1.5 text-xl font-normal align-middle text-destructive">
                 *
               </span>
@@ -124,10 +131,10 @@ export function ProjectCard({
                           damping: 10,
                         }}
                       >
-                        <span className="size-9 lg:size-12 p-2 bg-muted/80 max-lg:hidden flex items-center justify-center">
+                        <span className="size-9 lg:size-12 p-2 bg-primary max-lg:hidden flex items-center justify-center">
                           <Image src={icon} alt={name} />
                         </span>
-                        <span className="text-xs! px-2 py-1 text-(--themeColor) lg:hidden">
+                        <span className="text-xs! px-2 py-1 text-primary lg:hidden">
                           {name}
                         </span>
                       </motion.div>
@@ -139,25 +146,13 @@ export function ProjectCard({
           </div>
         </div>
         <div className="hidden lg:flex items-center">
-          {caseStudyId && (
-            <Link href={`/case-studies/${caseStudyId}`} aria-label={`Read the ${title} case study`}>
-              <motion.div
-                className="text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full"
-                whileHover={{ scale: 1.1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <HugeiconsIcon icon={Scroll01Icon} size={24} />
-              </motion.div>
-            </Link>
-          )}
           {githubUrl ? (
             <motion.a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${title} source code on GitHub`}
-              className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full", caseStudyId && "-ml-4")}
+              className="text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full"
               whileHover={{ scale: 1.1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -167,7 +162,7 @@ export function ProjectCard({
           ) : (
             <span
               aria-hidden="true"
-              className={cn("text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full pointer-events-none cursor-not-allowed opacity-80", caseStudyId && "-ml-4")}
+              className="text-2xl bg-muted/80 backdrop-blur-sm p-3 rounded-full cursor-not-allowed opacity-80"
             >
               <HugeiconsIcon icon={GithubIcon} size={24} />
             </span>
@@ -178,84 +173,88 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit the ${title} live site`}
-              className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group")}
+              className={cn(
+                "inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group",
+              )}
               whileHover={{ scale: 1.1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <div className="relative size-6 overflow-hidden" aria-hidden="true">
+              <div
+                className="relative size-6 overflow-hidden"
+                aria-hidden="true"
+              >
                 <div className="absolute inset-0 flex items-center justify-center group-hover:translate-x-full group-hover:-translate-y-full transition-transform duration-300">
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                  <HugeiconsIcon
+                    icon={ArrowUpRight01Icon}
+                    size={24}
+                    className="text-primary-foreground"
+                  />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center -translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300">
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                  <HugeiconsIcon
+                    icon={ArrowUpRight01Icon}
+                    size={24}
+                    className="text-primary-foreground"
+                  />
                 </div>
               </div>
             </motion.a>
           ) : (
             <span
               aria-hidden="true"
-              className={cn("inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group pointer-events-none cursor-not-allowed opacity-80")}
+              className={cn(
+                "inline-flex items-center gap-2 relative overflow-hidden text-xl p-3 bg-foreground  rounded-full -ml-4 group cursor-not-allowed opacity-80",
+              )}
             >
               <div className="relative size-6 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={24} className="text-primary-foreground" />
+                  <HugeiconsIcon
+                    icon={ArrowUpRight01Icon}
+                    size={24}
+                    className="text-primary-foreground"
+                  />
                 </div>
               </div>
             </span>
           )}
         </div>
 
-        <div className="lg:hidden flex items-center *:grow lg:justify-start flex-wrap gap-3 mt-6">
-          {caseStudyId && (
-            <Button
-              asChild
-              size="sm"
-              variant="secondary"
-            >
-              <Link href={`/case-studies/${caseStudyId}`}>
-                <motion.span whileTap={{ scale: 0.98 }} className="flex items-center gap-2">
-                  <span>Case Study</span>
-                  <HugeiconsIcon icon={Scroll01Icon} size={18} className="text-(--themeColor)" />
-                </motion.span>
-              </Link>
-            </Button>
-          )}
-          <Button
-            asChild
-            variant="secondary"
-            size="sm"
-            disabled={!githubUrl}
-            className={cn(!githubUrl && "pointer-events-none cursor-not-allowed opacity-80")}
-          >
+        <div className="lg:hidden flex flex-wrap items-center gap-x-6 gap-y-2 mt-6 justify-between">
+          {githubUrl && (
             <motion.a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`View ${title} source code on GitHub`}
               whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center gap-2 text-destructive text-lg hover:underline underline-offset-4 py-2"
             >
               <span>View Code</span>
-              <HugeiconsIcon icon={GithubIcon} size={18} className="text-(--themeColor)" />
+              <HugeiconsIcon
+                icon={GithubIcon}
+                size={20}
+                className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"
+              />
             </motion.a>
-          </Button>
-          <Button
-            asChild
-            variant="secondary"
-            size="sm"
-            disabled={!previewUrl}
-            className={cn("group",!previewUrl && "pointer-events-none cursor-not-allowed opacity-80")}
-          >
+          )}
+          {previewUrl && (
             <motion.a
               href={previewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              // whileHover={{ scale: 1.02 }}
+              aria-label={`Visit the ${title} live site`}
               whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center gap-2 text-destructive text-lg hover:underline underline-offset-4 py-2"
             >
               <span>Live Preview</span>
-              <HugeiconsIcon icon={ArrowRight02Icon} size={18} className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-(--themeColor)" />
+              <HugeiconsIcon
+                icon={ArrowUpRight01Icon}
+                size={20}
+                className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"
+              />
             </motion.a>
-          </Button>
+          )}
         </div>
       </motion.div>
       <div className="relative lg:w-1/2 xl:w-2/3 group overflow-hidden">
@@ -263,10 +262,14 @@ export function ProjectCard({
           target="_blank"
           rel="noopener noreferrer"
           href={previewUrl}
-          className="rounded-xl p-1 px-3 border bg-(--themeColor)  relative block overflow-hidden max-h-[280px]"
-          data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
-        >        
-          <CometCard transparent className="rounded-[inherit]">
+          className="rounded-xl p-1 px-3 border bg-(--themeColor)  relative block overflow-hidden aspect-2/1"
+          data-mouse-text={
+            previewUrl
+              ? "View Website · View Website · "
+              : "Private · Private · Private"
+          }
+        >
+          <GatedCometCard transparent className="rounded-[inherit]">
             <motion.div
               initial={{ y: "60%", scale: 0.95, rotate: reverse ? 2 : -2 }}
               whileInView={{ y: "8%" }}
@@ -283,12 +286,16 @@ export function ProjectCard({
                 src={image}
                 alt={`${title} preview`}
                 className={`mx-auto brightness-95 group-hover:brightness-100 shadow-lg rounded-[inherit] max-h-[450px] w-full object-cover`}
-                data-mouse-text={previewUrl ? "View Website · View Website · " : "Private · Private · Private"}
+                data-mouse-text={
+                  previewUrl
+                    ? "View Website · View Website · "
+                    : "Private · Private · Private"
+                }
                 width={800}
                 height={450}
               />
             </motion.div>
-          </CometCard>
+          </GatedCometCard>
         </a>
       </div>
     </motion.div>

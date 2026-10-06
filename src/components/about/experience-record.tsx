@@ -55,7 +55,7 @@ function Cells({ row, glyph }: { row: LedgerRow; glyph: React.ReactNode }) {
         <span className="block text-sm font-medium text-foreground/85 transition-colors duration-300 group-hover:text-destructive-foreground md:text-base">
           {row.company}
         </span>
-        <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors group-hover:text-destructive-foreground/70">
+        <span className="block font-semibold text-xs uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-destructive-foreground/70">
           {row.location}
         </span>
       </span>
@@ -131,9 +131,24 @@ export function ExperienceRecord({ items }: { items: ExperienceItem[] }) {
                   <div className="grid gap-10 px-4 pb-10 md:grid-cols-[1fr_20rem] md:gap-12 md:px-5">
                     {/* Narrative */}
                     <div className="space-y-6 lg:ml-50">
-                      <p className="max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-muted-foreground md:text-base">
-                        {item.desc}
-                      </p>
+                      {item.desc && (
+                        <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+                          {item.desc}
+                        </p>
+                      )}
+
+                      {item.points && item.points.length > 0 && (
+                        <ul className="list-disc space-y-2 pl-5 marker:text-muted-foreground/50">
+                          {item.points.map((point) => (
+                            <li
+                              key={point}
+                              className="max-w-[70ch] text-sm leading-relaxed text-muted-foreground md:text-base"
+                            >
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
 
                       {item.tags && item.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">

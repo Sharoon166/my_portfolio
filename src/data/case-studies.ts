@@ -61,7 +61,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     private: true,
     privateNote: "Proprietary codebase — developed during employment at Synctom",
     previewUrl: "https://diniiz.com",
-    themeColor: "#0C9CDC",
+    themeColor: "#3E3E3E",
     overview: "Diniiz is a production-grade restaurant management platform built for real restaurant businesses at Synctom. It consolidates reservations, order management, staff coordination, customer tracking, and location administration into a single role-aware interface. The platform was actively used by real clients before being temporarily taken offline due to internal changes at Synctom.",
     problem: "Restaurant owners were juggling reservations, staff coordination, and customer records across disconnected tools — spreadsheets, WhatsApp groups, and paper logs. There was no single system that gave owners, managers, and staff a shared view of what was happening on the floor in real time. And for clients with their own websites, there was no easy way to let customers book a table without building something from scratch.",
     solution: "A unified platform where every role — owner, manager, staff — sees exactly what they need. Live floor status, reservation management, staff coordination, customer history, and analytics all in one place. Paired with an embeddable reservation widget that any client could drop into their existing website with a single script tag.",

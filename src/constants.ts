@@ -127,25 +127,21 @@ export const tools: (keyof typeof technologiesCollection)[] = [
 
 export const projects: ProjectCardProps[] = [
   {
-    title: "Diniiz",
+    title: "Moviemania",
     description:
-      "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
-    image: "/projects/diniiz.jpg",
-    githubUrl: "",
-    previewUrl: "https://diniiz.com",
+      "A cinematic streaming PWA built with Svelte 5 — browse and watch movies & TV through TMDB with multi-server embed playback, plus watchlist, continue watching, cross-tab sync, and a Movie Night Wheel for when you can't decide 🎬",
+    githubUrl: "https://github.com/Sharoon166/moviemania",
+    previewUrl: "https://watch-moviemania.vercel.app/",
+    image: "/projects/moviemania.png",
     technologies: [
-      "react",
-      "reactrouter",
+      "svelte",
+      "typescript",
       "tailwindcss",
-      "shadcn",
-      "nodejs",
-      "express",
-      "mongodb",
-      "cloudinary",
+      "tanstackQuery",
+      "vite",
     ],
-    themeColor: "#0C9CDC",
-    categories: ["Full Stack", "Dashboard"],
-    caseStudyId: "diniiz",
+    themeColor: "#23C55E",
+    categories: ["Frontend", "Full Stack"],
   },
   {
     title: "Newon",
@@ -158,18 +154,6 @@ export const projects: ProjectCardProps[] = [
     themeColor: "#cb743f",
     categories: ["Full Stack", "Dashboard"],
     caseStudyId: "newon",
-  },
-  {
-    title: "Reverie",
-    description:
-      "Internal operations platform built for Synctom to manage clients, finances, leads, and team operations in one place.",
-    image: "/projects/reverie.jpg",
-    githubUrl: "",
-    previewUrl: "",
-    technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
-    themeColor: "#FACA3F",
-    categories: ["Full Stack", "Dashboard"],
-    caseStudyId: "reverie",
   },
   {
     title: "Cool Care",
@@ -189,6 +173,39 @@ export const projects: ProjectCardProps[] = [
     themeColor: "#AFF47C",
     categories: ["Full Stack", "Dashboard"],
     caseStudyId: "coolcare",
+  },
+  {
+    title: "Diniiz",
+    description:
+      "Restaurant management application with order, customer, and analytics features, built during work at Synctom. Includes realtime notifications, messaging, and reservation visualization on an interactive floor canvas 🤯",
+    image: "/projects/diniiz-mgmt.webp",
+    githubUrl: "",
+    previewUrl: "https://diniiz.com",
+    technologies: [
+      "react",
+      "reactrouter",
+      "tailwindcss",
+      "shadcn",
+      "nodejs",
+      "express",
+      "mongodb",
+      "cloudinary",
+    ],
+    themeColor: "#3E3E3E",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "diniiz",
+  },
+  {
+    title: "Reverie",
+    description:
+      "Internal operations platform built for Synctom to manage clients, finances, leads, and team operations in one place.",
+    image: "/projects/reverie.jpg",
+    githubUrl: "",
+    previewUrl: "",
+    technologies: ["tailwindcss", "next", "typescript", "shadcn", "appwrite"],
+    themeColor: "#FACA3F",
+    categories: ["Full Stack", "Dashboard"],
+    caseStudyId: "reverie",
   },
   {
     title: "Brake Time",
@@ -309,7 +326,10 @@ export interface ExperienceItem {
   company: string;
   role: string;
   location: string;
-  desc: string;
+  /** Prose paragraph shown above the bullet list. */
+  desc?: string;
+  /** Bullet points rendered as a list (no need for `•` or `\n` in strings). */
+  points?: string[];
   tags?: string[];
   type: string;
   icon?: string;
@@ -324,7 +344,14 @@ export const experience: ExperienceItem[] = [
     company: "NUML",
     role: "Student",
     location: "University",
-    desc: "My time at NUML has been about much more than just a degree — it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.\n\n• Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS\n• Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)\n• Achieved a 97.3rd percentile score on the Higher Education Commission (HEC) Competency Test.\n• Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects\n• Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
+    desc: "My time at NUML has been about much more than just a degree — it's where my interest in tech actually turned into a career. From high-level theory to practical software engineering, this journey has been shaped by the people I've met and the challenges we've tackled together.",
+    points: [
+      "Maintaining a 3.9 CGPA while diving into the heavy stuff like Data Structures, Algorithms, and OS",
+      "Won the Visio Spark Quiz at COMSATS Wah Campus with my best friend (one of my favorite highlights so far)",
+      "Achieved a 97.3rd percentile score on the Higher Education Commission (HEC) Competency Test.",
+      "Getting hands-on with DBMS and Software Engineering through collaborative, real-world projects",
+      "Genuinely grateful for the teachers who actually pushed me and the friends who made the late-night debugging sessions bearable",
+    ],
     tags: ["CS", "DSA", "Algorithms", "OS", "DBMS", "SDLC"],
     type: "Education",
     icon: "graduation-cap",
@@ -336,7 +363,12 @@ export const experience: ExperienceItem[] = [
     company: "Synctom",
     role: "Web Developer",
     location: "Full-time",
-    desc: "• Built Diniiz — a restaurant management platform with realtime order tracking, interactive floor canvas for reservations, and live messaging\n• Solo-developed Newon — a centralized operations platform for inventory, invoicing, and financial management for a production client\n• Developed Reverie — internal business management platform for streamlining Synctom's day-to-day operations\n• Assisted in development of official Synctom website.",
+    points: [
+      "Built Diniiz — a restaurant management platform with realtime order tracking, interactive floor canvas for reservations, and live messaging",
+      "Solo-developed Newon — a centralized operations platform for inventory, invoicing, and financial management for a production client",
+      "Developed Reverie — internal business management platform for streamlining Synctom's day-to-day operations",
+      "Assisted in development of official Synctom website.",
+    ],
     // tags: ["React", "Node.js", "MongoDB", "Next.js"],
     type: "Work",
     icon: "briefcase",
@@ -359,7 +391,6 @@ export const experience: ExperienceItem[] = [
       "typescript",
     ],
   },
-
 ];
 
 /* Extra quotes for the home-page carousel.
@@ -387,6 +418,7 @@ export const skillCategories = [
   {
     title: "Frontend Development",
     skills: [
+      "svelte",
       "next",
       "react",
       "typescript",
@@ -396,9 +428,9 @@ export const skillCategories = [
       "reactrouter",
       "zustand",
       "motion",
-      "html",
       "css",
-    ] as (keyof typeof technologiesCollection)[],
+      "html",
+      ].reverse() as (keyof typeof technologiesCollection)[],
   },
   {
     title: "Backend & Database",
